@@ -1,0 +1,85 @@
+<style>
+    .box-body-1 thead th{
+        background-color: #CDCDCD;
+    }
+    .progress-bar{
+        background-color:#d1e17c;line-height: 50px; font-size: x-large;color: black;
+    }
+    .progress-bar:hover{
+        border:2px solid #36A9CF;
+        line-height: 46px;
+    }
+    .progress{
+        background-color: #36A9CF;text-align: right;color: black;font-weight: bolder;
+        height: 50px; line-height: 50px; font-size: x-large;
+    }
+
+</style>
+
+<div class="" style="
+    right: 100px;
+    top: 60px;
+    padding: 0;
+    width: 238px;
+    position: absolute;
+    z-index: 99;">
+    <div class="col-sm-6" style="border: 0;padding: 0;text-align: right;">
+        <span class="form-control" style="border: 0;padding-left: 0;">年份：</span>
+    </div>
+    <div class="col-sm-6" style="border: 0;padding: 0;">
+        <select class="form-control">
+            <option>2018</option>
+            <option>2019</option>
+        </select>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="box">
+        <div class="box-header with-border" style="background-color: beige;">
+            <div class="col-sm-12" data-toggle="1"
+                 style="font-size: x-large; text-align: center; font-weight: bolder; ">
+                西藏自治区总体考核情况
+            </div>
+            <div class="box-tools pull-right">
+                <div type="button" class="btn btn-box-tool box-collapse" data-toggle="1" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
+                    <i class="fa fa-minus"></i></div>
+            </div>
+        </div>
+        <div class="box-body box-body-1" style="display: block;overflow: auto;">
+            <div class="col-sm-12">
+                <div class="progress" >
+                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="76" class="progress-bar" role="progressbar">
+                        <div style="position: absolute;text-align: center">总得分：<span id="score">76</span>分</div>
+                    </div>
+                    <div style="position: absolute; right: 20px;">满分：<span style="padding-right: 5px;"><span id="goal" >100</span>分</span></div>
+                </div>
+            </div>
+            <div class="col-sm-12" id="echarts" style="height:400px;"></div>
+            <div class="col-sm-12">
+                <table id="echartsTable" class="table table-bordered">
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box">
+        <div class="box-header with-border"style="background-color: beige;">
+            <div class="col-sm-12 "  data-toggle="2"
+                 style="font-size: x-large; text-align: center; font-weight: bolder;">
+                项目考核详情一览表
+            </div>
+            <div class="box-tools pull-right">
+                <div type="button" class="btn btn-box-tool box-collapse" data-toggle="2" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
+                    <i class="fa fa-minus"></i></div>
+            </div>
+        </div>
+        <div class="box-body box-body-2" style="display: block;overflow: auto;">
+            <div class="col-sm-12">
+                <table id="dataTable" class="table table-bordered">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

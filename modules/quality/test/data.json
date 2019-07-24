@@ -1,0 +1,34 @@
+{"total":2,"rows":[{
+  "id": 1,
+  "jcxm": "1西藏xxxxxx河间项目",
+  "jcsj": "2019",
+  "jccs": 10,
+  "hgs": 6,
+  "jcjl": "合格"
+},
+  {
+    "id": 2,
+    "jcxm": "2西藏xxxxxx河间项目",
+    "jcsj": "2019",
+    "jccs": 10,
+    "hgs": 2,
+    "jcjl": "不合格"
+  },
+  {
+    "id": 3,
+    "jcxm": "4西藏xxxxxx河间项目",
+    "jcsj": "2019",
+    "jccs": 10,
+    "hgs": 8,
+    "jcjl": "合格"
+  },
+  {
+    "id": 4,
+    "jcxm": "4西藏xxxxxx河间项目",
+    "jcsj": "2019",
+    "jccs": 10,
+    "hgs": 5,
+    "jcjl": "合格"
+  }
+]
+}

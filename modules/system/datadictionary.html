@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="js/plugin/jstree/dist/themes/default/style.min.css" />
+<div class="row row-body">
+	<section class="treeselct">
+		<div id="chooseMenuTree"></div>
+	</section>
+	<section style="width:79%;float: left;border: 1px solid #ccc;">
+		<div class="row row-head">
+			<form role="form">
+				<!-- text input -->
+				<div class="query_group query_group_w30 row_m10">
+					<label>项目名称</label>
+					<input type="text" class="form-control" name="sdLabel" placeholder="">
+				</div>
+				<div class="query_group query_group_w10 row_m10">
+					<label>&nbsp;</label>
+					<button type="button" class="btn btn-block btn-primary" id="query">查询</button>
+				</div>
+				<div class="query_group query_group_w10 row_m10">
+					<label>&nbsp;</label>
+					<button type="button" class="btn btn-block btn-primary zdy-btn-add">新增</button>
+				</div>
+
+				<div class="query_group query_group_w10 row_m10 operation">
+					<label>&nbsp;</label>
+					<button type="button" class="btn btn-block btn-primary zdy-btn-excel">导出</button>
+				</div>
+
+				<div class="query_group query_group_w10 row_m10 " style="width: 250px;">
+					<label>&nbsp;</label>
+					<input id="articleImageFile" name="excelFile" type="file" class="form-control" style="width: 250px;" />
+				</div>
+
+				<div class="query_group query_group_w10 row_m10 ">
+					<label>&nbsp;</label>
+					<button id="saveZipButton" type="button" class="btn btn-block btn-primary">上传</button>
+				</div>
+			</form>
+
+		</div>
+		<table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+
+		</table>
+	</section>
+</div>

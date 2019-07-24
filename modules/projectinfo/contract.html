@@ -1,0 +1,49 @@
+<style>
+    .list-group-item > div {
+        height: 45px;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <!--toolbar-->
+        <div class="form-inline project-toolbar">
+            <form id="search_form" action="javascript:void (0)">
+                <div class="form-group">
+                    <label>合同名称：</label>
+                    <input type="text" class="form-control" name="cName" placeholder="合同名称">
+                </div>
+                <div class="form-group">
+                    <label>合同类型：</label>
+                    <select class="form-control" name="cType">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <button class="btn btn-success" id="btn_search">查询</button>
+                <button type="reset" class="btn btn-warning" id="2">清空</button>
+                <div class="btn-group" style="float: right;">
+                    <button id="btn_add" data-type="add" data-title="新增合同" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增合同
+                    </button>
+                    <!--<button id="btn_view" data-type="add" data-title="查看合同" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查看合同
+                    </button>
+                    <button id="btn_edit" data-type="edit" data-title="修改合同" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                    </button>-->
+                    <button id="btn_delete" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                    </button>
+                    <!--<button id="btn_down" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-open" aria-hidden="true"></span>下载合同附件
+                    </button>-->
+                </div>
+            </form>
+        </div>
+
+        <!--table-->
+        <div id="dataTable"></div>
+    </div>
+
+</div>
+</div>

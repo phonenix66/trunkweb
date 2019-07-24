@@ -1,0 +1,148 @@
+.panding0{
+  padding: 0px;
+}
+.project-toolbar {
+  padding: 5px 10px;
+}
+.to-more{
+  cursor: pointer;
+}
+.pointer{
+  cursor: pointer;
+}
+.projectinfo{
+  width: 70%;
+  margin-left: 15%;
+}
+.nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li:hover > a {
+  color: #00a157;
+}
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-bottom-color: #3c8dbc;
+  border-top-color: #F5F5F5;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+  border-top: 1px solid #F5F5F5;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  margin-right: 0px;
+}
+/*.files-span {
+  color: #808895;
+  padding-left: 10px;
+}
+.down-file:hover{
+  cursor: pointer;
+  color: #4A8AF4;
+}
+.delete-file:hover{
+  cursor: pointer;
+  color: red;
+}*/
+.ifram-form{
+  padding: 10px;
+}
+.breadcrumb {
+  position: fixed;
+  z-index: 98;
+  left: 30px;
+  font-size: medium;
+  margin-top: 3px;
+}
+
+.red {
+  color: red;
+}
+
+.single {
+  margin: 6px auto;
+}
+
+.hr {
+  height: 30px;
+  width: 100%;
+}
+.one{
+  border-bottom: 2px solid #F5F5F5;
+  padding-bottom: 5px;
+}
+.form-title {
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+  background-color: #F5F5F5;
+}
+
+.btns {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.buttons {
+  position: fixed;
+  right: 10%;
+  z-index: 99;
+  padding: 10px;
+}
+
+.state {
+  color: #636974;
+  padding-left: 10px;
+}
+
+.left {
+  float: left;
+}
+
+.panel-heading .left {
+  font-weight: bold;
+}
+
+.input-span {
+  text-align: right;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+}
+
+.one-line {
+  width: 40%;
+}
+
+.col-sm-1 .one-line-span {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.describe {
+  text-align: right;
+  line-height: 42px;
+  font-size: 18px;
+  height: 55px;
+  border-right: 1px solid #ddd;
+  margin-top: -11px;
+}
+
+.val {
+  text-align: left;
+  font-size: 18px;
+}
+
+.blank-line {
+  height: 30px;
+}
+
+.data-form {
+  border: 1px solid #dddddd;
+  padding: 2px;
+}

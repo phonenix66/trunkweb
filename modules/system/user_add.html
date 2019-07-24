@@ -1,0 +1,111 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	.width-15 {
+		width: 15%;
+	}
+
+	.width-35 {
+		width: 35%
+	}
+
+	.addon {
+		cursor: pointer;
+	}
+
+	.layui-layer-content {
+		background-color: #ecf0f1;
+	}
+</style>
+
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title"></h3>
+	</div>
+	<div class="box-body">
+		<form id="inputForm">
+			<input type="hidden" id="uId" name="id" />
+			<div class="row">
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label class="">
+							<font color="red">*</font>登录账号
+						</label>
+						<input maxlength="50" id="loginName" name="loginName" class="form-control userName" />
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label class="">
+							<font color="red">*</font>姓名
+						</label>
+						<input maxlength="50" id="name" name="name" class="form-control" />
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label>
+							<font color="red">*</font>所在单位
+						</label>
+						<div class="input-group">
+							<input type="hidden" id="officeId" name="deptId">
+							<input maxlength="50" readonly id="officeName" type="text" name="office.name"
+								   class="form-control officeName" />
+							<span class="input-group-addon addon search-o">
+								<i class="fa fa-search"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label class="">邮箱:</label>
+						<input id="email" name="email" maxlength="100" class="form-control email" />
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label class="">电话:</label>
+						<input id="phone" maxlength="100" class="form-control" name="phone" />
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label class="">手机:</label>
+						<input id="mobile" maxlength="100" class="form-control" name="mobile" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-6 col-sm-6">
+					<div class="form-group">
+						<label>
+							<font color="red">*</font>角色
+						</label>
+						<select id="roleId" class="form-control" name="roleId">
+						</select>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+<div id="js_tree" style="display:none;"></div>

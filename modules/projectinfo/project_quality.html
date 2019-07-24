@@ -1,0 +1,382 @@
+<style>
+    .list-group-item > div{
+        padding: 5px 0px;
+    }
+    h4{
+        font-weight: bolder;
+    }
+    .head{
+        background-color: #f5f5f5;
+    }
+    .tab-content{
+        height: calc(100vh - 228px);
+        overflow: auto;
+    }
+    .nav-tabs-custom {
+     margin-bottom: 0px;
+    }
+</style>
+<div class="panel panel-default projectinfo">
+    <div class="nav-tabs-custom panel-body">
+        <ul class="nav nav-tabs" id="tabs">
+            <li class="active"><a href="#tab_a" data-type="a" data-toggle="tab" aria-expanded="false">质量体系文件</a></li>
+            <li class=""><a href="#tab_b" data-type="b" data-toggle="tab" aria-expanded="true">质量监督书</a></li>
+            <li class=""><a href="#tab_c" data-type="c" data-toggle="tab" aria-expanded="false">安全体系文件</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <!--质量体系文件-->
+        <div class="tab-pane active" id="tab_a">
+            <div class="panel-body projectinfo" >
+                <ul class="list-group row">
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>项目法人体系资料：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="col-sm-12">
+                            <label>项目法人组建资料 ：</label>
+                            <div class="col-sm-12 panding0" id="xmfrzjzlDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xmfrzjzl" name="fXmfrzjzl" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>项目法人质量责任终身制资料 ：</label>
+                            <div class="col-sm-12 panding0" id="xmfrzlzrzszzlDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xmfrzlzrzszzl" name="fXmfrzlzrzszzl" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>项目法人质量管理制度 ：</label>
+                            <div class="col-sm-12 panding0" id="xmfrzlglzdDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xmfrzlglzd" name="fXmfrzlglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>监理单位：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="col-sm-12">
+                            <label>监理机构设立资料 ：</label>
+                            <div class="col-sm-12 panding0" id="jljgslzlDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="jljgslzl" name="fJljgslzl" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>质量管理体系文件：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="col-sm-12">
+                            <label>监理质量控制制度和体系文件 ：</label>
+                            <div class="col-sm-12 panding0" id="jlzlkzzdhtxwjDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="jlzlkzzdhtxwj" name="fJlzlkzzdhtxwj" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>监理规划资料 ：</label>
+                            <div class="col-sm-12 panding0" id="jlghzlDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="jlghzl" name="fJlghzl" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>系统实施细则 ：</label>
+                            <div class="col-sm-12 panding0" id="xtssxzDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xtssxz" name="fXtssxz" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>监理月报 ：</label>
+                            <div class="col-sm-12 panding0" id="jlybDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="jlyb" name="fJlyb" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>施工单位质量管理体系文件：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="col-sm-12">
+                            <label>施工管理机构建立 ：</label>
+                            <div class="col-sm-12 panding0" id="sggljgjlDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="sggljgjl" name="fSggljgjl" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>施工质量管理制度 ：</label>
+                            <div class="col-sm-12 panding0" id="sgzlglzdDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="sgzlglzd" name="fSgzlglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>专项施工方案 ：</label>
+                            <div class="col-sm-12 panding0" id="zxsgfaDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="zxsgfa" name="fZxsgfa" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>施工工艺试验方案 ：</label>
+                            <div class="col-sm-12 panding0" id="sggyfaDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="sggyfa" name="fSggyfa" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>专项检测方案编制及成果 ：</label>
+                            <div class="col-sm-12 panding0" id="zxjcfabzjcgDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="zxjcfabzjcg" name="fZxjcfabzjcg" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>质量事故应急预案 ：</label>
+                            <div class="col-sm-12 panding0" id="zlsgyjfaDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="zlsgyjfa" name="fZlsgyjfa" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>新工艺、新材料应用推广 ：</label>
+                            <div class="col-sm-12 panding0" id="xgyxclyytgDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xgyxclyytg" name="fXgyxclyytg" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>质量终身责任制：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="col-sm-12">
+                            <label>项目法人单位工程质量终身责任承诺书 ：</label>
+                            <div class="col-sm-12 panding0" id="xmfrdwgczlzszrcrsDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="xmfrdwgczlzszrcrs" name="fXmfrdwgczlzszrcrs" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>设计单位工程质量终身责任承诺书 ：</label>
+                            <div class="col-sm-12 panding0" id="sjdwgczlzszrcrsDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="sjdwgczlzszrcrs" name="fSjdwgczlzszrcrs" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>勘察单位工程质量终身责任承诺书 ：</label>
+                            <div class="col-sm-12 panding0" id="kcdwgczlzszrcrsDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="kcdwgczlzszrcrs" name="fKcdwgczlzszrcrs" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>施工单位工程质量终身责任承诺书 ：</label>
+                            <div class="col-sm-12 panding0" id="sgdwgczlzszrcrsDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="sgdwgczlzszrcrs" name="fSgdwgczlzszrcrs" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>质量检测单位工程质量终身责任承诺书 ：</label>
+                            <div class="col-sm-12 panding0" id="zljcdwgczlzszrcrsDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="zljcdwgczlzszrcrs" name="fZljcdwgczlzszrcrs" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label>永久性责任标牌 ：</label>
+                            <div class="col-sm-12 panding0" id="yjxzrbpDiv"></div>
+                            <div class="col-sm-12 panding0">
+                                <input id="yjxzrbp" name="fYjxzrbp" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--质量监督书-->
+        <div class="tab-pane" id="tab_b">
+            <div class="panel-body projectinfo" >
+                <ul class="list-group row">
+
+                    <li class="list-group-item col-sm-12">
+                        <div class="form-group">
+                            <label>质量监督书：</label>
+                            <div class="col-sm-12 panding0" id="fZljds" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_zljds" name="fZljds" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <!--安全体系文件-->
+        <div class="tab-pane" id="tab_c">
+            <div class="panel-body projectinfo">
+                <ul class="list-group row">
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>安全生产管理机构：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="form-group col-sm-12">
+                            <label>安全负责人：</label>
+                            <input class="form-control" name="safetyDirector" placeholder="录入安全负责人">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>附件：</label>
+                            <div class="col-sm-12 panding0" id="fAqscgljg" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqscgljg" name="fAqscgljg" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>落实安全生产责任制：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="form-group">
+                            <label>附件：</label>
+                            <div class="col-sm-12 panding0" id="fLsaqsczrz" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_lsaqsczrz" name="fLsaqsczrz" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item col-sm-12 head">
+                        <h4>安全生产管理制度：</h4>
+                    </li>
+                    <li class="list-group-item col-sm-12">
+                        <div class="form-group col-sm-12">
+                            <label>安全生产教育培训管理制度：</label>
+                            <div class="col-sm-12 panding0" id="fAqscjypxglzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqscjypxglzd" name="fAqscjypxglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>安全生产检查制度：</label>
+                            <div class="col-sm-12 panding0" id="fAqscjczd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqscjczd" name="fAqscjczd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>安全生产技术交底制度：</label>
+                            <div class="col-sm-12 panding0" id="fAqscjsjdzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqscjsjdzd" name="fAqscjsjdzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>用电安全管理制度：</label>
+                            <div class="col-sm-12 panding0" id="fYdaqglzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_ydaqglzd" name="fYdaqglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>消防安全管理制度：</label>
+                            <div class="col-sm-12 panding0" id="fXfaqglzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_xfaqglzd" name="fXfaqglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>高空作业安全防护制度：</label>
+                            <div class="col-sm-12 panding0" id="fGkzyaqfhzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_gkzyaqfhzd" name="fGkzyaqfhzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>班前安全活动制度：</label>
+                            <div class="col-sm-12 panding0" id="fBqaqhdzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_bqaqhdzd" name="fBqaqhdzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>雷管、炸药等火工材料管理制度：</label>
+                            <div class="col-sm-12 panding0" id="fLgzydhgclglzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_lgzydhgclglzd" name="fLgzydhgclglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>防火防爆管理制度：</label>
+                            <div class="col-sm-12 panding0" id="fFhfbglzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_fhfbglzd" name="fFhfbglzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>安全事故处理报告制度：</label>
+                            <div class="col-sm-12 panding0" id="fAqsgclbgzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqsgclbgzd" name="fAqsgclbgzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>安全奖罚制度：</label>
+                            <div class="col-sm-12 panding0" id="fAqjfzd" >
+                                
+                            </div>
+                            <div class="col-sm-12 panding0">
+                                <input id="f_aqjfzd" name="fAqjfzd" multiple type="file" data-show-caption="true">
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

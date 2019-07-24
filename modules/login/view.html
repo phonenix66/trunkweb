@@ -1,0 +1,35 @@
+<div class="login-wrapper">
+    <div class="form-wrap">
+        <form class="form-signin" id="loginForm" action="main.html">
+            <div class="l-row"><input type="text" id="account" class="form-control" placeholder="用户名" required=""
+                    autofocus=""></div>
+
+            <div class="l-row"><input type="password" id="inputPassword" class="form-control" placeholder="密码"
+                    required="">
+            </div>
+
+            <!-- <div class="verify-row">
+                <div class="code-wrap">
+                    <input type="text" name="verifyCodeActual" placeholder="请输入验证码" class="form-control">
+                </div>
+                <div class="img-wrap">
+                    <img src="{{=it.imgUrl}}" width="125" height="44" id="captcha_img">
+                </div>
+            </div> -->
+            <div class="verify-row" id="verifyRow">
+
+            </div>
+            <div class="checkbox mb-3 text-right">
+                <!--<label>-->
+                <!--<a href="modules/register/legalPerson.html">注册法人</a>-->
+                <!--</label>-->
+                <label>
+                    <input type="checkbox" name="remembercheckbox" id="rememberCheckBox">记住密码
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="button" id="login">登录</button>
+            <div class="login-tips">(*本系统为非涉密系统，请勿提交涉密信息及资料)</div>
+        </form>
+    </div>
+
+</div>

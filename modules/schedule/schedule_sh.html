@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="js/icheck/all.css">
+<style>
+    .red {
+        color: red;
+    }
+    
+    .jz {
+        text-align: center;
+        background-color: #efefef;
+    }
+</style>
+<div class="box box-primary">
+    <form role="form">
+        <div class="box-body">
+            <input id="id" name="id" type="hidden" />
+            <input type="hidden" id="pjId" name="pjId" />
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label><i style="color:red;">*</i>资金拨付情况:</label>
+                    <input type="text" class="form-control" id="sAppropriate" name="sAppropriate" readonly="readonly">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label><i style="color:red;">*</i>资金结算情况:</label>
+                    <input type="text" class="form-control" id="sSettlement" name="sSettlement" readonly="readonly">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label><i style="color:red;">*</i>工程状态:</label>
+                    <select name="pjState" id="pjState" class="form-control" readonly="readonly">
+                        <!-- <option value="">请选择</option> -->
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label><i style="color:red;">*</i>上报时间</label>
+                    <div class="input-group date">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right datepicker" name="reportingDate" readonly="readonly">
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th colspan="8" class="jz">进度款结算支撑附件</th>
+                    </tr>
+                </table>
+
+                <div class="col-sm-12 form-group">
+                    <label>工程量核算清单:</label>
+                    <div id="fileDiv"></div>
+                    <input id="gclhsqd" name="file" multiple type="file" data-show-caption="true" readonly="readonly">
+                    <label>结算申请单:</label>
+                    <div id="fileDiv1"></div>
+                    <input id="jssqd" name="file" multiple type="file" data-show-caption="true" readonly="readonly">
+                    <label>资金拨付单据:</label>
+                    <div id="fileDiv2"></div>
+                    <input id="zjbfdj" name="file" multiple type="file" data-show-caption="true" readonly="readonly">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label><i style="color:red;">*</i>审核结果:</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="">请选择</option>
+                        <option value="1">审核通过</option>
+                        <option value="2">审核未通过</option>
+                    </select>
+                </div>
+
+
+            </div>
+    </form>
+    </div>

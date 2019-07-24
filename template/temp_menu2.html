@@ -1,0 +1,70 @@
+<!--
+	作者：offline
+	时间：2018-05-10
+	描述：左边菜单
+-->
+<ul class="sidebar-menu" data-widget="tree">
+	<!--<li>
+		<a href="modules/earlyManagement/investmentDecisioMaking.html" menuname="待办提醒" class="myhome">
+			<i class="fa fa-th"></i> <span>待办/提醒</span>
+			<span class="pull-right-container">
+			<small class="label pull-right bg-red" title="报警">3</small>
+          <small class="label pull-right bg-green" title="待办">5</small>
+
+        </span>
+		</a>
+	</li>-->
+	<!--二级菜单遍历-->
+	<% if(list){ %>
+	<%  for(var i = 0; i < list.length; i++) { %>
+	<%   var item = list[i]; %>
+	<%   if(item.clist && item.clist.length > 0){%>
+	<li class="treeview">
+		<!--二级树-->
+		<a href="#" class="menu_blank">
+			<i class="fa <%=item.img%>"></i> <span><%=item.name%></span>
+			<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+		</a>
+		<ul class="treeview-menu">
+			<!--三级菜单遍历-->
+			<% for(var j = 0; j < item.clist.length; j++) { %>
+			<% var citem = item.clist[j];%>
+			<li class="treeview">
+				<% if(citem.clist && citem.clist.length > 0){ %>
+				<!--三级树-->
+				<a href="#" class="menu_blank">
+					<i class="fa <%=citem.img%>"></i> <span><%=citem.name%></span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<!--四级菜单遍历-->
+					<% for(var j2 = 0; j2 < citem.clist.length; j2++) { %>
+					<% var citem2 = citem.clist[j2];%>
+					<li class="treeview">
+						<a href="<%=citem2.url%>" class="click_menu menu_type<%=item.type%>"><i class="fa <%=citem2.img%>"></i>
+							<%=citem2.name%>
+						</a>
+					</li>
+					<% } %>
+				</ul>
+				<%  } else {%>
+				<!--三级非树-->
+				<a href="<%=citem.url%>" class="click_menu menu_type<%=item.type%>">
+					<i class="fa <%=citem.img%>"></i> <span><%=citem.name%></span>
+				</a>
+				<%  } %>
+			</li>
+			<% } %>
+		</ul>
+	</li>
+	<%   } else {%>
+	<!--二级非树-->
+	<li>
+		<a href="<%=item.url%>" class="click_menu menu_type<%=item.type%>">
+			<i class="fa <%=item.img%>"></i> <span><%=item.name%></span>
+		</a>
+	</li>
+	<%   } %>
+	<%  } %>
+	<% } %>
+</ul>

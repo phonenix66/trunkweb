@@ -1,0 +1,15 @@
+<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全区域机构</a></li>
+
+<%if(!selectedCity){%>
+<%_.each(citys,function(item){%>
+<li data-item='<%=JSON.stringify(item)%>' class=""><a href="javascript:void(0)"><i class="fa fa-paper-plane"></i>
+    <%=item.name%></a></li>
+<%})%>
+<%}else{%>
+<%_.each(citys,function(item){%>
+<%var selected = '';item.id == selectedCity.id ? selected = 'active':selected=''%>
+<li data-item='<%=JSON.stringify(item)%>' class="<%=selected%>"><a href="javascript:void(0)"><i
+      class="fa fa-paper-plane"></i>
+    <%=item.name%></a></li>
+<%})%>
+<%}%>

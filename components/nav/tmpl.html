@@ -1,0 +1,52 @@
+<%if(userinfo){%>
+<div class="selected-nav">
+	<div class="head-nav city">
+		<%var len_c = citys.length;%>
+		<!-- <%if(len_c === 1){%>
+		<span id="cityText"><%=userinfo.city.name%></span><i class="fa fa-sort-down"></i>
+		<%}else{%>
+		<span id="cityText">全部</span><i class="fa fa-sort-down"></i>
+		<%}%> -->
+		<span id="cityText" class="name-1">全区域机构</span><i class="fa fa-sort-down"></i>
+		<ul class="select-wrap" data-type="1" id="selectCity">
+			<!-- 			<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全部</a></li>
+ --> <%_.each(citys,function(item){%>
+			<li data-item='<%=JSON.stringify(item)%>' class=""><a href="javascript:void(0)"><i class="fa fa-paper-plane"></i>
+					<%=item.name%></a></li>
+			<%})%>
+		</ul>
+	</div>
+	<div class="head-nav county">
+		<%var len_ty = countys.length;%>
+		<!-- <%if(len_ty === 1){%>
+		<span id="county"><%=userinfo.county.name%></span><i class="fa fa-sort-down"></i>
+		<%}else{%>
+		<span id="county">全部</span><i class="fa fa-sort-down"></i>
+		<%}%> -->
+		<span id="county" class="name-2">全机构</span><i class="fa fa-sort-down"></i>
+		<ul class="select-wrap" data-type="2" id="selectCounty">
+			<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全部</a></li>
+		</ul>
+	</div>
+	<div class="head-nav project">
+		<!-- <%var len_p = projects.length; %>
+		<%if(len_p === 1){%>
+		<span id="lt-project"><%=userinfo.project.name%></span><i class="fa fa-sort-down"></i>
+		<%}else{%>
+		<span id="lt-project">全部</span><i class="fa fa-sort-down"></i>
+		<%}%> -->
+		<span id="lt-project" class="name-3">全部项目</span><i class="fa fa-sort-down"></i>
+		<div class="select-wrap last-wrap" data-type="3">
+			<div class="search-input">
+				<input type="text" class="form-control search" placeholder="请输入项目名称或者项目id">
+			</div>
+			<ul id="selectProject" class="select-project">
+				<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全部</a></li>
+			</ul>
+		</div>
+		<!-- <ul class="select-wrap last-wrap" data-type="3" id="selectProject">
+			<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全部</a></li>
+		</ul> -->
+	</div>
+</div>
+<%}%>

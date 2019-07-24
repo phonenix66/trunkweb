@@ -1,0 +1,30 @@
+{"total":2,"rows":[{
+  "id": 1,
+  "jclx": "施工单位自检",
+  "jccs": 10,
+  "zlqxsl": 8,
+  "zlsgsl": 2
+},
+  {
+    "id": 2,
+    "jclx": "监理单位平捡",
+    "jccs": 9,
+    "zlqxsl": 9,
+    "zlsgsl": 1
+  },
+  {
+    "id": 3,
+    "jclx": "项目法人抽检",
+    "jccs": 10,
+    "zlqxsl":7,
+    "zlsgsl": 3
+  },
+  {
+    "id": 4,
+    "jclx": "监督检测（飞检）",
+    "jccs": 8,
+    "zlqxsl": 7,
+    "zlsgsl": 1
+  }
+]
+}

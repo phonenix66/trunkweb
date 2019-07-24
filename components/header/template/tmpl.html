@@ -1,0 +1,32 @@
+<% for(var i = 0; i < list.length; i++) { %>
+<% var item = list[i] %>
+
+<li class="nav-main">
+  <a href="<%=item.url%>" menuid="<%=item.id%>" data-menu='<%=JSON.stringify(item)%>' menuname="<%=item.name%>"
+    class="<%=item.classes%>"><i class="fa <%=item.img%>"></i><span class="hidden-xs"> <%=item.name%> </span></a>
+</li>
+
+<% } %>
+<li class="user user-menu">
+  <!--<a href="modules/system/password.html"  menuid="008" menuname="密码管理"  class="menu_pass">
+          <img src="<%=profile.info.image%>" class="user-image" alt="User Image">
+          <span class="hidden-xs"><%=profile.info.username%></span>
+      </a>-->
+  <a href="modules/system/password.html" class="menu" data-toggle="dropdown" role="button" aria-expanded="false">
+    <% if(profile.info.image!=''){%>
+    <img src="<%=profile.info.image%>" class="user-image" alt="User Image">
+    <% }else{%>
+    <img src="images/user-img.png" class="user-image" alt="User Image">
+    <% }%>
+
+    <span class="hidden-xs"><%=profile.info.username%></span>
+  </a>
+  <ul class="dropdown-menu animated fadeIn" role="menu">
+    <li>
+      <a href="modules/system/password.html" id="menu_pass" class="menu_pass menu_rigth">密码管理</a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" id="menu_loginOut" class="menu_pass menu_rigth">安全退出</a>
+    </li>
+  </ul>
+</li>

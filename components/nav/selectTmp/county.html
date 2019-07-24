@@ -1,0 +1,15 @@
+<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全机构</a></li>
+
+<%if(!selectedCounty){%>
+<%_.each(countys,function(item){%>
+<li data-item='<%=JSON.stringify(item)%>' class=""><a href="javascript:void(0)"><i class="fa fa-paper-plane"></i>
+    <%=item.name%></a></li>
+<%})%>
+<%}else{%>
+<%_.each(countys,function(item){%>
+<%var selected = '';item.id == selectedCounty.id ? selected = 'active':selected=''%>
+<li data-item='<%=JSON.stringify(item)%>' class="<%=selected%>"><a href="javascript:void(0)"><i
+      class="fa fa-paper-plane"></i>
+    <%=item.name%></a></li>
+<%})%>
+<%}%>

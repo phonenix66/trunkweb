@@ -1,0 +1,130 @@
+
+<div class="box box-primary">
+<form role="form">
+		<div class="box-body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					质量与安全隐患
+				</div>
+				<div class="panel-body">
+					<input name="id" type="hidden" class="form-control"/>
+					<input name="pjId" type="hidden" class="form-control"/>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>隐患编号</label>
+							<input name="hdCode" type="text" class="form-control"/>
+						</div>
+						<div class="form-group col-sm-6">
+							<label>被检查单位(责任人)</label>
+							<input name="hdPersionLiable" type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>项目名称</label>
+							<input name="pjName" type="text" class="form-control" readonly/>
+						</div>
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>检查时间</label>
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right datepicker" name="inspectionDate">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<label>隐患内容</label>
+							<textarea name="hdContent" class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>隐患类别</label>
+							<select name="hdType" class="form-control">
+								<option value="1">质量</option>
+								<option value="2">安全</option>
+								<option value="3">质量、安全</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>复查时间</label>
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right datepicker" name="reviewDate">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<label>整改要求</label>
+							<textarea name="zgRequirment" class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<label>整改情况</label>
+							<textarea name="zgSituation" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label>挂牌督办情况</label>
+							<select name="gpdbSituation" class="form-control">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label><i style="color:red;">*</i>销号日期</label>
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right datepicker" name="salesDate">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label>销号单位或人</label>
+							<input type="text" class="form-control" name="salesCompany">
+						</div>
+						<div class="form-group col-sm-6">
+							<label>录入人员</label>
+							<input type="text" class="form-control" name="inputBy">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<label>备注</label>
+							<textarea name="remarks" class="form-control"></textarea>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+</form>
+<!--
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					附件信息
+				</div>
+				<div class="panel-body">
+					<div class="form-group col-sm-12" id="fileDiv"> </div>
+					<div class="form-group col-sm-12 ">
+						<input id="input-id" name="file" multiple type="file" data-show-caption="true">
+					</div>
+				</div>
+			</div>-->
+</div>

@@ -1,0 +1,44 @@
+<div class="hr"></div>
+<form id="form" action="javascript:void (0)">
+<input type="hidden" name="id">
+    <div class="col-sm-6 form-group">
+        <label>合同类型<span class="red">*</span>:</label>
+        <select notEmpty name="cType" class="form-control">
+            <option value="">请选择</option>
+        </select>
+    </div>
+    <div class="col-sm-6 form-group">
+        <label>合同名称<span class="red">*</span>:</label>
+        <input notEmpty stringLength="100"  class="form-control" name="cName" placeholder="合同名称">
+    </div>
+    <div class="col-sm-12"></div>
+    <div class="col-sm-6 form-group">
+        <label>合同签订单位<span class="red">*</span>:</label>
+        <input notEmpty  class="form-control" name="signinger" placeholder="合同签订单位">
+    </div>
+    <div class="col-sm-6 form-group">
+        <label>合同金额（万元）<span class="red">*</span>:</label>
+        <input notEmpty class="form-control" name="money" placeholder="合同金额">
+    </div>
+    <div class="col-sm-12 form-group">
+        <label>备注说明：</label>
+        <textarea class="form-control" stringLength="1000"  name="remark" placeholder="输入备注说明"></textarea>
+    </div>
+    <div class="col-sm-12 form-group">
+        <label>合同附件上传</label>
+        <div class="col-sm-12 panding0" id="fHtfjDiv"></div>
+        <div class="col-sm-12 panding0" >
+            <input id="file_1" name="fHtfj" multiple type="file" data-show-caption="true" class="form-control">
+        </div>
+    </div>
+    <!--<div class="col-sm-6 form-group">
+        <label>时间<span class="red">*</span>:</label>
+        <div class="input-group date">
+            <input id="1" type="text" name="date" class="form-control datepicker" placeholder="时间">
+            <label for="1" class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </label>
+        </div>
+    </div>-->
+
+</form>

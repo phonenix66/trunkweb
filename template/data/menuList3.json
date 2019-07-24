@@ -1,0 +1,1008 @@
+[{
+        "id": "000",
+        "name": "首页",
+        "url": "modules/homepage/homePage.html",
+        "l": 1,
+        "classes": "menu_pass",
+        "img": "fa-university",
+        "clist": []
+    },
+    {
+        "id": "001",
+        "name": "一张图",
+        "url": "modules/map/map.html",
+        "l": 1,
+        "classes": "menu_pass",
+        "img": "fa-paper-plane-o",
+        "clist": []
+    },
+    {
+        "id": "002",
+        "name": "前期管理",
+        "url": "",
+        "l": 1,
+        "classes": "bind_project",
+        "img": "fa-flag-checkered",
+        "clist": [{
+                "id": "002002",
+                "name": "投资决策信息管理",
+                "url": "modules/earlyManagement/startWorking.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "002001",
+                "name": "开工决策信息管理",
+                "url": "modules/earlyManagement/investmentDecisioMaking.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "002004",
+                "name": "开工准备",
+                "url": "modules/earlyManagement/startReady.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            }
+        ]
+    },
+    {
+        "id": "003",
+        "name": "建设管理",
+        "url": "",
+        "l": 1,
+        "classes": "bind_project",
+        "img": "fa-codepen",
+        "clist": [{
+                "id": "003001",
+                "name": "进度管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003001001",
+                        "name": "进度计划填报",
+                        "url": "modules/schedule/jdjh_pz.html",
+                        "l": 3,
+                        "img": "fa-angle-double-right",
+                        "clist": []
+                    },
+                    {
+                        "id": "003001003",
+                        "name": "施工进度查询",
+                        "url": "modules/schedule/sgjdtb.html",
+                        "l": 3,
+                        "img": "fa-angle-double-right",
+                        "clist": []
+                    },
+                    {
+                        "id": "003001006",
+                        "name": "施工设备查询",
+                        "url": "modules/schedule/zyxxtb_ck.html",
+                        "l": 3,
+                        "img": "fa-angle-double-right",
+                        "clist": []
+                    }
+                ]
+            },
+            {
+                "id": "003002",
+                "name": "投资管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003002001",
+                        "name": "采购管理",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002001001",
+                                "name": "采购计划申请",
+                                "url": "modules/tzgl/cgsqgl/tzgl_cgsqgl.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002001002",
+                                "name": "采购计划审批",
+                                "url": "modules/tzgl/cgjhsp/tzgl_cgjhsp.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002001003",
+                                "name": "采购立项填报",
+                                "url": "modules/tzgl/cglx/tzgl_cglx.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002001004",
+                                "name": "采购立项审批",
+                                "url": "modules/tzgl/cglx/tzgl_cglxsp.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002001005",
+                                "name": "招标计划填报",
+                                "url": "modules/tzgl/zbjh/tzgl_zbjh.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002001005",
+                                "name": "招标计划审批",
+                                "url": "modules/tzgl/zbjh/tzgl_zbjh_sp.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002002",
+                        "name": "合同填报",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002002001",
+                                "name": "施工类合同",
+                                "url": "modules/tzgl/htgl/tzgl_sg_htlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002002",
+                                "name": "设备类合同",
+                                "url": "modules/tzgl/htgl/tzgl_sb_htlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002002",
+                                "name": "大件运输类合同",
+                                "url": "modules/tzgl/htgl/tzgl_djys_htlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002002",
+                                "name": "服务类合同",
+                                "url": "modules/tzgl/htgl/tzgl_fw_htlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002002",
+                                "name": "其它类合同",
+                                "url": "modules/tzgl/htgl/tzgl_other_htlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002003",
+                                "name": "合同统计分析",
+                                "url": "modules/tzgl/htgl/tzgl_httjlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002008",
+                        "name": "合同审批",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002008001",
+                                "name": "施工类合同",
+                                "url": "modules/tzgl/htsp/htsp_sg_list.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002008002",
+                                "name": "设备类合同",
+                                "url": "modules/tzgl/htsp/htsp_sb_list.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002008003",
+                                "name": "大件运输类合同",
+                                "url": "modules/tzgl/htsp/htsp_djys_list.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002008004",
+                                "name": "服务类合同",
+                                "url": "modules/tzgl/htsp/htsp_fw_list.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002008005",
+                                "name": "其它类合同",
+                                "url": "modules/tzgl/htsp/htsp_other_list.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002003",
+                        "name": "合同变更",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002003001",
+                                "name": "合同变更申请",
+                                "url": "modules/tzgl/htbg/htbglr/tzgl_htbglrlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002003002",
+                                "name": "合同变更审批",
+                                "url": "modules/tzgl/htbg/htbgsp/tzgl_htsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002003003",
+                                "name": "合同变更立项申请",
+                                "url": "modules/tzgl/htbg/bghtlxsp/tzgl_htsqlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002003004",
+                                "name": "合同变更立项审批",
+                                "url": "modules/tzgl/htbg/bghtlxsp/tzgl_htsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002003005",
+                                "name": "反索赔申请",
+                                "url": "modules/tzgl/htbg/fspsq/tzgl_fspsqlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002003006",
+                                "name": "反索赔审批",
+                                "url": "modules/tzgl/htbg/fspsq/tzgl_fspsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002004",
+                        "name": "结算申请",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002040001",
+                                "name": "施工类结算",
+                                "url": "modules/tzgl/jsgl/sgljs/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040002",
+                                "name": "设备物资类结算",
+                                "url": "modules/tzgl/jsgl/sbjs/sbljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040003",
+                                "name": "大件运输结算",
+                                "url": "modules/tzgl/jsgl/djysjs/djljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040004",
+                                "name": "服务类结算",
+                                "url": "modules/tzgl/jsgl/fwjs/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040005",
+                                "name": "服务类结算",
+                                "url": "modules/tzgl/jsgl/fwjs/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002004",
+                        "name": "结算审批",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003002040001",
+                                "name": "施工类结算",
+                                "url": "modules/tzgl/jssp/sg/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040002",
+                                "name": "设备物资类结算",
+                                "url": "modules/tzgl/jssp/sb/sbljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040003",
+                                "name": "大件运输结算",
+                                "url": "modules/tzgl/jssp/djys/djljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040004",
+                                "name": "服务类结算",
+                                "url": "modules/tzgl/jssp/fw/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002040005",
+                                "name": "服务类结算",
+                                "url": "modules/tzgl/jssp/fw/sgljslist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002005",
+                        "name": "投资分析",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-shopping-cart",
+                        "clist": [{
+                                "id": "003002002001",
+                                "name": "工程或费用名称维护",
+                                "url": "modules/tzgl/tzfx/fcmcfywhlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002002002",
+                                "name": "集团评估价录入",
+                                "url": "modules/tzgl/tzfx/jtpglr.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003002002",
+                        "name": "物资核销管理",
+                        "url": "modules/jcdagl/jcdagl_hp.html",
+                        "l": 3,
+                        "img": " fa-cubes",
+                        "clist": [{
+                                "id": "003002005",
+                                "name": "到货管理",
+                                "url": "modules/investment/goodswarehousing.html",
+                                "l": 3,
+                                "type": 2,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }, {
+                                "id": "003002005",
+                                "name": "出库管理",
+                                "url": "modules/investment/goodsoutgoing.html",
+                                "l": 3,
+                                "type": 2,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002005",
+                                "name": "库存查询",
+                                "url": "modules/investment/goodssearching.html",
+                                "l": 3,
+                                "type": 2,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002005",
+                                "name": "核销申请",
+                                "url": "modules/investment/goodsdelquery.html",
+                                "l": 3,
+                                "type": 2,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003002005",
+                                "name": "核销审批",
+                                "url": "modules/investment/goodsdelapro.html",
+                                "l": 3,
+                                "type": 2,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "003003",
+                "name": "质量管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003003001",
+                        "name": "质量管理体系审查",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003003001001",
+                                "name": "三检员认证录入",
+                                "url": "modules/zlgl/sjryrz/sjryrzlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003001002",
+                                "name": "三检员认证审批",
+                                "url": "modules/zlgl/sjryrz/sjryrzsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003001003",
+                                "name": "质量培训交底录入",
+                                "url": "modules/zlgl/zlpxjd/zlpxjdlist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003001004",
+                                "name": "质量培训交底审批",
+                                "url": "modules/zlgl/zlpxjd/zlpxjdsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003001005",
+                                "name": "考核文件录入",
+                                "url": "modules/zlgl/khwjgl/khwjgllist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003001006",
+                                "name": "考核文件审批",
+                                "url": "modules/zlgl/khwjgl/khwjglsplist.html",
+                                "l": 4,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003003003",
+                        "name": "工序质量检验",
+                        "url": "",
+                        "l": 2,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003003003001",
+                                "name": "工序质量检验填报",
+                                "url": "modules/zlgl/gczljy/gczljylist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003003002",
+                                "name": "工序质量检验审批",
+                                "url": "modules/zlgl/gczljy/gczljysplist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003003002",
+                                "name": "质量缺陷管理",
+                                "url": "modules/zlgl/gczljy/zlqxgl/zlqxgllist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003003004",
+                        "name": "原材料进场管理",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003003004001",
+                                "name": "原材料进场录入",
+                                "url": "modules/zlgl/ycljcgl/ycljclr/ycliclrlist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003004002",
+                                "name": "取样频次管理",
+                                "url": "modules/zlgl/qygl/qypcgl.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003004003",
+                                "name": "取样管理",
+                                "url": "modules/zlgl/qygl/qygllist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003004004",
+                                "name": "检测结果填报查询",
+                                "url": "modules/zlgl/qygl/qygltbcx.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003003005",
+                        "name": "电气设备检测",
+                        "url": "",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003003004001",
+                                "name": "到货检查",
+                                "url": "modules/zlgl/dqsbjc/dhjc/dhjclist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003003004002",
+                                "name": "试验检测",
+                                "url": "modules/zlgl/dqsbjc/syjc/syjclist.html",
+                                "l": 4,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "003004",
+                "name": "安全管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003004001",
+                        "name": "体系管理信息维护",
+                        "url": "modules/aqgl/txgl/aqgl_txgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003004002",
+                        "name": "特种作业人员管理",
+                        "url": "modules/aqgl/aqgl_tzzyrygl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003004003",
+                        "name": "安全管理人员管理",
+                        "url": "modules/aqgl/aqgl_aqglrrgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003004004",
+                        "name": "特种设备管理",
+                        "url": "modules/aqgl/tzsbgl/aqgl_tzsbgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003004005",
+                        "name": "文件目录",
+                        "url": "modules/aqgl/file/aqgl_file.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003004006",
+                        "name": "安全隐患管理",
+                        "url": "modules/aqgl/aqyhfx/aqgl_aqyhfx.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    }
+                ]
+            },
+            {
+                "id": "003005",
+                "name": "环水保管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003005002",
+                        "name": "水保管理",
+                        "url": "modules/sjhc/sjhc_hcgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003005002001",
+                                "name": "六项指标填报",
+                                "url": "modules/waterprotect/sixinsert.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003005002002",
+                                "name": "六项指标审核",
+                                "url": "modules/waterprotect/sixinsertapprove.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003005002003",
+                                "name": "六项指标查询",
+                                "url": "modules/waterprotect/sixinsertquery.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003005002",
+                        "name": "水保环保检查及整改",
+                        "url": "modules/sjhc/sjhc_hcgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003005002001",
+                                "name": "隐患记录与上报",
+                                "url": "modules/waterprotect/yhjlsb.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003005002002",
+                                "name": "隐患整改",
+                                "url": "modules/waterprotect/yhzg.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003005002003",
+                                "name": "整改结果确认",
+                                "url": "modules/waterprotect/yhzgqr.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            },
+                            {
+                                "id": "003005002003",
+                                "name": "结果统计",
+                                "url": "modules/waterprotect/yhcollection.html",
+                                "l": 3,
+                                "img": "fa-angle-double-right",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003005003",
+                        "name": "检查及整改",
+                        "url": "modules/sjhc/sjhc_hcgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    }
+                ]
+            },
+            {
+                "id": "003006",
+                "name": "档案管理",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "003006001",
+                        "name": "发文管理",
+                        "url": "modules/wdgl/fwgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": [{
+                                "id": "003006001",
+                                "name": "公文发送",
+                                "url": "modules/wdgl/fwgl.html",
+                                "l": 3,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            },
+                            {
+                                "id": "003006002",
+                                "name": "发送公文审批",
+                                "url": "modules/wdgl/fwsh.html",
+                                "l": 3,
+                                "img": "fa-lemon-o",
+                                "clist": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "003006002",
+                        "name": "收文管理",
+                        "url": "modules/wdgl/swgl.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "003006003",
+                        "name": "资料归档",
+                        "url": "modules/wdgl/zlgd.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "004",
+        "name": "运行管理",
+        "url": "",
+        "l": 1,
+        "img": "fa-connectdevelop",
+        "clist": []
+    },
+    {
+        "id": "005",
+        "name": "考核管理",
+        "url": "",
+        "l": 1,
+        "img": "fa-calendar-check-o",
+        "clist": [{
+                "id": "005001",
+                "name": "新能源考核",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "005002",
+                "name": "项目部考核",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            }
+        ]
+    },
+    {
+        "id": "006",
+        "name": "辅助决策",
+        "url": "",
+        "l": 1,
+        "img": "fa-line-chart",
+        "clist": [{
+                "id": "006001",
+                "name": "统计分析",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "006002",
+                "name": "综合指标评判",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            }
+        ]
+    },
+    {
+        "id": "007",
+        "name": "系统管理",
+        "url": "",
+        "l": 1,
+        "img": "fa-cogs",
+        "clist": [{
+                "id": "007001",
+                "name": "组织机构管理",
+                "url": "modules/system/orgnazation.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            }, {
+                "id": "007002",
+                "name": "项目定义",
+                "url": "",
+                "l": 2,
+                "img": "fa-television",
+                "clist": [{
+                        "id": "007001001",
+                        "name": "项目主体信息维护（风场）",
+                        "url": "modules/projdefinition/ztwhfc.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "007001002",
+                        "name": "风机信息维护",
+                        "url": "modules/projdefinition/fj.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "007001003",
+                        "name": "施工管理结构维护",
+                        "url": "modules/projdefinition/jgwhwbs.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "007001005",
+                        "name": "可研概算目录维护",
+                        "url": "modules/tzgl/tzfx/jtpglr.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    },
+                    {
+                        "id": "007001004",
+                        "name": "里程碑结构维护",
+                        "url": "modules/projdefinition/lcbjgwh.html",
+                        "l": 3,
+                        "img": "fa-lemon-o",
+                        "clist": []
+                    }
+                ]
+            },
+            {
+                "id": "007003",
+                "name": "用户管理",
+                "url": "modules/system/user.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "007004",
+                "name": "角色管理",
+                "url": "modules/system/roles.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "007006",
+                "name": "日志管理",
+                "url": "modules/system/log.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "007007",
+                "name": "数据字典管理",
+                "url": "modules/system/datadictionary.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "007008",
+                "name": "菜单管理",
+                "url": "modules/system/menudock.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            },
+            {
+                "id": "007009",
+                "name": "机构管理",
+                "url": "modules/system/office.html",
+                "l": 2,
+                "img": "fa-television",
+                "clist": []
+            }
+        ]
+    }
+]

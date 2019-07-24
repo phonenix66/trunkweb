@@ -1,0 +1,42 @@
+<!--
+	作者：offline
+	时间：2018-05-10
+	描述：左边菜单
+-->
+<ul class="sidebar-menu" data-widget="tree">
+	<li>
+		<a href="pages/widgets.html">
+			<i class="fa fa-th"></i> <span>Widgets</span>
+			<span class="pull-right-container">
+          <small class="label pull-right bg-green">new</small>
+        </span>
+		</a>
+	</li>
+	<% for(var i = 0; i < list.length; i++) { %>
+	<% var item = list[i]; %>
+	<li class="treeview">
+		<%  if(item.type == 0){%>
+		<a href="<%=citem.url%>">
+			<i class="fa <%=item.img%>" class="menu_type0"></i> <span><%=item.name%></span>
+		</a>
+		<%  } else {%>
+		<a href="#">
+			<i class="fa <%=item.img%>"></i> <span><%=item.name%></span>
+			<span class="pull-right-container">
+		          <i class="fa fa-angle-left pull-right"></i>
+		        </span>
+		</a>
+		<%  } %>
+		<ul class="treeview-menu">
+			<% for(var j = 0; j < item.clist.length; j++) { %>
+			<% var citem = item.clist[j];%>
+			<li>
+				<a href="<%=citem.url%>"><i class="fa <%=citem.img%>"></i>
+					<%=citem.name%>
+				</a>
+			</li>
+			<% } %>
+		</ul>
+	</li>
+	<% } %>
+</ul>

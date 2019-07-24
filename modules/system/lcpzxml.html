@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+	作者：offline
+	时间：2018-08-21
+	描述：反索赔申请
+-->
+
+<ul class="nav nav-tabs">
+	<li class="active">
+		<a href="#">流程配置</a>
+	</li>
+	<li>
+		<a href="#">设置模板</a>
+	</li>
+</ul>
+<div id="id-0">
+	<div class="row row-head">
+		<form role="form">
+			<!-- text input -->
+			<div class="query_group query_group_w30 row_m10">
+				<label>风场名称</label>
+				<select class="form-control" name="spCode" id="sel">
+
+				</select>
+			</div>
+			<div class="query_group query_group_w30 row_m10">
+				<label>模块名称</label>
+				<input type="text" class="form-control" name="modularName" placeholder="可输入模块名称">
+			</div>
+
+			<div class="query_group query_group_w10 row_m10">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn-block btn-primary" id="query">查询</button>
+			</div>
+			<!--<div class="query_group query_group_w10 row_m10 pull-right">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn-block btn-primary zdy-btn-redis">插入redis</button>
+			</div>-->
+			
+			<div class="query_group query_group_w10 row_m10 pull-right">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn-block btn-primary zdy-btn-add">新增</button>
+			</div>
+			<div class="query_group query_group_w10 row_m10 pull-right">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn-block btn-primary zdy-btn-generate">生成</button>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="row row-body">
+		<div id="myTabContent" class="tab-content">
+			<section>
+				<table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+				</table>
+			</section>
+		</div>
+	</div>
+</div>
+
+<div id="id-1">
+	<div class="row row-head">
+		<form role="form">
+			<!-- text input -->
+			<div class="query_group query_group_w30 row_m10">
+				<label>风场名称</label>
+				<input type="text" class="form-control" name="spName"/>
+			</div>
+
+			<div class="query_group query_group_w10 row_m10">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn-block btn-primary" id="query02">查询</button>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="row row-body">
+		<div id="myTabContent" class="tab-content">
+			<section>
+				<table id="project" class="table table-bordered table-hover" cellspacing="0" width="100%">
+				</table>
+			</section>
+		</div>
+	</div>
+</div>

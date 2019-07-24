@@ -1,0 +1,38 @@
+[
+  {
+    "userid": "1",
+    "password": "123",
+    "role": 1,
+    "info": {
+      "unit": "XX施工单位",
+      "username": "张三",
+      "email": "zhangsan@gxfd.com",
+      "phone": "13511111111",
+      "image": "js/admin-lte/dist/img/user2-160x160.jpg"
+    }
+  },
+  {
+    "userid": "2",
+    "password": "123",
+    "role": 2,
+    "info": {
+      "unit": "西江公司",
+      "username": "李四",
+      "email": "abc@gxfd.com",
+      "phone": "13511111111",
+      "image": "js/admin-lte/dist/img/user2-160x160.jpg"
+    }
+  },
+  {
+    "userid": "admin",
+    "password": "123",
+    "role": 3,
+    "info": {
+      "unit": "项目部",
+      "username": "admin",
+      "email": "abc@gxfd.com",
+      "phone": "13511111111",
+      "image": "js/admin-lte/dist/img/user2-160x160.jpg"
+    }
+  }
+]

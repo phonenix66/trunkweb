@@ -1,0 +1,98 @@
+<!--考核问卷管理-->
+<style>
+    .panel-heading {
+        font-weight: bolder;
+        cursor: pointer;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" title="点击收起/展开">考核项组</div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <div class="form-inline">
+                <form id="search_form_g" action="javascript:void (0)">
+                    <div class="form-group">
+                        <label>年份：</label>
+                        <select class="form-control">
+                            <option value="2019">2019年</option>
+                            <option value="2020">2020年</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>考核指标：</label>
+                        <input type="text" name="phaseName" class="form-control" placeholder="考核指标">
+                    </div>
+                    <div class="form-group">
+                        <label>考核类型：</label><!--1总体问卷 2项目问卷-->
+                        <select class="form-control">
+                            <option value="1">总体考核</option>
+                            <option value="2">项目考核</option>
+                        </select>
+                    </div>
+                    <button data-tab="a" class="btn btn-success btn_search">查询</button>
+                    <button type="reset" class="btn btn-warning">清空</button>
+                    <div class="btn-group" style="float: right;">
+                        <button data-tab="a" type="button" class="btn btn-default btn_add">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <button data-tab="a" type="button" class="btn btn-default btn_edit">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                        </button>
+                        <button data-tab="a" type="button" class="btn btn-default btn_delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <table id="group"></table>
+        </div>
+    </div>
+    <div class="panel-heading">考核项标准</div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <div class="form-inline">
+                <form id="search_form_q" action="javascript:void (0)">
+                    <div class="form-group">
+                        <label>年份：</label>
+                        <select class="form-control">
+                            <option value="2019">2019年</option>
+                            <option value="2020">2020年</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>考核指标：</label>
+                        <input type="text" name="phaseName" class="form-control" placeholder="考核指标">
+                    </div>
+                    <div class="form-group">
+                        <label>考核类型：</label><!--1总体问卷 2项目问卷-->
+                        <select class="form-control">
+                            <option value="1">总体考核</option>
+                            <option value="2">项目考核</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>考核要点：</label>
+                        <input type="text" name="phaseName" class="form-control" placeholder="考核要点">
+                    </div>
+                    <button data-tab="a" class="btn btn-success btn_search">查询</button>
+                    <button type="reset" class="btn btn-warning">清空</button>
+                    <div class="btn-group" style="float: right;">
+                        <button data-tab="a" type="button" class="btn btn-default btn_add">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <button data-tab="a" type="button" class="btn btn-default btn_edit">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                        </button>
+                        <button data-tab="a" type="button" class="btn btn-default btn_delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <table id="question"></table>
+            <br>
+        </div>
+    </div>
+</div>

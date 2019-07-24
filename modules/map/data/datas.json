@@ -1,0 +1,460 @@
+{
+  "level": "city",
+  "project": {
+    "area": [{
+      "code": "540100",
+      "name": "拉萨市",
+      "value": 34,
+      "amount": 12,
+      "rate": 34
+    }, {
+      "code": "542100",
+      "name": "昌都市",
+      "value": 54,
+      "amount": 16,
+      "rate": 54
+    }, {
+      "code": "542200",
+      "name": "山南市",
+      "value": "64",
+      "amount": 17,
+      "rate": 64
+    }, {
+      "code": "542300",
+      "name": "日喀则市",
+      "value": 44,
+      "amount": 18,
+      "rate": 44
+    }, {
+      "code": "542400",
+      "name": "那曲市",
+      "value": 56,
+      "amount": 19,
+      "rate": 56
+    }, {
+      "code": "542500",
+      "name": "阿里地区",
+      "value": 22,
+      "amount": 13,
+      "rate": 22
+    }, {
+      "code": "542600",
+      "name": "林芝市",
+      "value": 76,
+      "amount": 12,
+      "rate": 76
+    }],
+    "type": [{
+      "id": 1,
+      "name": "山洪灾害防治",
+      "value": 23,
+      "amount": 23
+    }, {
+      "id": 2,
+      "name": "水库",
+      "value": 32,
+      "amount": 32
+    }, {
+      "id": 3,
+      "name": "水闸",
+      "value": 33,
+      "amount": 33
+    }, {
+      "id": 4,
+      "name": "堤防",
+      "value": 20,
+      "amount": 20
+    }, {
+      "id": 5,
+      "name": "河道治理",
+      "value": 23,
+      "amount": 23
+    }, {
+      "id": 6,
+      "name": "泵站",
+      "value": 32,
+      "amount": 32
+    }, {
+      "id": 7,
+      "name": "饮水安全",
+      "value": 33,
+      "amount": 33
+    }, {
+      "id": 8,
+      "name": "灌区建设",
+      "value": 20,
+      "amount": 20
+    }, {
+      "id": 9,
+      "name": "农田水利",
+      "value": 23,
+      "amount": 23
+    }],
+    "total": 100,
+    "beBuild": 23,
+    "newBuild": 30,
+    "building": 40,
+    "builded": 6,
+    "complete": 10,
+    "stopBuild": 23
+  },
+  "investment": {
+    "total": 5000,
+    "complete": 4000,
+    "rate": 80,
+    "area": [{
+      "code": "540100",
+      "name": "拉萨市",
+      "plan": 900,
+      "done": 600
+    }, {
+      "code": "542100",
+      "name": "昌都市",
+      "plan": 1000,
+      "done": 800
+    }, {
+      "code": "542200",
+      "name": "山南市",
+      "plan": 600,
+      "done": 500
+    }, {
+      "code": "542300",
+      "name": "日喀则市",
+      "plan": 690,
+      "done": 180
+    }, {
+      "code": "542400",
+      "name": "那曲市",
+      "plan": 290,
+      "done": 190
+    }, {
+      "code": "542500",
+      "name": "阿里地区",
+      "plan": 400,
+      "done": 200
+    }, {
+      "code": "542600",
+      "name": "林芝市",
+      "plan": 660,
+      "done": 360
+    }],
+    "type": [{
+      "id": 1,
+      "name": "山洪灾害防治",
+      "plan": 300,
+      "done": 300
+    }, {
+      "id": 2,
+      "name": "水库",
+      "plan": 500,
+      "done": 300
+    }, {
+      "id": 3,
+      "name": "水闸",
+      "plan": 300,
+      "done": 200
+    }, {
+      "id": 4,
+      "name": "堤防",
+      "plan": 690,
+      "done": 390
+    }, {
+      "id": 5,
+      "name": "河道治理",
+      "plan": 300,
+      "done": 300
+    }, {
+      "id": 6,
+      "name": "泵站",
+      "plan": 500,
+      "done": 300
+    }, {
+      "id": 7,
+      "name": "饮水安全",
+      "plan": 300,
+      "done": 200
+    }, {
+      "id": 8,
+      "name": "灌区建设",
+      "plan": 690,
+      "done": 390
+    }, {
+      "id": 9,
+      "name": "农田水利",
+      "plan": 456,
+      "done": 234
+    }]
+  },
+  "quality": {
+    "ysl": {
+      "name": "竣工验收率",
+      "list": [{
+        "name": "验收",
+        "value": 400,
+        "rows": [{
+          "code": "540100",
+          "name": "拉萨市",
+          "value": 80,
+          "amount": 32,
+          "rate": 80
+        }, {
+          "code": "542100",
+          "name": "昌都市",
+          "value": 24,
+          "amount": 46,
+          "rate": 24
+        }, {
+          "code": "542200",
+          "name": "山南市",
+          "value": 54,
+          "amount": 27,
+          "rate": 54
+        }, {
+          "code": "542300",
+          "name": "日喀则市",
+          "value": 34,
+          "amount": 18,
+          "rate": 34
+        }, {
+          "code": "542400",
+          "name": "那曲市",
+          "value": 56,
+          "amount": 29,
+          "rate": 56
+        }, {
+          "code": "542500",
+          "name": "阿里地区",
+          "value": 32,
+          "amount": 13,
+          "rate": 32
+        }, {
+          "code": "542600",
+          "name": "林芝市",
+          "value": 66,
+          "amount": 32,
+          "rate": 66
+        }]
+      }, {
+        "name": "未验收",
+        "value": 100,
+        "rows": []
+      }]
+    },
+    "mgl": {
+      "name": "主要单位工程优良率",
+      "list": [{
+        "name": "优良",
+        "value": 220,
+        "rows": [{
+          "code": "540100",
+          "name": "拉萨市",
+          "value": 40,
+          "amount": 32,
+          "rate": 40
+        }, {
+          "code": "542100",
+          "name": "昌都市",
+          "value": 84,
+          "amount": 46,
+          "rate": 84
+        }, {
+          "code": "542200",
+          "name": "山南市",
+          "value": 14,
+          "amount": 27,
+          "rate": 14
+        }, {
+          "code": "542300",
+          "name": "日喀则市",
+          "value": 64,
+          "amount": 18,
+          "rate": 64
+        }, {
+          "code": "542400",
+          "name": "那曲市",
+          "value": 56,
+          "amount": 29,
+          "rate": 56
+        }, {
+          "code": "542500",
+          "name": "阿里地区",
+          "value": 42,
+          "amount": 13,
+          "rate": 42
+        }, {
+          "code": "542600",
+          "name": "林芝市",
+          "value": 46,
+          "amount": 32,
+          "rate": 46
+        }]
+      }, {
+        "name": "合格",
+        "value": 180,
+        "rows": []
+      }]
+    },
+    "yll": {
+      "name": "竣工验收优良率",
+      "list": [{
+        "name": "优良",
+        "value": 120,
+        "rows": [{
+          "code": "540100",
+          "name": "拉萨市",
+          "value": 67,
+          "amount": 32,
+          "rate": 67
+        }, {
+          "code": "542100",
+          "name": "昌都市",
+          "value": 44,
+          "amount": 46,
+          "rate": 44
+        }, {
+          "code": "542200",
+          "name": "山南市",
+          "value": 64,
+          "amount": 27,
+          "rate": 64
+        }, {
+          "code": "542300",
+          "name": "日喀则市",
+          "value": 14,
+          "amount": 18,
+          "rate": 14
+        }, {
+          "code": "542400",
+          "name": "那曲市",
+          "value": 66,
+          "amount": 29,
+          "rate": 66
+        }, {
+          "code": "542500",
+          "name": "阿里地区",
+          "value": 82,
+          "amount": 13,
+          "rate": 82
+        }, {
+          "code": "542600",
+          "name": "林芝市",
+          "value": 76,
+          "amount": 32,
+          "rate": 76
+        }]
+      }, {
+        "name": "合格",
+        "value": 100,
+        "rows": []
+      }]
+    },
+    "serious": 11,
+    "defect": 22
+  },
+  "warning": {
+    "office": {
+      "total": 0,
+      "datas": [{
+          "name": "质量督办",
+          "value": 0,
+          "menuid": "003"
+        },
+        {
+          "name": "进度督办",
+          "value": 0,
+          "menuid": "6c92f7c1528445238ee4bf3037e22198"
+        },
+        {
+          "name": "项目督办",
+          "value": 0,
+          "menuid": "002"
+        },
+        {
+          "name": "考核督办",
+          "value": 0,
+          "menuid": "e452c4bdc2ca497e964804dbfd0e8b18"
+        }
+      ]
+    },
+    "early": {
+      "total": 99,
+      "datas": [{
+          "name": "质量预警",
+          "value": 12
+        },
+        {
+          "name": "进度预警",
+          "value": 15
+        },
+        {
+          "name": "安全预警",
+          "value": 19
+        },
+        {
+          "name": "考核预警",
+          "value": 32
+        }
+      ]
+    },
+    "progressWarn": [{
+        "title": "XXXXXXXXX项目一进度滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目二进度滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目三进度滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目四进度滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目五进度滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目六进度滞后"
+      }
+    ],
+    "qualityWarn": [{
+        "title": "XXXXXXXXX项目13质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目1质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目11质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目12质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目13质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目14质量信息滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目14质量信息滞后"
+      }
+    ],
+    "otherWarn": [{
+        "title": "XXXXXXXXX项目七其他工程滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目八其他工程滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目九其他工程滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目十其他工程滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目十一其他工程滞后"
+      },
+      {
+        "title": "XXXXXXXXX项目十二其他工程滞后"
+      }
+    ]
+  }
+}

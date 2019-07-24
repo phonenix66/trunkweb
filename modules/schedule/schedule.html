@@ -1,0 +1,187 @@
+<style>
+    .left {
+        height: 408px;
+        float: left;
+        width: 36%;
+    }
+
+    .right {
+        height: 408px;
+        float: left;
+        width: 36%;
+        /* display: inline; */
+    }
+
+    .mid {
+        height: 408px;
+        float: left;
+        width: 28%;
+    }
+
+    .anniu {
+        padding-left: 498px
+    }
+
+    .ztz {
+        float: left;
+        padding-top: 120px;
+        /* padding-left: 750px */
+    }
+
+    .di {
+        float: left;
+        height: 204px;
+        width: 100%
+    }
+
+    .title {
+        font-family: PingFangSC-Medium;
+        font-size: 18px;
+        height: 19px;
+        font-weight: 800;
+    }
+
+    #serForm {
+        position: fixed;
+        margin-left: 1665px;
+        margin-top: -43px;
+    }
+
+    th {
+        text-align: center;
+        /** 设置水平方向居中 */
+        vertical-align: middle/** 设置垂直方向居中 */
+    }
+</style>
+<div class="col-lg-12">
+    <div id="datalist">
+        <div class="form-inline project-toolbar">
+            <form id="serForm" style="display: inline-block;" action="javascript:void (0)">
+                <div class="form-group">
+                    <label for="year">请选择年份：</label>
+
+                    <select name="build_time" id="year" type="text" class="form-control cz_input select_time">
+                            <!-- <option value="">2019</option> -->
+                        </select>
+
+                    <button class="btn btn-success select_time" id="btn_search">查询</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row row-body ">
+
+    <div class="panel panel-default panel-heading left">
+        <section>
+            <!-- <div class="row row-body"> -->
+            <div class="query_group query_group_w30 row_m10">
+                <label class="title">完成率</label>
+                <label class="title" id="wcl"></label>
+
+            </div>
+            <div class="anniu">
+                <button class="btn btn-default anniu_a" id="anniu_a" type="submit">按地区</button>
+                <button class="btn btn-default anniu_b" id="anniu_b" type="submit">按类别</button>
+            </div>
+            <!-- </div> -->
+            <!--条形图 -->
+            <div id="main_1" style="width: 622px;height: 363px;padding-left: 9px;"></div>
+            <!-- <div id="main_4" style="width: 622px;height: 363px;padding-left: 9px;" hidden></div>
+            <div id="main_5" style="width: 622px;height: 363px;padding-left: 9px;padding-top: 44px;" hidden></div>
+            <div id="main_6" style="width: 622px;height: 363px;padding-left: 9px;padding-top: 44px;" hidden></div>
+            <div id="main_7" style="width: 622px;height: 363px;padding-left: 9px;" hidden></div>
+            <div id="main_8" style="width: 622px;height: 363px;padding-left: 9px;" hidden></div> -->
+        </section>
+    </div>
+    <div class="panel panel-default panel-heading mid">
+        <div class="row row-body">
+            <div class="query_group query_group_w30 row_m10"><label class="title">资金来源(万元)</label></div>
+        </div>
+
+        <div class="cc" style="width: 500px;height: 300px;float:left" id="c_1">
+
+        </div>
+    </div>
+    <div class="panel panel-default panel-heading right">
+        <section>
+
+            <div class="" id="main_2" style="width: 670px;height: 400px;">
+
+            </div>
+        </section>
+    </div>
+    <div class="panel panel-default panel-heading di">
+        <table id="table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th rowspan="2"></th>
+                    <th colspan="2">中央预算内资金</th>
+                    <th colspan="2">中央水利发展资金</th>
+                    <th colspan="2">自治区财政资金</th>
+                    <th colspan="2">其他资金</th>
+                    <th colspan="2">总资金</th>
+                </tr>
+                <tr>
+                    <th>金额(万元)</th>
+                    <th>百分比(%)</th>
+                    <th>金额(万元)</th>
+                    <th>百分比(%)</th>
+                    <th>金额(万元)</th>
+                    <th>百分比(%)</th>
+                    <th>金额(万元)</th>
+                    <th>百分比(%)</th>
+                    <th>金额(万元)</th>
+                    <th>百分比(%)</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td align="center">计划下达</td>
+                    <td align="right" class="zyys_jhxd"></td>
+                    <td></td>
+                    <td align="right" class="zysl_jhxd"></td>
+                    <td></td>
+                    <td align="right" class="zzq_jhxd"></td>
+                    <td></td>
+                    <td align="right" class="qt_jhxd"></td>
+                    <td></td>
+                    <td align="right" class="z_jhxd"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">落实到位</td>
+                    <td align="right" class="zyys_lsdw"></td>
+                    <td align="right" class="zyys_lsdwBfb"></td>
+                    <td align="right" class="zysl_lsdw"></td>
+                    <td align="right" class="zysl_lsdwBfb"></td>
+                    <td align="right" class="zzq_lsdw"></td>
+                    <td align="right" class="zzq_lsdwBfb"></td>
+                    <td align="right" class="qt_lsdw"></td>
+                    <td align="right" class="qt_lsdwBfb"></td>
+                    <td align="right" class="z_lsdw"></td>
+                    <td align="right" class="z_lsdwBfb"></td>
+                </tr>
+                <tr>
+                    <td align="center">完成投资</td>
+                    <td align="right" class="zyys_wctz"></td>
+                    <td align="right" class="zyys_wctzBfb"></td>
+                    <td align="right" class="zysl_wctz"></td>
+                    <td align="right" class="zysl_wctzBfb"></td>
+                    <td align="right" class="zzq_wctz"></td>
+                    <td align="right" class="zzq_wctzBfb"></td>
+                    <td align="right" class="qt_wctz"></td>
+                    <td align="right" class="qt_wctzBfb"></td>
+                    <td align="right" class="z_wctz"></td>
+                    <td align="right" class="z_wctzBfb"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

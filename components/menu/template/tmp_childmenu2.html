@@ -1,0 +1,20 @@
+<ul>
+  <% if(list){ %>
+  <%for(var i = 0; i < list.length; i++) { %>
+  <% var item = list[i];%>
+  <% if(item.clist && item.clist.length > 0){%>
+  <% var cmenu = JSON.stringify(item.clist); %>
+  <li class="child" data-menu='<%=cmenu%>'>
+    <a href="javascript:void(0)" class="menu_blank">
+      <i class="fa <%=item.img%>"></i> <span><%=item.name%></span>
+    </a>
+  </li>
+  <% } %>
+  <li class="child">
+    <a href="<%=item.url%>" class="click_menu menu_type<%=item.type%>">
+      <i class="fa <%=item.img%>"></i> <span><%=item.name%></span>
+    </a>
+  </li>
+  <% } %>
+  <% } %>
+</ul>

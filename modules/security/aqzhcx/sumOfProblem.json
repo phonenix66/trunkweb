@@ -1,0 +1,95 @@
+{
+  "success": true,
+  "errorCode": "-1",
+  "msg": "查询安全隐患分组统计成功",
+  "body": {
+    "sumOfProblemList": [
+      {
+        "cntOfLastWeek": 1,
+        "tendency": "下降",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "高处坠落"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "爆炸"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "车辆伤害"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "烫伤"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "起重伤害"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "物体打击"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "文明施工"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "中毒窒息"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "其他"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "触电"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "火灾"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "机械伤害"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "坍塌"
+      },
+      {
+        "cntOfLastWeek": 0,
+        "tendency": "不变",
+        "cntOfThisWeek": 0,
+        "SPHPROBLEMTYPE": "三违行为"
+      }
+    ],
+    "allOfThisWeek": 0,
+    "allOfLastWeek": 1
+  }
+}

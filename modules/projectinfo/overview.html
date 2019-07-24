@@ -1,0 +1,88 @@
+<style type="text/css">
+    .panelHeight {
+        height: calc(100% - 55px);
+        padding: 5px;
+    }
+</style>
+<div class="panelHeight">
+    <div class="nav-tabs-custom panel-body">
+        <div class="datalist">
+
+            <!--toolbar-->
+            <div class="form-inline project-toolbar">
+                <form id="search_form" action="javascript:void (0)">
+                    <div class="form-group">
+                        <label>项目名称：</label>
+                        <input id="pjName" name="pjName" placeholder="项目名称" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>项目类型：</label>
+                        <select name="pjType" class="form-control">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <!--项目进度，下拉筛选条件为：滞后、超前、正常；-->
+                    <div class="form-group">
+                        <label>项目进度：</label>
+                        <select name="watershed" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="1">滞后</option>
+                            <option value="2">超前</option>
+                            <option value="3">正常</option>
+                        </select>
+                    </div>
+<!--
+                    <div class="form-group">
+                        <label>流域：</label>
+                        <select name="watershed" class="form-control">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+-->
+                    <div class="form-group">
+                        <label>项目状态：</label>
+                        <select name="pjStatus" class="form-control">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success" id="btn_search">查询</button>
+                    <button type="reset" class="btn btn-warning" id="2">清空</button>
+                    <div class="btn-group" style="float: right;">
+                        <button id="btn_add" data-type="add" data-title="新增工程项目" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <!--<button id="btn_view" data-type="edit" data-title="查看工程项目" type="button"
+                            class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查看
+                        </button>
+                        <button id="btn_edit" data-type="edit" data-title="修改工程项目" type="button"
+                            class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                        </button>-->
+                        <button id="btn_delete" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                        </button>
+                        <!--<button id="btn_export" type="button" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>导出项目
+                        </button>-->
+                        <!-- <button id="btn_import" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>导入项目
+                        </button>
+                        <button id="btn_down_templ" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>下载模板
+                        </button>-->
+                    </div>
+                </form>
+            </div>
+            <div id = "statistics"></div>
+
+            <!--table-->
+            <table id="table">
+
+            </table>
+        </div>
+    </div>
+</div>
+<!--组织机构tree-->
+<div id="js_tree" style="display:none;"></div>
+<div id="part" class="col-sm-12" style="display: none;"></div>

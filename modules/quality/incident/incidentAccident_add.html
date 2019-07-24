@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<div class="box box-primary">
+    <!-- /.box-header -->
+    <!-- form start -->
+    <%if(data){%>
+    <form role="form" id="qualityForm">
+        <div class="box-body">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故名称</label>
+                            <input type="text" class="form-control" name="incdName" value="<%=data.incdName%>">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故部位</label>
+                            <input type="text" class="form-control" name="occurrenceSite" value="<%=data.occurrenceSite%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故描述</label>
+                            <textarea type="text" class="form-control" name="incdDetail"><%=data.incdDetail%></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>缺陷类别</label>
+                            <select name="" id="" data-live-search="true" class="form-control show-tick  form-control">
+                                <%if(data.incdType=="1"){%>
+                                <option>一般质量事故</option>
+                                <%}else if(data.incdType=="2"){%>
+                                <option>较大质量事故</option>
+                                <%}else if(data.incdType=="3"){%>
+                                <option>重大质量事故</option>
+                                <%}else if(data.incdType=="4"){%>
+                                <option>特大质量事故</option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>上报时间</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" name="reportDate" value="<%=data.reportDate%>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>处理时间</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" name="processDate" value="<%=data.processDate%>">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>完成处理</label>
+                            <br />
+                            <%if(data.isPrcs=="1"){%>
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="<%=data.isPrcs%>" checked> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="<%=data.isPrcs%>"> 否
+                            </label>
+                            <%}else{%>
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="<%=data.isPrcs%>" > 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="<%=data.isPrcs%>" checked> 否
+                            </label>
+                            <%}%>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    附件信息
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="incidentDocDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="incidentDoc" name="fIncidentDoc" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <%}else{%>
+    <form role="form" id="qualityForm">
+        <div class="box-body">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故名称</label>
+                            <input type="text" class="form-control" name="incdName">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故部位</label>
+                            <input type="text" class="form-control" name="occurrenceSite">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>事故描述</label>
+                            <textarea type="text" class="form-control" name="incdDetail"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>缺陷类别</label>
+                            <select name="incdType" id="incdType" data-live-search="true" class="form-control show-tick  form-control">
+                                <option value="1">一般质量事故</option>
+                                <option value="2">较大质量事故</option>
+                                <option value="3">重大质量事故</option>
+                                <option value="4">特大质量事故</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>上报时间</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" name="reportDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>处理时间</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" name="processDate">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>完成处理</label>
+                            <br />
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="1" checked> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isPrcs" value="0"> 否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    附件信息
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="incidentDocDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="incidentDoc" name="fIncidentDoc" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <%}%>
+</div>

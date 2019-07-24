@@ -1,0 +1,712 @@
+{
+  "evaluations": [
+    {
+      "evaluationTitle": "质量目标（18分）",
+      "indicators": [
+        {
+          "index": 1,
+          "points": "水利工程竣工验收",
+          "score": 6,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "<b>按照批复工期、工程开工时间和合同约定完工时间，应在2015年底以前完工的水利建设项目竣工验收完成率：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "工程项目信息",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（1）竣工验收完成率未达到80%的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "项目竣工验收",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）竣工验收完成率未达到60%的，扣4分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "项目竣工验收",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）竣工验收完成率未达到40%的，扣6分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "项目竣工验收",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "points": "水利工程质量创优",
+          "score": 6,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未开展省级水利优质工程评选工作，或未开展激励表彰工作的，扣4分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "文明工地",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）未对从业人员及管理单位进行表扬的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "文明工地",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）2016-2018年之间，行政区域内的水利工程未获得省部级及以上质量奖项的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "文明工地",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "points": "水利工程质量发展",
+          "score": 6,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未开展质量提升等相关活动的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）2016-2018年度内未出台支持技术创新以及积极应用新技术、新工艺、新材料相关政策制度的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）2016-2018年度内无技术创新相关成果以及新技术、新工艺、新材料相关应用实例的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "evaluationTitle": "质量规章制度(12分)",
+      "indicators": [
+        {
+          "index": 4,
+          "points": "地方规章制度和技术标准",
+          "score": 2,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）2016-2018年之间，未出台省级水利建设质量管理规章制度的，扣1.5分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）2016-2018年之间，未出台地方水利建设质量技术标准的，扣1.5分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "points": "促进市场公平竞争维护市场正常秩序",
+          "score": 6,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）2017年以来未出台贯彻落实制度办法，未见相关制度、文件修订及清理材料，也未采取加强水利建设市场监督管理相关措施的，扣6分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）制度办法中未明确划分或落实本地区水利建设市场监管责任的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）设置法律法规之外的水利建设市场准入门槛的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（4）设置水利建设市场准入地方保护壁垒的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（5）设置增加水利建设市场主体负担条件的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "points": "地方水利建设质量工作考核",
+          "score": 4,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未根据地方实际制定省级质量工作考核制度的，扣4分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "考核管理",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）未对本行政区域内水利建设开展年度质量工作考核的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "考核管理",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）开展了质量工作考核但未通报考核结果的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "考核管理",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "evaluationTitle": "质量检测管理（11分）",
+      "indicators": [
+        {
+          "index": 7,
+          "points": "质量检测管理",
+          "score": 11,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未开展质量检测乙级资质审批工作的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）资质审批工作不规范的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）未组织开展乙级检测单位“双随机、一公开”抽查的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（4）未采取措施推进项目法人抽检工作的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（5）重大水利工程未开展项目法人抽检工作的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "evaluationTitle": "质量诚信建设（12分）",
+      "indicators": [
+        {
+          "index": 8,
+          "points": "信用体系建设",
+          "score": 12,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "未制定本地区水利建设市场主体信用信息应用管理办法的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "<b>加大信息公开：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（1）未发布企业信用信息或发布信用信息不全的，扣1-2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）未发布在建项目信息或发布在建项目信息不全的，扣1-2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）未按规定时间公布行政处理决定的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "<b>积极组织各市场主体在全国水利建设市场监管服务平台填报信息，做好本地区各类行政处罚信息报送工作：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "（1）未组织市场主体在监管服务平台填报信息的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "（2）市场主体在全国水利建设市场监管服务平台活跃度低于50%的，扣1-2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "链接西藏自治区水利建设市场信用信息平台",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "（3）报送各类行政处罚信息少于3条，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "基本信息管理",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "evaluationTitle": "质量问题处理（6分）",
+      "indicators": [
+        {
+          "index": 9,
+          "points": "质量事故调查处理和责任追究",
+          "score": 3,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "<b>对发生的质量事故：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（1）未按规定开展调查处理的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）调查处理和责任追究不及时的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）未按“三不放过”原则调查处理的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "points": "质量举报投诉受理",
+          "score": 3,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未设立质量举报投诉电话、传真、信箱或平台的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）投诉受理渠道未向社会公开或不畅通的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）举报投诉受理后未开展调查处理工作的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）未按“三不放过”原则调查处理的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    ,{
+      "evaluationTitle": "质量基础工作（41分）",
+      "indicators": [
+        {
+          "index": 11,
+          "points": "新开工项目质量监督率",
+          "score": 3,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）应由省级质量监督机构监督的在建项目质量监督率未达到100%的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）未制定质量监督机构分级监督文件的或制定了但未执行的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量管理体系建立",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "points": "落实质量终身责任制",
+          "score": 6,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未制订落实水利工程建设质量终身责任制相关制度办法的，扣6分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量终身责任制落实",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）现行有关制度办法对落实质量终身责任制的要求不具体、不明确的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量终身责任制落实",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）未监督检查在建项目参建单位落实质量责任制的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量终身责任制落实",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "points": "市场监督管理",
+          "score": 9,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未部署开展在建项目市场主体履约情况监督检查的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "招投标管理",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）未部署开展打击出借借用资质、围标串标、转包、违法分包等违法违规行为的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "招投标管理",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）接到出借借用资质、围标串标、转包、违法分包等举报未依法受理、调查、认定和处理的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "招投标管理",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（4）未见农民工工资清欠相关工作文件或检查活动材料的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "招投标管理",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+        ,{
+          "index": 14,
+          "points": "质量监督检查",
+          "score": 16,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "<b>对在建项目参建单位质量保证体系、强制性条文执行、质量行为和工程实体质量开展监督检查的情况：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（1）对省级组建项目法人的在建水利工程和本行政区域管辖的节水供水重大水利工程，未开展监督检查的，或开展的监督检查未全覆盖或检查记录不全的，扣4-5分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）对市级组建项目法人的在建水利工程开展监督抽查占比未达到10%或无监督检查记录的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（3）对县级组建项目法人的在建水利工程开展监督抽查占比未达到5%或无监督检查记录的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "<b>考核年度内委托质量检测机构对监督检查的在建项目开展质量抽样检测工作情况：</b>",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "（1）质量抽样检测未涵盖省、市、县实施项目的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            }
+            ,{
+              "scaleMarkTitle": "（2）对省级组建项目法人的在建水利工程和本行政区域管辖的节水供水重大水利工程，质量抽样检测未全覆盖的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量检测",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "points": "信息管理系统建设",
+          "score": 3,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "（1）未建设质量信息管理系统的，扣3分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "系统平台",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "（2）在建项目质量信息动态监控粗放或质量信息管理不规范的，扣1分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "系统平台",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "points": "质量宣传教育和培训",
+          "score": 4,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "未开展强制性条文宣贯的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "未开展行业质量管理业务技能等培训的，扣2分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "知识宣传",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "evaluationTitle": "其他扣分项",
+      "indicators": [
+        {
+          "index": 17,
+          "points": "质量事故",
+          "score": 0,
+          "grade": "用户输入",
+          "remark": "用户输入",
+          "scaleMarks": [
+            {
+              "scaleMarkTitle": "1.发生一般质量事故的，每发生一起扣5分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "2.发生较大质量事故的，每发生一起扣20分。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            },
+            {
+              "scaleMarkTitle": "3.发生重（特）大质量事故的，或存在弄虚作假、故意隐瞒情况的，总体考核得分为0。",
+              "completionMark": "用户输入",
+              "gist": {
+                "title": "质量事故",
+                "link": "www.baidu.com"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

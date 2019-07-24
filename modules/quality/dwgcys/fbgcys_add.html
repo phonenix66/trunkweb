@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<div class="box box-primary">
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="box-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    分部工程验收信息
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>单位工程名称</label>
+                            <input type="text" class="form-control" name="fName" id="fName" readonly>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>分部工程名称</label>
+                            <input type="text" class="form-control" name="name" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>评定日期</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right datepicker" name="spdDate">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label><i style="color:red;">*</i>分部工程质量等级</label>
+                            <br />
+                            <label class="radio-inline">
+                                <input type="radio" name="lv" value="0" checked> 合格
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="lv" value="1"> 优良
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>单元工程个数</label>
+                            <input  type="text" class="form-control"  name="dyNo" readonly>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>合格个数</label>
+                            <input  type="text" class="form-control"  name="dyPass">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>其中优良个数</label>
+                            <input  type="text" class="form-control"  name="dyGood" id="dyGood" >
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>优良率</label>
+                            <input  type="text" class="form-control"  name="goodRate" id="goodRate" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-sm-6">
+                            <label>重要隐蔽单元工程个数</label>
+                            <input  type="text" class="form-control"  name="fbIpt" readonly>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>合格个数</label>
+                            <input  type="text" class="form-control"  name="iptPass">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>其中优良个数</label>
+                            <input  type="text" class="form-control"  name="iptGood" id="iptGood">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>优良率</label>
+                            <input  type="text" class="form-control"  name="iptGoodRate" id="iptGoodRate" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    拟验工程清单
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="nygcqdDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="nygcqd" name="F_NYGCLQD" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    分部工程质量评定表
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="fbgczlpdDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="fbgczlpd" name="F_FBGCZLPD" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    单元工程质量评定资料
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="dygczlpdDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="dygczlpd" name="F_DYGCZLPD" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    工程施工质量检验表
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-sm-12" id="gcsgzljyDiv"> </div>
+                    <div class="form-group col-sm-12 operation">
+                        <input id="gcsgzljy" name="F_GCSGZLJY" multiple type="file" data-show-caption="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+<li data-item='' class=""><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> 全部项目</a></li>
+<%if(!selectedProject){%>
+<%_.each(projects,function(item){%>
+<li data-item='<%=JSON.stringify(item)%>' data-id="<%=item.id%>" data-name="<%=item.pjName%>">
+  <a href="javascript:void(0)"><i class="fa fa-book"></i>
+    <%=item.pjName%></a>
+</li>
+<%})%>
+<%}else{%>
+<%_.each(projects,function(item){%>
+<%var selected = '';item.id == selectedProject.id ? selected = 'active':selected=''%>
+<li data-item='<%=JSON.stringify(item)%>' data-id="<%=item.id%>" class="<%=selected%>" data-name="<%=item.pjName%>">
+  <a href="javascript:void(0)"><i class="fa fa-book"></i>
+    <%=item.pjName%></a>
+</li>
+<%})%>
+<%}%>

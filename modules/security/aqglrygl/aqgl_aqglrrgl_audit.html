@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="js/icheck/all.css">
+<style>
+	.jz {
+		text-align: center;
+		background-color: #efefef;
+	}
+
+	.table>tr>td {
+		vertical-align: middle;
+	}
+
+	.Wdate {
+		border: 1px solid #ccc;
+		height: 34px;
+	}
+
+	.handsontable td,
+	.handsontable th {
+		vertical-align: middle;
+	}
+
+	.aqy-btn-submit {
+		margin-left: 20px;
+	}
+
+	.upfile-result ul.filelist {
+		list-style: none;
+		padding: 15px 0;
+	}
+
+	.upfile-result ul.filelist li {
+		font-size: 16px;
+		list-style: none;
+	}
+
+	.upfile-result ul.filelist li a {
+		display: inline-block;
+		text-decoration: none;
+		vertical-align: middle;
+		margin-right: 15px;
+	}
+
+	.upfile-result ul.filelist li span {
+		display: inline-block;
+		vertical-align: middle;
+		color: #ac2925;
+		cursor: pointer;
+		font-size: 20px;
+	}
+
+	.red {
+		color: red;
+	}
+
+	.layui-layer-content {
+		background-color: #ecf0f1;
+	}
+	
+	.form-group {
+     margin-bottom: 0px; 
+    }
+</style>
+
+<div class="box box-primary">
+	<form role="form">
+		<div class="box-body">
+			<input id="id" name="id" type="hidden"/>
+			<table class="table table-bordered">
+			<tr>
+				<td width="10%">
+			            <label class="">
+			            	<font class="red">*</font>姓名:</label>
+			        </td>
+			        <td colspan="3">
+			         	<div class="form-group has-feedback input-group">
+				            
+				            <input type="hidden" id="smName" name="smName">
+							<input maxlength="50" readonly id="username" type="text" name="username" class="form-control userName" />
+							<span class="input-group-addon addon search-o">
+							<i class="fa fa-search"></i>
+				        </div>
+            	    </td>
+			 			
+			 		<td width="10%">
+			            <label>
+			            	<font class="red">*</font>性别 :</label>
+			 		</td>
+			        <td colspan="3">
+			            <div class="form-group has-feedback">
+			              	<select class="form-control" name="smSex" id="smSex" readonly="readonly">
+								<option value="0">男</option>
+								<option value="1">女</option>
+							</select>
+			            </div>
+			        </td>
+				
+			</tr>
+			
+			<tr>
+				<td width="10%">
+			        <label>
+			            <font class="red">*</font>文化程度 :</label>
+			 		</td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<select class="form-control" name="smEducation" id="smEducation" readonly="readonly"> 
+								<option value="0">本科</option>
+								<option value="1">大专</option>
+								<option value="2">高中</option>
+								<option value="3">初中</option>
+								<option value="4">小学</option>
+							</select>
+			              </div>
+			        </td>
+			        
+			        <td width="10%">
+			              <label><font class="red">*</font>身份证号 :</label></td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smIdCard" name="smIdCard" readonly="readonly">
+			              </div>
+			        </td>
+				
+			</tr>
+			
+			<tr>
+				<td width="10%">
+			              <label>
+			              <font class="red">*</font>所在单位 :</label>
+			 		</td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smCompany" name="smCompany" readonly="readonly">
+			              </div>
+			        </td>
+			        
+			        <td width="10%">
+			              <label><font class="red">*</font>所在部门/厂队 :</label></td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smDepartment" name="smDepartment" readonly="readonly">
+			              </div>
+			        </td>
+				
+			</tr>
+		
+			<tr>
+				<td width="10%">
+			              <label>
+			              <font class="red">*</font>职务／岗位 :</label>
+			 		</td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smWork" name="smWork" readonly="readonly">
+			              </div>
+			        </td>
+			        
+			        <td width="10%">
+			              <label><font class="red">*</font>资格类型 :</label></td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smQualification" name="smQualification" readonly="readonly">
+			              </div>
+			        </td>
+			</tr>
+			
+			<tr>
+				<td width="10%">
+			        <label>
+			            <font class="red">*</font>发证机关 :</label>
+			 		</td>
+			    <td colspan="3">
+			        <div class="form-group has-feedback">
+			            <input type="text" class="form-control" id="smOffice" name="smOffice" readonly="readonly">
+			        </div>
+			    </td>
+			        
+			  <td width="10%">                                                                                                                         
+						<label class="">                                                                                                                     
+						<font color="red">*</font>发证日期:</label>                                                                                               
+				    </td>                                                                                                                                    
+					<td colspan="3">
+						<div class="form-group has-feedback">
+						<div class="input-group date">                                                                                                       
+		                	<input type="text" class="form-control" id="smFirstDate" name="smFirstDate" readonly="readonly">                                                                           
+					            <span class="input-group-addon">                                                                                                 
+					           		<span class="glyphicon glyphicon-calendar"></span>                                                                             
+					            </span>                                                                                                                          
+		              	</div> 
+              			</div>
+					</td>
+			</tr>
+			
+			<tr>
+				<td width="10%">                                                                                                                         
+						<label class="">                                                                                                                     
+						<font color="red">*</font>有效期至:</label>
+				    </td>                                                                                                                                    
+					<td colspan="3">
+						<div class="form-group has-feedback">
+						<div class="input-group date">                                                                                                       
+		                	<input type="text" class="form-control" id="smDate" name="smDate" readonly="readonly">                                                                           
+					            <span class="input-group-addon">                                                                                                 
+					           		<span class="glyphicon glyphicon-calendar"></span>                                                                             
+					            </span>                                                                                                                          
+		              	</div> 
+              			</div>
+					</td>
+					
+				<td width="10%">
+			              <label><font class="red">*</font>证书编号:</label></td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<input type="text" class="form-control" id="smBookNumber" name="smBookNumber" readonly="readonly">
+			              </div>
+			        </td>
+			</tr>
+			
+			<tr>
+				<td width="10%">                                                                                                                         
+						<label class="">                                                                                                                     
+						<font color="red">*</font>复审日期:</label>                                                                                               
+				    </td>                                                                                                                                    
+					<td colspan="3">
+						<div class="form-group has-feedback">
+						<div class="input-group date">                                                                                                       
+		                	<input type="text" class="form-control" id="smEndDate" name="smEndDate" readonly="readonly">                                                                           
+					            <span class="input-group-addon">                                                                                                 
+					           		<span class="glyphicon glyphicon-calendar"></span>                                                                             
+					            </span>                                                                                                                          
+		              	</div> 
+              			</div>
+					</td>  
+					
+					<td width="10%">
+			              <label><font class="red">*</font>在岗情况:</label></td>
+			        <td colspan="3">
+			              <div class="form-group has-feedback">
+			              	<select class="form-control" name="smCase" id="smCase" readonly="readonly">
+					  <option value="0">在岗</option>
+					  <option value="1">离岗</option>
+				</select>
+			              </div>
+			        </td>
+			</tr>
+			
+			<tr>                                                                                                                                         
+					<td width="10%">                                                                                                                         
+						<label class="">备注:</label>                                                                                                 
+				    </td>                                                                                                                                 
+					<td colspan="6">
+						<div class="form-group has-feedback">
+						<textarea style="height: 150px" type="text" class="form-control" id="smRemark" name="smRemark" placeholder="可以输入备注"></textarea>
+						</div>
+					</td>                                                                                                                                    
+				</tr> 
+			 <tr>
+			          	<th colspan="8" class="jz">相关证明文件</th>
+			          </tr>
+			          <tr>
+			          	<td width="10%">
+			              	<label class="">特种作业人员证书:</label>
+			          	</td>
+			            <td colspan="6">
+			            	<div class="file" style="padding:10px 0 0;">
+					        	<div class="upload-file file1">
+					          		<input type="file" id="uploadDoc1" name="file" accept=".xls,.doc,.docx,.pdf"/>
+					        	</div>
+					      	</div>
+			            </td>
+			          </tr>
+			</table>
+			<!--<div class="form-group col-sm-6">
+				<label>备注</label>
+				<input type="text" class="form-control" id="exampleInputPassword1" placeholder="可以输入备注">
+			</div>-->
+		</div>
+		<!-- /.box-body -->
+
+	
+	</form>
+</div>
+
+<div id="js_tree" style="display:none;"></div>

@@ -1,0 +1,58 @@
+
+<div class="panel panel-default row-body">
+    <div class="nav-tabs-custom panel-body">
+        <div class="datalist">
+            <div class="form-inline project-toolbar">
+                <form id="search_form" action="javascript:void (0)">
+
+                    <!--<div class="form-group">-->
+                        <!--<label for="label">名称：</label>-->
+                        <!--<input type="text" class="form-control" id="label" placeholder="名称">-->
+                    <!--</div>-->
+
+                    <div class="form-group">
+                        <label for="year">请选择年份：</label>
+
+                        <select name="build_time" id="year" type="text" class="form-control cz_input select_time">
+                            <!-- <option value="">2019</option> -->
+                        </select>
+
+                        <label for="year">请选择月份：</label>
+
+                        <select name="build_time" id="month" type="text" class="form-control cz_input">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+
+                    </div>
+
+                    <button class="btn btn-success" id="query">查询</button>
+                    <button type="reset" class="btn btn-warning" id="2">清空</button>
+
+                    <div class="btn-group" style="float: right;">
+                        <button id="btn_export" data-type="export" data-title="导出" type="button" class="btn btn-default btn-export">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>导出
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="row row-body" id="elyMangDiv">
+            <section>
+                <table id="elyMang"></table>
+            </section>
+        </div>
+    </div>
+</div>

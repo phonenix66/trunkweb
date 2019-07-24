@@ -1,0 +1,373 @@
+{
+  "api": {
+    "GET /api/configdemo-response/mock": {
+      "info": {
+        "summary": "配置接口返回复杂的动态假数据",
+        "module": "接口配置示例-输出数据(response)",
+        "description": "通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例 http://mockjs.com/examples.html",
+        "author": "Sun"
+      },
+      "request": {},
+      "response": {
+        // 接口返回的固定结构可以参考 - 前后端接口规范
+        // https://github.com/f2e-journey/treasure/blob/master/api.md
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          // 通过 mockjs 来定义 response 的 mock 数据, 更多配置项请参考 mockjs 示例
+          // http://mockjs.com/examples.html
+          "foo|10-30": [{
+            "text": "固定值", // 可以夹杂其他固定值
+            "id": "@id",
+            "guid": "@guid",
+            "index": "@increment",
+            "name": "@cname",
+            // 占位符是可以组合使用的, 因此可以更灵活的使用
+            // XXX 必须使用 province1 这样的属性名, 不要直接叫做 province,
+            // 否则会造成冲突, 出现 Maximum call stack size exceeded 异常
+            // 以此类推, 只要使用了组合的占位符, 然后再设置属性名与其中的某个占位符的名字相同, 就会出现这个问题
+            // PS: 使用单个占位符的时候不会出现这种问题
+            // https://github.com/nuysoft/Mock/issues/137
+            "address": "@province@city@county",
+            "email": "@email",
+            "desc": "@cparagraph",
+            "avatar": "@image('200x100', '#50B347', '#FFF', 'Mock.js')",
+            "age": "@integer(10, 50)",
+            "money": "@float(0, 100, 2, 2)", // 返回带2位小数位的小数
+            "isVip": "@boolean",
+            "now": "@now('yyyy-MM-dd HH:mm:ss')",
+            "datetime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+            "url": "@url('http')",
+            "gender": "@pick(['male', 'female'])", // 随机取一个
+            "timestamp": "@integer(1471491895528, 1481491895528)" // 通过整型数字来伪造时间戳
+          }]
+        }
+      }
+    },
+    "post /consultation/consultation/data": {
+      "request": {
+        "querystring": {
+          "limit": 10, // 限制仅获取多少条数据, 一般用于获取最新数据, 不添加这个参数则表示获取一整页的数据
+          "pageIndex": 0, // 获取第几页的数据, 从 0 开始, 一般会有一个默认值
+          "pageSize": 10, // 每页多少数据, 一般会有一个默认值
+          "order": "asc"
+        }
+      },
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|20": [{
+            "id": "@id", //id
+            "number|6": "@character('0123456789')",
+            "topic": "@ctitle", //标题
+            "stime": "@datetime('yyyy-MM-dd HH:mm')",
+            "etime": "@datetime('yyyy-MM-dd HH:mm')", //日期
+            "plan_participant|5-6": "@cname()",
+            "position": "@city",
+            "desc": "@csentence(10)"
+          }]
+        }
+      }
+    },
+    "post /consultation/consultation/save": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {}
+      }
+    },
+    "post /consultation/consultation/delete": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        }
+      }
+    },
+    "post /consultation/consultation/modify": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "id": "111",
+          "number": "201804050422", //会商编号
+          "create_by": "武汉大学", //发文单位
+          "stime": "2018-04-09 12:12",
+          "etime": "2018-04-11 16:00",
+          "topic": "&nbsp;&nbsp;&nbsp;&nbsp;小小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明明\n题", //会商议题
+          "desc": "科至备革及党北影由统",
+          "member": "水电园，河北电力，上海大学，北京大学" //会商参与单位
+        }
+      }
+    },
+    "post /consultation/consultationSummary/data": {
+      "request": {
+        "querystring": {
+          "limit": 10, // 限制仅获取多少条数据, 一般用于获取最新数据, 不添加这个参数则表示获取一整页的数据
+          "pageIndex": 0, // 获取第几页的数据, 从 0 开始, 一般会有一个默认值
+          "pageSize": 10, // 每页多少数据, 一般会有一个默认值
+          "order": "asc"
+        }
+      },
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|20-50": [{
+            "id": "@id",
+            "consultantion_id": "@id",
+            "number": "@ctitle",
+            "topic": "@cword(16)",
+            "beginnings": "@ctitle(22)",
+            "participant|4-6": "@cname()",
+            "to": "@cname",
+            "cc|4-6": "@cname()",
+            "depart": "@cword(6)",
+            "time": "@datetime('yyyy-MM-dd HH:mm')"
+          }]
+        }
+      }
+    },
+    "post /consultation/consultationSummary/save": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        }
+      }
+    },
+    "post /consultation/consultationSummary/detail": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body": {
+            "number": "纪要〔2017〕第2期",
+            "topic": "防汛抗旱第一次会商会纪要",
+            "beginnings": "4月25日上午，县政府副县长、县防汛抗旱指挥部指挥长任昌卜在水务局七楼防汛抗旱会商室主持召开2017年第二次防汛抗旱会商会。",
+            "content|2": [{
+              "mtitle": "@ctitle",
+              "mcont": "@csentence",
+              "props|3": [{
+                "ctitle": "@ctitle",
+                "ccont": "@csentence"
+              }]
+            }],
+            "cc": "",
+            "to": "",
+            "depart": ""
+          }
+        }
+      }
+    },
+    "post /consultation/consultationSummary/delete": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        }
+      }
+    },
+    "post /wechat/guifan": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|8": [{
+            "title": "@ctitle",
+            "content|1000": "@csentence"
+          }]
+        }
+      }
+    },
+    "post /flood/forecastScheme/data": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|20": [{
+            "id": "@id",
+            "schemeName": "@ctitle",
+            "forceObject": "@cname",
+            "forceType": "@ctitle",
+            "forceModelName": "@ctitle",
+            "forceTime": "@datetime('yyyy-MM-dd')",
+            "forcePerson": "@cname"
+          }]
+        }
+      }
+    },
+    "post /hydrology/stStbprpB/data": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+
+        "rows|30": [{
+          "stcd": "@id",
+          "stnm": "@ctitle"
+        }]
+
+      }
+    },
+    "post /hydrology/stRiverR/data": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|15": [{
+            "stcd": "@id",
+            "z": "@float(0, 100, 2, 2)",
+            "q": "@float(0, 100, 2, 2)"
+          }]
+        }
+      }
+    },
+    "post /hydrology/stRiverR/compute": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body": {
+            "wc": "@float(0, 10, 2, 2)",
+            "sj": "@float(0, 10, 2, 2)"
+          }
+        }
+      }
+    },
+    "post /flood/forecastScheme/managerList": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "data": {
+          "body|24": [{
+            "id": "@id",
+            "num|+1": 0,
+            "title": "@ctitle",
+            "type": "@ctitle",
+            "mktime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+            "starttime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+            "endtime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+            "planperson": "@cname"
+          }]
+        }
+      }
+    },
+    "post /flood/forecastScheme/managerSave": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        }
+      }
+    },
+    "post /hydrology/stZqrlB/data": {
+      "response": {
+        "status": 0,
+        "statusInfo": {
+          "message": "ok"
+        },
+        "rows|14": [{
+          "stcd": "@id",
+          "ptno|+1": 0,
+          "z": "@float(0, 2, 2, 2)",
+          "q": "@float(0, 2, 2, 2)"
+        }]
+      }
+    },
+    "post /hydrology/stZqrlB/zqCurve": {
+      "response": {
+        "success": true,
+        "msg": "水位流量关系曲线拟合成功",
+        "body": {
+          "zqList|14": [{
+            "tm": "",
+            "z": "@float(0, 2, 2, 2)",
+            "q": "@float(0, 2, 2, 2)"
+          }]
+        }
+      }
+    },
+    // 系统用户管理 
+    "post /sys/user/userlist": {
+      "response": {
+        "success": true,
+        "msg": "请求成功",
+        "status": 0,
+        "rows|24": [{
+          "loginName": "@name",
+          "name": "@cname",
+          "mobile|1": ["13531544954", "13632250649", "15820292420", "15999905612"],
+          "company.name": "",
+          "company.office": "",
+          "loginFlag": ""
+        }]
+      }
+    },
+    "post /api/searchList":{
+      "response":{
+        "success": true,
+        "msg": "请求成功",
+        "status": 0,
+        "rows|30":[
+          {
+            "id":"@guid",
+            "htname":"@cword(6)",
+            "htnumber":"@integer(1471491895528, 1481491895528)",
+            "htStage|6":[
+              {
+                "ihStage|+1":1,
+                "ihtType":"预付款",
+                "payId":"@id"
+              },
+              {
+                "ihStage|+1":7,
+                "ihtType":"进度款",
+                "payId":"@id"
+              },
+              {
+                "ihStage|+1":13,
+                "ihtType":"质保金",
+                "payId":"@id"
+              },
+              {
+                "ihStage|+1":19,
+                "ihtType":"结算款",
+                "payId":"@id"
+              },
+              {
+                "ihStage|+1":25,
+                "ihtType":"验收款",
+                "payId":"@id"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

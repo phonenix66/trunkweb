@@ -1,0 +1,41 @@
+<style type="text/css">
+	.query_group {
+		float: left;
+		padding-left: 20px;
+	}
+
+	.query_group_w30 {
+		width: 20%;
+	}
+
+	.query_group_w10 {
+		width: 100px;
+	}
+</style>
+<div class="box box-primary">
+
+	<form role="form">
+		<input type="hidden" id="id" name="id" />
+		<input type="hidden" id="munIds" name="munIds" />
+		<input type="hidden" id="unMunIds" name="unMunIds" />
+
+		<div class="box-body-left col-sm-6">
+			<div class="form-group col-sm-12">
+				<label for="fcmc"><font color="red">*</font>角色名称</label>
+				<input type="text" class="form-control" id="name" name="name">
+			</div>
+
+			<div class="form-group col-sm-12">
+				<label for="zjts">角色类型</label>
+				<input type="text" class="form-control" id="roleType" name="roleType" placeholder=" ">
+			</div>
+
+		</div>
+		<div class="box-body-rigth col-sm-6" style="height:650px; overflow:scroll;">
+			<div id="chooseMenuTree"></div>
+		</div>
+
+
+	</form>
+</div>
+<div id="js_tree" style="display:none;"></div>

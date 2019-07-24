@@ -1,0 +1,8 @@
+{{#each this}}
+	<li class="todo-item {{eventjs this}}" data='{{transformat this}}'>
+		<!--<div class="{{className}}">待处理</div>-->
+		<span class="todo-li-content">您有一项{{title}}流程需要审批</span>
+		<div class="warning-catalog-tag">{{spName}}</div>
+		<div class="warning-catalog-tag-tail"></div>
+	</li>
+{{/each}}

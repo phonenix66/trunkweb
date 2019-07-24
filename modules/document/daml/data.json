@@ -1,0 +1,65 @@
+[
+  {
+    "id": "4387",
+    "createBy": {
+      "loginName": "administrator",
+      "admin": false
+    },
+    "createDate": "2019-04-25 20:00:46",
+    "iId": 4387,
+    "fId": 0,
+    "wzName": "西藏水利文件管理",
+    "wzDate": "2019-06-30",
+    "wzFiling": "王世华",
+    "wzAuditor": "杨士明",
+    "wzDw": "1",
+    "wzCode": "3"
+  },
+  {
+    "id": "4388",
+    "createBy": {
+      "loginName": "administrator",
+      "admin": false
+    },
+    "createDate": "2019-04-25 20:00:46",
+    "iId": 4388,
+    "fId": 4387,
+    "wzName": "拉萨水利文件",
+    "wzDate": "2019-06-30",
+    "wzFiling": "王世华",
+    "wzAuditor": "杨士明",
+    "wzDw": "1",
+    "wzCode": "3-1"
+  },
+  {
+    "id": "4410",
+    "createBy": {
+      "loginName": "administrator",
+      "admin": false
+    },
+    "createDate": "2019-04-25 20:00:46",
+    "iId": 4410,
+    "fId": 4387,
+    "wzName": "阿里地区水利文件",
+    "wzDate": "2019-06-30",
+    "wzFiling": "王世华",
+    "wzAuditor": "杨士明",
+    "wzDw": "1",
+    "wzCode": "3-1-1-21"
+  },
+  {
+    "id": "4389",
+    "createBy": {
+      "loginName": "administrator",
+      "admin": false
+    },
+    "createDate": "2019-04-25 20:00:46",
+    "iId": 4389,
+    "fId": 4387,
+    "wzName": "那曲市水利文件",
+    "wzDate": "2019-06-30",
+    "wzFiling": "王世华",
+    "wzAuditor": "杨士明",
+    "wzDw": "1",
+    "wzCode": "3-1-1"
+  }]

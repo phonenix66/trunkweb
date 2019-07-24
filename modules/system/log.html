@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="js/bootstrap-daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="js/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+<div class="row row-head">
+	<form role="form">
+		<!-- text input -->
+		<div class="query_group query_group_w30 row_m10">
+			<label>操作人</label>
+			<input type="text" class="form-control" placeholder="可以输入操作人名称">
+		</div>
+		<div class="query_group query_group_w30 row_m10">
+			<label>模块</label>
+			<input type="text" class="form-control" placeholder="可以输入模块">
+		</div>
+		<div class="query_group query_group_w30 row_m10">
+			<!-- Date and time range -->
+			<div class="form-group">
+				<label>操作时间</label>
+
+				<div class="input-group">
+					<div class="input-group-addon">
+						<i class="fa fa-clock-o"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="reservationtime">
+				</div>
+				<!-- /.input group -->
+			</div>
+		</div>
+
+		<div class="query_group query_group_w10 row_m10">
+			<label>&nbsp;</label>
+			<button type="button" class="btn btn-block btn-primary">查询</button>
+
+		</div>
+	</form>
+</div>
+<!-- Main row -->
+<div class="row row-body">
+	<section>
+		<table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>操作人</th>
+					<th>操作模块</th>
+					<th>操作内容</th>
+					<th>操作时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>胡昌龙</td>
+					<td>系统登录</td>
+					<td>胡昌龙登录系统</td>
+					<td>2018-05-21 14:00:5/21/2018 2:43:04 PM:5/21/2018 2:43:04 PM</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-info zdy-btn-edit" id="SZD00001">查看</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>池锋</td>
+					<td>系统登录</td>
+					<td>胡昌龙登录系统</td>
+					<td>2018-05-21 14:00:5/21/2018 2:43:04 PM:5/21/2018 2:43:04 PM</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-info zdy-btn-edit" id="SZD00001">查看</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>王俊</td>
+					<td>系统登录</td>
+					<td>胡昌龙登录系统</td>
+					<td>2018-05-21 10:00:5/21/2018 2:43:04 PM:5/21/2018 12:43:04 PM</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-info zdy-btn-edit" id="SZD00001">查看</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>蒋艳</td>
+					<td>系统登录</td>
+					<td>胡昌龙登录系统</td>
+					<td>2018-05-21 16:00:5/21/2018 2:43:04 PM:5/21/2018 18:43:04 PM</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-info zdy-btn-edit" id="SZD00001">查看</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</div>

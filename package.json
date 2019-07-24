@@ -1,0 +1,22 @@
+{
+  "name": "PROJECT-TIBET",
+  "version": "1.0.0",
+  "description": "PROJECT-TIBET",
+  "main": "index.js",
+  "author": "FANGCHAO",
+  "license": "MIT",
+  "scripts": {
+    "dev": "puer -a mockserver.js"
+  },
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "puer-mock": "^1.2.3",
+    "require-css": "^0.1.10",
+    "underscore.string": "^3.3.5"
+  },
+  "devDependencies": {
+    "gulp-connect": "^5.7.0"
+  }
+}

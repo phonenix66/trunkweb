@@ -1,0 +1,20 @@
+{"total":2,"rows":[{
+  "id": 1,
+  "type": "施工员",
+  "name": "名字1",
+  "sex": "1",
+  "idCard": "123124112312",
+  "qualification": "职称",
+  "qualificationNum": "职称证书",
+  "signNum": "注册证书",
+  "remark": "备注"
+},{"id": 2,
+  "name": "名字1",
+  "test": "测试2"},
+  {"id": 3,
+    "name": "名字1",
+    "test": "测试3",
+  "remark": "多多益善"
+  }
+]
+}

@@ -1,0 +1,122 @@
+<style>
+    .bootstrap-table{
+        width: 70%;
+        margin: auto;
+    }
+
+</style>
+<div class="panel panel-default row-body">
+    <div class="nav-tabs-custom panel-body">
+        <div class="datalist">
+            <div class="form-inline project-toolbar">
+                <form id="search_form" action="javascript:void (0)" style="padding-bottom: 10px;">
+
+                    <!--<div class="form-group">-->
+                    <!--<label for="label">名称：</label>-->
+                    <!--<input type="text" class="form-control" id="label" placeholder="名称">-->
+                    <!--</div>-->
+
+                    <div class="form-group" style="margin-left: 15%">
+                        <label for="year">请选择年份：</label>
+
+                        <select name="build_time" id="year" type="text" class="form-control cz_input select_time">
+                            <!-- <option value="">2019</option> -->
+                        </select>
+
+                        <label for="year">请选择月份：</label>
+                        <select name="build_time" id="month" type="text" class="form-control cz_input">
+                            <option value="01">1</option>
+                            <option value="02">2</option>
+                            <option value="03">3</option>
+                            <option value="04">4</option>
+                            <option value="05">5</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+
+                    </div>
+
+
+                    <button class="btn btn-success" id="query">查询</button>
+                    <button type="reset" class="btn btn-warning" id="2">清空</button>
+
+                    <div class="btn-group" style="float: right;">
+                        <button id="btn_export" data-type="export" data-title="导出" type="button" class="btn btn-default btn-export">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>导出word
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="hrightId" style="overflow: auto;">
+        <div class="row row-body" id="elyMangDiv">
+            <div class="row" style="margin-left: 15%;margin-top: 20px">
+                <div class="query_group query_group_w10 row_m10" style="width: 70px" ><label>全区概况：</label></div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid ; width: 180px" >目标投资:<span id="mbtz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >开复工项目总数:<span id="kfgxmzs">0</span>项</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span id="wctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >投资完成率:<span id="tzwcl"></span>%</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >续建项目:<span id="xjxm">0</span>项</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span id="xjwctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >新建项目:<span id="newXm">0</span>项</div>
+                <div class="query_group query_group_w20 row_m10"  >完成投资:<span id="newctz">0</span>万元</div>
+            </div>
+            <section>
+                <table id="elyMang"></table>
+            </section>
+        </div>
+        <div class="row row-body" >
+            <div class="row row2150" style="margin-left: 15%;margin-top: 30px" >
+                <div class="query_group query_group_w40 row_m10" ><label>中央预算内水利建设项目投资完成情况：</label></div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >下达资金:<span class="xdzj">0</span>万元</div>
+                <!--<div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >建设项目:<span class="jsxm">0</span>项</div>-->
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span class="wctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10">投资完成率:<span class="tzwcl">0</span>%</div>
+            </div>
+            <section>
+                <table  id="elyMangOne" ></table>
+            </section>
+        </div>
+        <div class="row row-body" >
+            <div class="row row2151" style="margin-left: 15%;margin-top: 30px"  >
+                <div class="query_group query_group_w40 row_m10" ><label>中央水利发展资金投资完成情况：</label></div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >下达资金:<span class="xdzj">0</span>万元</div>
+                <!--<div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >建设项目:<span class="jsxm">0</span>项</div>-->
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span class="wctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10">投资完成率:<span class="tzwcl">0</span>%</div>
+            </div>
+                <section>
+                    <table  id="elyMangtwo" ></table>
+                </section>
+        </div>
+        <div class="row row-body" >
+            <div class="row row2153" style="margin-left: 15%;margin-top: 30px"  >
+                <div class="query_group query_group_w40 row_m10" ><label>中央财政资金完成投资情况：</label></div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >下达资金:<span class="xdzj">0</span>万元</div>
+                <!--<div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >建设项目:<span class="jsxm">0</span>项</div>-->
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span class="wctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10">投资完成率:<span class="tzwcl">0</span>%</div>
+            </div>
+        </div>
+        <div class="row row-body" >
+            <div class="row row2152" style="margin-left: 15%;margin-top: 30px" >
+                <div class="query_group query_group_w40 row_m10" ><label>自治区财政资金完成投资情况：</label></div>
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >下达资金:<span class="xdzj">0</span>万元</div>
+                <!--<div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >建设项目:<span class="xjxm">0</span>项</div>-->
+                <div class="query_group query_group_w20 row_m10" style="border-right: #0f0f0f 1px solid" >完成投资:<span class="wctz">0</span>万元</div>
+                <div class="query_group query_group_w20 row_m10">投资完成率:<span class="tzwcl">0</span>%</div>
+            </div>
+                <section>
+                    <table  id="elyMangthree" ></table>
+                </section>
+        </div>
+        </div>
+     </div>
+</div>

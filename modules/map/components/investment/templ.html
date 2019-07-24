@@ -1,0 +1,93 @@
+<div class="title">
+  <h2>工程进度</h2>
+</div>
+<%if(data.cityFlag){%>
+<div class="inner-boxer inner-invest">
+  <div class="header">
+    <div class="invest-info">
+      <ul class="list">
+        <li>
+          <span>总投资：</span>
+          <%if(data.total){%>
+          <b><%=data.total.toFixed(2)%>万元</b>
+          <%}%>
+          <%if(data.total == 0){%>
+          <b>0万元</b>
+          <%}%>
+        </li>
+        <li>
+          <span>已完成：</span>
+          <%if(data.complete){%>
+          <b><%=data.complete.toFixed(2)%>万元</b>
+          <%}%>
+          <%if(data.complete == 0){%>
+          <b>0万元</b>
+          <%}%>  
+        </li>
+        <li>
+          <span>完成率：</span>
+          <%if(data.rate){%>
+          <b><%=((data.complete/data.total)*100 >= 100 ? 100 : ((data.complete/data.total)*100).toFixed(2))%>%</b>
+          <%}%>
+          <%if(data.rate == 0){%>
+          <b>0%</b>
+          <%}%>
+        </li>
+      </ul>
+      <div class="select-wrap">
+        <ul class="button-group">
+          <li><button class="small blue button" disabled data-type="area">按地区</button></li>
+          <li><button class="small blue button" data-type="type">按类型</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-chart" id="investPieChart"></div>
+  </div>
+  <div class="investment-chart" id="investmentChart"></div>
+</div>
+<%}else{%>
+          <div class="inner-boxer inner-invest">
+            <div class="header">
+              <div class="invest-info">
+                <ul class="list">
+                  <li>
+                    <span>总投资：</span>
+                    <%if(data.total){%>
+                    <b><%=(data.total/10000).toFixed(2)%>万元</b>
+                    <%}%>
+                    <%if(data.total == 0){%>
+                    <b>0万元</b>
+                    <%}%>
+                  </li>
+                  <li>
+                    <span>已完成：</span>
+                    <%if(data.complete){%>
+                    <b><%=(data.complete/10000).toFixed(2)%>万元</b>
+                    <%}%>
+                    <%if(data.complete == 0){%>
+                    <b>0万元</b>
+                    <%}%>
+                  </li>
+                  <li>
+                    <span>完成率：</span>
+                    <%if(data.rate){%>
+                    <b><%=((data.complete/data.total)*100 >= 100 ? 100 : ((data.complete/data.total)*100).toFixed(2))%>%</b>
+                    <%}%>
+                    <%if(data.rate == 0){%>
+                    <b>0%</b>
+                    <%}%>
+                  </li>
+                </ul>
+              </div>
+              <div class="pie-chart" id="investPieChart"></div>
+            </div>
+            <%if(data.area.length !== 0){%>
+                    <div class="investment-chart" id="investmentChart"></div>
+                    <%}else{%>
+                    <div class="none-data">
+                      <p style="color:aqua;"><%=data.name%></p>
+                      <p>暂无数据</p>
+                    </div>
+                    <%}%>
+          </div>
+          <%}%>
