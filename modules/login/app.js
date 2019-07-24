@@ -29,11 +29,10 @@ define([
       this.render();
       //设置cookie
       this.getWebCookies();
-      this.renderVerifyDom();
+      //this.renderVerifyDom();
 
     },
     render: function () {
-      //console.log(FILE_API_URL + "/kaptcha.jpg");
       this.timeStamp = new Date().valueOf();
       $(this.$el).html(this.template({
         imgUrl: FILE_API_URL + "/kaptcha?key=" + this.timeStamp + "&random=" + this.random
@@ -77,10 +76,7 @@ define([
         url: `${resourceUrl}/login?`,
         data: {
           username: userid,
-          password: pwd,
-          /* verifyCodeActual: code,
-          timeStamp: self.timeStamp,
-          staticUser: self.random */
+          password: pwd
         },
         async: true,
         crossDomain: true,
