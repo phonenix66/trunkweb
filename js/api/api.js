@@ -17,12 +17,12 @@
       $.ajax({
         url: url,
         type: type || 'GET',
-        data: opt,
+        data: JSON.stringify(opt),
         dataType: 'json',
-        //contentType: 'application/json;charset=UTF-8',
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        contentType: 'application/json;charset=UTF-8',
+        //contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
         headers: {
-          'sessionid': sessionStorage.getItem("sessionid")
+          'token': sessionStorage.getItem("token")
         },
         success: function (res) {
           cb && cb(res);

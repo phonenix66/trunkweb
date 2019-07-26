@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>西藏自治区水利质量管理信息系统</title>
+	<title>风险评估管理系统</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="css/vendor.css" />
@@ -19,6 +19,7 @@
 
 		.fixed .content {
 			overflow: auto;
+			background-color: rgba(239, 239, 239, 0.9);
 		}
 
 		.fixed .main-footer {
@@ -43,7 +44,7 @@
 		}
 
 		.skin-blue .main-header .logo {
-			width: 330px;
+			width: 230px;
 			background-color: transparent;
 			position: absolute;
 			z-index: 100;
@@ -76,105 +77,6 @@
 			left: 50%;
 		}
 	</style>
-	<script>
-		/**
-		 * @Object {role} 1 项目法人 2 监管单位
-		 */
-		var userinfo = {
-			role: 1,
-			unitName: '自治区水利厅',
-			code: 540000,
-			cityList: [{
-				name: '那曲市',
-				code: '542400',
-				cells: [{
-					name: '色尼区',
-					code: '542421',
-					projects: [{
-						name: "16XXXX西藏自治区水利项目",
-						id: "16"
-					}]
-				}]
-			}, {
-				name: '拉萨市',
-				code: '540100',
-				cells: [{
-						name: '城关区',
-						code: '540102',
-						projects: [{
-							name: '1XXXX西藏自治区水利项目',
-							id: '1'
-						}, {
-							name: '2XXXX西藏自治区水利项目',
-							id: '2qqweq'
-						}, {
-							name: '3XXXX西藏自治区水利项目',
-							id: '3qqwe'
-						}]
-					},
-					{
-						name: '林周县',
-						code: '540121',
-						projects: [{
-							name: '1XXXX西藏自治区水利项目',
-							id: '4qqwe'
-						}, {
-							name: '2XXXX西藏自治区水利项目',
-							id: '5qqweq'
-						}, {
-							name: '3XXXX西藏自治区水利项目',
-							id: '6qqwe'
-						}]
-					},
-					{
-						name: "当雄县",
-						code: "540122",
-						projects: [{
-							name: '1XXXX西藏自治区水利项目',
-							id: '7qqwe'
-						}, {
-							name: '2XXXX西藏自治区水利项目',
-							id: '8qqweq'
-						}, {
-							name: '3XXXX西藏自治区水利项目',
-							id: '9qqwe'
-						}]
-					}
-				]
-			}, {
-				name: '昌都市',
-				code: '542100',
-				cells: [{
-					name: '卡若区',
-					code: '542121',
-					projects: [{
-						name: '1XXXX西藏自治区水利项目',
-						id: '10qqwe'
-					}, {
-						name: '2XXXX西藏自治区水利项目',
-						id: '11qqweq'
-					}, {
-						name: '3XXXX西藏自治区水利项目',
-						id: '12qqwe'
-					}]
-				}, {
-					name: '江达县',
-					code: '542122',
-					projects: [{
-						name: '1XXXX西藏自治区水利项目',
-						id: '13qqwe'
-					}, {
-						name: '2XXXX西藏自治区水利项目',
-						id: '14qqweq'
-					}, {
-						name: '3XXXX西藏自治区水利项目',
-						id: '15qqwe'
-					}]
-				}]
-			}]
-		}
-		//sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-	</script>
 </head>
 
 <body class="skin-blue fixed">
@@ -183,7 +85,7 @@
 		<header class="main-header" id="main-header">
 			<a href="main.html" class="logo">
 				<span class="logo-lg">
-					<b>西藏自治区水利质量管理信息系统</b></span>
+					<b>风险评估管理系统</b></span>
 			</a>
 			<nav class="navbar navbar-static-top">
 				<!-- Sidebar toggle button 隐藏左边菜单按钮-->
@@ -214,7 +116,7 @@
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1.0.0
 			</div>
-			<strong>Copyright &copy; 2019</strong> All rights reserved. 　　主办方：西藏自治区水利厅　　技术支持：长江信达软件技术(武汉)有限责任公司
+			<strong>Copyright &copy; 2019</strong> All rights reserved. 　　　技术支持：长江信达软件技术(武汉)有限责任公司
 			&nbsp;&nbsp;&nbsp;
 		</footer>
 		<!-- ./wrapper -->

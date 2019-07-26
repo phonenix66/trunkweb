@@ -11,7 +11,7 @@ define([
   'use strict';
   $.ajaxSetup({
     headers: {
-      'sessionid': sessionStorage.getItem("sessionid")
+      'token': sessionStorage.getItem("token")
     }
   })
   return Backbone.View.extend({
@@ -24,26 +24,11 @@ define([
     },
     initialize: function () {
       this.model = new Model();
-      this.userinfo = this.model.get('userinfo');
-      //获取所有项目
-      this.getProjects();
-      //console.log(this.projects);
+      this.menuList = this.model.get('menuList');
       var self = this;
-      this.model.fetch({ //初始化请求ajax
-        data: {
-          userId: self.model.get('userprofile').user.id,
-          roleId: self.model.get('userprofile').role
-        }
-      }).done(function (res) {
-        self.model.set({
-          menuList: res.menuList
-        });
-        self.render(res.menuList);
-      });
+      self.render(this.menuList);
       //fix内容高度
       self.fixContentHeight();
-      //监听一张图click事件，路由到相对应菜单
-      Backbone.on('to:menu', this.listenMapHandle, this);
     },
     render: function (menu) { //render一级目录
       var self = this;
@@ -53,19 +38,10 @@ define([
         profile: profile
       }));
       $('#projectNav').hide();
-      if (this.projects.length === 0) {
-        $('.mask-box').show();
-        return;
-      }
       $('li.nav-main').eq(0).find('a').trigger('click');
-      this.dropview = new DropDownView();
+      //this.dropview = new DropDownView();
     },
     handle: function (e) { //点击一级目录callback
-      if (this.projects.length === 0) {
-        layer.msg('请联系管理员');
-        e.preventDefault();
-        return;
-      }
       var $ele = $(e.currentTarget);
       var menuname = $ele.attr('menuname');
       $ele.parent().addClass('active').siblings().removeClass('active');
@@ -79,7 +55,7 @@ define([
       }
 
       $('#contentTop').show();
-      if (datamenu.clist) {
+      if (datamenu.children) {
         $('#projectNav').show();
         if (menuname == '系统管理') {
           $('#projectNav').hide();
@@ -154,20 +130,6 @@ define([
         }
       })
     },
-    getProjects: function () {
-      var self = this;
-      var cityList = this.userinfo.cityList;
-      this.projects = [];
-      _.each(cityList, function (a) {
-        if (a.projects) {
-          self.projects = self.projects.concat(a.projects);
-        }
-        _.each(a.cells, function (b) {
-          self.projects = self.projects.concat(b.projects);
-        })
-      });
-      this.projects = _.uniq(this.projects, true, 'id');
-      //console.log(this.projects);
-    }
+
   })
 });

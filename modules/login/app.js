@@ -34,9 +34,7 @@ define([
     },
     render: function () {
       this.timeStamp = new Date().valueOf();
-      $(this.$el).html(this.template({
-        imgUrl: FILE_API_URL + "/kaptcha?key=" + this.timeStamp + "&random=" + this.random
-      }));
+      $(this.$el).html(this.template());
     },
     refreshImage: function () {
       this.timeStamp = new Date().valueOf();
@@ -50,117 +48,77 @@ define([
     login: function () {
       var account = $("#account").val();
       var pwd = $("#inputPassword").val();
-      //var code = $('input[name="verifyCodeActual"]').val();
-      var flag = this.verifyFlag;
       if (account == "") {
         alert("用户名不能为空");
       } else if (pwd == "") {
         alert("密码不能为空");
-      } else if (!flag) {
-        alert("验证失败!");
       } else {
-        //this.verifyCodeActual(code);
         this.getUserProfile(account, pwd);
       }
     },
-    verifyCodeActual: function (code) {
-      //console.log(code);
-    },
     getUserProfile: function (userid, pwd, code) { //登录请求
-      var result = null;
       var self = this;
-      var resourceUrl = API_URL + "/ewindsys/ewindUser";
-
       $.ajax({
         type: "post",
-        url: `${resourceUrl}/login?`,
-        data: {
-          username: userid,
+        url: `${API_URL}/api/login`,
+        data: JSON.stringify({
+          account: userid,
           password: pwd
-        },
+        }),
+        contentType: 'application/json;charset=UTF-8',
         async: true,
         crossDomain: true,
         success: function (response) {
           //登录成功设置页面cookie
           self.setWebCookies(userid, pwd);
           sessionStorage.clear();
-          sessionStorage.setItem('sessionid', response.sessionid);
-          sessionStorage.setItem('userprofile', JSON.stringify(response));
-          //window.location.href = "main.html";
-          //获取用户监管单位数据
-          $.api.common.getDistUserInfo.exec({
-            sessionid: response.sessionid
-          }, function (res) {
-            if (res.success) {
-              sessionStorage.setItem('metadata', JSON.stringify(res.data));
-              //过滤没有项目的数据
-              var cityList = self.filterData(res.data);
-              res.data.cityList = cityList;
-              var userinfo = JSON.stringify(res.data);
-              //console.log(userinfo);
-              sessionStorage.setItem('userinfo', userinfo);
-              window.location.href = "main.html";
-            }
-          })
+          //console.log(response);
+          var data = response.data;
+          var menuList = data.menuList;
+          menuList = self.handleTreeData(data.menuList);
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('menuList', JSON.stringify(menuList));
+          sessionStorage.setItem('userprofile', JSON.stringify(data));
+          window.location.href = "main.html";
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           var re = XMLHttpRequest.responseJSON;
-          console.log(re)
-          var massege = "系统错误"
+          console.log(re);
+          var massege = "系统错误";
           if (re) {
-            massege = re.massege
+            massege = re.massege;
           }
           alert(massege);
-          //self.refreshImage();
         }
       });
     },
-    filterData: function (data) {
-      /**
-       * 1 过滤掉主管单位
-       * 2 遍历市，refilter 返回有project的县
-       * 3 过滤项目的市县
-       */
-      if (data.role == 0) {
-        var element = {
-          code: '0',
-          id: new Date().valueOf(),
-          name: '法人单位level-city',
-          cells: [{
-            code: '01',
-            id: Math.floor(Math.random() * 1000000),
-            name: '法人单位level-county',
-            projects: data.projects
-          }]
-        }
-        data.cityList = [element];
-        return data.cityList;
-      }
-      _.each(data.cityList, function (a) {
-        //主管单位没有code,设置为0
-        if (!a.code) {
-          a.code = "0";
-        }
+    handleTreeData: function (data) {
+      // 删除 所有 children,以防止多次调用
+      data.forEach(function (item) {
+        item.href && (item.href = item.href + '.html');
+        delete item.children;
       });
-      var list = _.chain(data.cityList).filter(function (a) {
-        return a.cells || a.projects;
-      }).each(function (a) {
-        var refilter = _.filter(a.cells, function (b) {
-          return b.projects;
-        })
-        a.cells = refilter;
-      }).value();
-      //县级主管单位，普通法人
-      //console.log(list);
-      if (data.role == 8) {
-        return list;
-      };
-      //省，市监管单位
-      list = _.chain(list).filter(function (a) {
-        return a.projects;
-      }).value();
-
-      return list;
+      console.log(data);
+      // 将数据存储为 以 id 为 KEY 的 map 索引数据列
+      var map = {};
+      data.forEach(function (item) {
+        map[item.id] = item;
+      });
+      //console.log(map);
+      var menus = [];
+      data.forEach(function (item) {
+        // 以当前遍历项的parentId,去map对象中找到索引的id
+        var parent = map[item.parentId];
+        //如果找到索引，那么说明此项不在顶级当中,那么需要把此项添加到，他对应的父级中
+        if (parent) {
+          (parent.children || (parent.children = [])).push(item);
+        } else {
+          //如果没有在map中找到对应的索引ID,那么直接把当前的item添加到 val结果集中，作为顶级
+          menus.push(item);
+        }
+      })
+      //console.log(menus);
+      return menus;
     },
     setWebCookies: function (username, password) {
       var checkFalg = $('#rememberCheckBox').prop('checked');

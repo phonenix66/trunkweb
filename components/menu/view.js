@@ -15,13 +15,13 @@ define([
     initialize: function (data) {
       this.model = new Model();
       this.model.set({
-        list: data.clist
+        list: data.children
       });
       this.render(data);
     },
     render: function (data) {
       this.$el.html(this.template({
-        list: data.clist
+        list: data.children
       }));
       $('li.child').eq(0).find('a').trigger('click');
     },

@@ -1,0 +1,9 @@
+.user-wrapper {
+  padding: 10px;
+}
+
+.user-wrapper .searchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

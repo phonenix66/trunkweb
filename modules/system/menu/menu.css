@@ -1,0 +1,29 @@
+#menuWrapper {
+  height: calc(100% - 50px);
+}
+
+.menu-wrapper {
+  padding: 10px;
+  height: 100%;
+}
+
+.menu-wrapper .menu-boxer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.treeselct {
+  width: 29%;
+  height: 100%;
+  background-color: #fff;
+  overflow: auto;
+}
+
+
+.menueditor {
+  width: 70%;
+  height: 100%;
+  background-color: #fff;
+}
