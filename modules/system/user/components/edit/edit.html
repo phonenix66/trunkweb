@@ -1,0 +1,79 @@
+<% if(!row){%>
+<form id="userEditForm" role="role">
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>登录账号*</label>
+      <input type="text" class="form-control" id="account" name="account">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>登录密码*</label>
+      <input maxlength="50" type="password" name="password" class="form-control" value="admin" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>用户姓名</label>
+      <input type="text" class="form-control" name="name">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>真实姓名</label>
+      <input maxlength="50" type="text" name="zsxm" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>用户角色*</label>
+      <input type="text" class="form-control" name="roleIds" value="2">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>手机号码</label>
+      <input type="text" name="mobile" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>备注信息</label>
+      <textarea class="form-control" name="remarks"></textarea>
+    </div>
+  </div>
+</form>
+<%}else{%>
+<form id="userEditForm" role="role">
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>登录账号*</label>
+      <input type="text" class="form-control" id="account" name="account" value="<%=row.account%>">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>登录密码*</label>
+      <input maxlength="50" type="password" name="password" class="form-control" value="<%=row.password%>" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>用户姓名</label>
+      <input type="text" class="form-control" name="name" value="<%=row.name%>">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>真实姓名</label>
+      <input maxlength="50" type="text" name="zsxm" class="form-control" value="<%=row.zsxm%>" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>用户角色*</label>
+      <input type="text" class="form-control" name="roleIds" value="<%=row.roleIds%>">
+    </div>
+    <div class="form-group col-sm-6">
+      <label>手机号码</label>
+      <input type="text" name="mobile" class="form-control" value="<%=row.mobile%>" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label>备注信息</label>
+      <textarea class="form-control" name="remarks"><%=row.remarks%></textarea>
+    </div>
+  </div>
+</form>
+<%}%>  

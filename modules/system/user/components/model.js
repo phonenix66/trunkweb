@@ -11,6 +11,7 @@ define([
     initialize: function (url) {
       this.urlApi = url;
     },
+    idAttribute: "uid",
     urlRoot: function () {
       return this.urlApi;
     }

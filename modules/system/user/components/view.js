@@ -5,15 +5,16 @@ define([
   'modules/system/user/components/model',
   'page/tools',
   'text!modules/system/user/components/template/view.html',
-  'text!modules/system/user/components/template/editTmpl.html'
-], function ($, _, Backbone, Model, tools, tmpl, editTmpl) {
+  'modules/system/user/components/edit/edit',
+], function ($, _, Backbone, Model, tools, tmpl, editView) {
   'use strict';
   return Backbone.View.extend({
     el: '#userWrapper',
     template: _.template(tmpl),
     events: {
       'click #searchBtn': 'searchHandle',
-      'click #addUserBtn': 'userDataHandle'
+      'click #addUserBtn': 'userDataHandle',
+      'click .zdy-btn-edit': 'userDataHandle'
     },
     initialize: function () {
       var urlApi = API_URL_SYS + '/sys/sysUser/list';
@@ -31,6 +32,7 @@ define([
     },
     render: function () {
       $(this.$el).html(this.template());
+      $('#userlist').bootstrapTable('destroy');
       this.renderTable();
     },
     renderTable: function (searchName) {
@@ -83,10 +85,10 @@ define([
             formatter: function (value, row, index) {
               row = JSON.stringify(row);
               var v = `<div class='btn-group'>
-					        	<button type='button' class='btn btn-info zdy-btn-edit' data='${row}'>修改</button>
+					        	<button type='button' class='btn btn-info zdy-btn-edit' data-row='${row}'>修改</button>
 					        	&nbsp;&nbsp;</div>
 					        	<div class='btn-group'>
-					        	<button type='button' class='btn btn-info zdy-btn-delete'  data='${row}'>删除</button>
+					        	<button type='button' class='btn btn-info zdy-btn-delete'  data-row='${row}'>删除</button>
 					        	</div>&nbsp;&nbsp;</div>
 					        	<div class='btn-group'>
 					        	</div>`
@@ -104,21 +106,58 @@ define([
         }
       });
     },
-    userDataHandle: function () {
-      var $html = _.template(editTmpl)();
+    userDataHandle: function (e) {
+      var self = this;
+      var row = $(e.currentTarget).data('row');
+      var flag = row ? 'edit' : 'add';
+      console.log(row);
       tools.handleModal({
-        title: '新增用户',
-        template: $html,
+        title: row ? '编辑用户' : '新增用户',
+        template: $('#editUserTmpl'),
+        eleId: '#userEditForm',
+        btn: ['确定', '取消'],
+        success: function () {
+          self.editView = new editView(row);
+        },
+        yes: function (obj, index, data) {
+          row && (data.id = row.id);
+          self.saveData(data, flag);
+        },
+        btn2: function () {
+          layer.closeAll();
+        }
       })
     },
-    validate: function () {
-      $('#').bootstrapvalidator({
-        feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-        },
-      })
+    saveData: function (data, flag) {
+      var self = this;
+      var subData = {
+        account: data.account,
+        email: "",
+        mobile: data.mobile,
+        name: data.name,
+        orgid: "3",
+        orgmc: "",
+        password: data.password,
+        remarks: data.remarks,
+        roleIds: [data.roleIds],
+        roleName: "",
+        sfzh: data.sfzh,
+        xzqhdm: "429000",
+        zsxm: data.zsxm,
+      }
+      if (flag == 'edit') subData.id = data.id;
+      this.model.urlApi = API_URL_SYS + '/sys/sysUser/' + flag;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        layer.closeAll();
+        self.render();
+      });
+    },
+    editUserData: function (e) {
+
     }
   })
 });

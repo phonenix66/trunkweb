@@ -16,7 +16,6 @@ define([
       this.selectItem = select;
       this.treeData = data;
       this.row = row;
-      console.log(row);
       this.render();
       this.validate();
     },
