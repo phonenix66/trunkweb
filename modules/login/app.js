@@ -60,7 +60,7 @@ define([
       var self = this;
       $.ajax({
         type: "post",
-        url: `${API_URL}/api/login`,
+        url: `${API_URL}/login`,
         data: JSON.stringify({
           account: userid,
           password: pwd

@@ -1,0 +1,13 @@
+.role-wrapper {
+  padding: 10px;
+}
+
+.role-wrapper .searchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#editRoleTmpl {
+  height: 100%;
+}

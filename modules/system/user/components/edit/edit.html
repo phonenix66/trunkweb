@@ -22,18 +22,18 @@
   </div>
   <div class="row">
     <div class="form-group col-sm-6">
-      <label>用户角色*</label>
-      <input type="text" class="form-control" name="roleIds" value="2">
-    </div>
-    <div class="form-group col-sm-6">
       <label>手机号码</label>
       <input type="text" name="mobile" class="form-control" />
+    </div>
+    <div class="form-group col-sm-6">
+      <label>备注信息</label>
+      <textarea class="form-control" name="remarks"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-sm-6">
-      <label>备注信息</label>
-      <textarea class="form-control" name="remarks"></textarea>
+      <label>用户角色*</label>
+      <div id="jstreeRole"></div>
     </div>
   </div>
 </form>
@@ -61,18 +61,18 @@
   </div>
   <div class="row">
     <div class="form-group col-sm-6">
-      <label>用户角色*</label>
-      <input type="text" class="form-control" name="roleIds" value="<%=row.roleIds%>">
-    </div>
-    <div class="form-group col-sm-6">
       <label>手机号码</label>
       <input type="text" name="mobile" class="form-control" value="<%=row.mobile%>" />
+    </div>
+    <div class="form-group col-sm-6">
+      <label>备注信息</label>
+      <textarea class="form-control" name="remarks"><%=row.remarks%></textarea>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-sm-6">
-      <label>备注信息</label>
-      <textarea class="form-control" name="remarks"><%=row.remarks%></textarea>
+      <label>用户角色*</label>
+      <div id="jstreeRole"></div>
     </div>
   </div>
 </form>
