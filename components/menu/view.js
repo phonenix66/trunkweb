@@ -13,6 +13,9 @@ define([
       'click li.child': 'gotoPage'
     },
     initialize: function (data) {
+      data.children = _.filter(data.children, function (item) {
+        return item.accessible == 1;
+      })
       this.model = new Model();
       this.model.set({
         list: data.children

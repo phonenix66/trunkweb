@@ -1,0 +1,13 @@
+.general-wrapper {
+  padding: 15px;
+}
+
+.general-wrapper .searchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.general-tmpl-wrapper {
+  padding: 10px;
+}

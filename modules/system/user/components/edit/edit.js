@@ -16,7 +16,7 @@ define([
     initialize: function (row) {
       var self = this;
       this.row = row;
-      var urlApi = API_URL_SYS + '/sys/sysRole/list';
+      var urlApi = API_URL + '/sys/sysRole/list';
       this.model = new Model(urlApi);
       this.render();
       console.log(this.row);
@@ -87,7 +87,7 @@ define([
         "plugins": plugins
       }).on('loaded.jstree', function (obj, e) {
         e.instance.open_all();
-        self.row && e.instance.check_node(self.row.roleIds);
+        self.row && e.instance.check_node(self.row.roleIds.split(','));
       }).on("activate_node.jstree", function (obj, e) {
         //console.log(obj, e);
       }).on('check_node.jstree uncheck_node.jstree', function (obj, e) {

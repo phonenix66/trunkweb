@@ -30,7 +30,7 @@ define([
     },
     initData: function () {
       var self = this;
-      var urlApi = API_URL_SYS + '/sys/sysMenu/list';
+      var urlApi = API_URL + '/sys/sysMenu/list';
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
@@ -43,7 +43,7 @@ define([
     },
     getRowData: function () {
       var self = this;
-      var urlApi = API_URL_SYS + '/sys/sysRole/' + this.row.id;
+      var urlApi = API_URL + '/sys/sysRole/' + this.row.id;
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();

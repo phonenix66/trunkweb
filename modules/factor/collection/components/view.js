@@ -2,43 +2,32 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'modules/system/user/components/model',
   'page/tools',
-  'text!modules/system/user/components/template/view.html',
-  'modules/system/user/components/edit/edit',
-], function ($, _, Backbone, Model, tools, tmpl, editView) {
+  'text!modules/factor/collection/components/tmpl.html',
+  'modules/factor/collection/components/model',
+  'modules/factor/collection/components/edit/edit'
+], function ($, _, Backbone, tools, tmpl, Model, CollView) {
   'use strict';
   return Backbone.View.extend({
-    el: '#userWrapper',
+    el: '#colleWrapper',
     template: _.template(tmpl),
-    events: {
-      'click #searchBtn': 'searchHandle',
-      'click #addUserBtn': 'userDataHandle',
-      'click .zdy-btn-edit': 'userDataHandle',
-      'click .zdy-btn-delete': 'delete'
-    },
     initialize: function () {
-      var urlApi = API_URL + '/sys/sysUser/list';
-      this.model = new Model(urlApi);
-      var opts = JSON.stringify({
-        name: '',
-        pageNum: 1,
-        pageSize: 10,
-        rolesId: ['']
-      });
+      this.model = new Model();
       this.render();
-      /* this.model.save({
-        data: opts
-      }) */
+      this.renderTable();
+    },
+    events: {
+      'click .btn-search': 'searchHandle',
+      'click .zdy-btn-add': 'handleModal',
+      'click .zdy-btn-edit': 'handleModal',
+      'click .zdy-btn-delete': 'delete'
     },
     render: function () {
       $(this.$el).html(this.template());
-      $('#userlist').bootstrapTable('destroy');
-      this.renderTable();
     },
-    renderTable: function (searchName) {
-      var urlApi = API_URL + '/sys/sysUser/list';
-      $('#userlist').bootstrapTable({
+    renderTable: function () {
+      var urlApi = API_URL + '/riskmodel/rmRisk/list';
+      $('#listCollTable').bootstrapTable({
         url: urlApi,
         method: "post",
         toolbar: '', //工具按钮用哪个容器
@@ -63,21 +52,23 @@ define([
           return {
             name: params.searchText || '',
             pageNum: params.pageNumber,
-            pageSize: params.pageSize,
-            rolesId: ['']
+            pageSize: params.pageSize
           };
         },
         columns: [{
-            field: "account",
-            title: "员工账号"
-          },
-          {
             field: "name",
-            title: "员工姓名"
+            title: "风险事件名称"
           },
           {
-            field: "roleName",
-            title: "角色"
+            field: "cjsj",
+            title: "创建时间"
+          },
+          {
+            field: "sfsx",
+            title: "是否生效",
+            formatter: function (value) {
+              return (value == '1' ? '是' : '否');
+            }
           },
           {
             field: "3",
@@ -99,40 +90,31 @@ define([
       })
     },
     searchHandle: function (e) {
-      var value = $('#searchUserText').val();
-      $('#userlist').bootstrapTable('refresh', {
+      var value = $('#searchCollText').val();
+      $('#listCollTable').bootstrapTable('refresh', {
         query: {
           name: value
         }
       });
     },
-    userDataHandle: function (e) {
+    handleModal: function (e) {
       var self = this;
       var row = $(e.currentTarget).data('row');
       var flag = row ? 'edit' : 'add';
       tools.handleModal({
-        title: row ? '编辑用户' : '新增用户',
-        template: $('#editUserTmpl'),
-        eleId: '#userEditForm',
+        title: row ? '编辑' : '新增',
+        template: $('#editCollTmpl'),
+        eleId: '#collForm',
+        area: ['70%', '40%'],
         btn: ['确定', '取消'],
+        param: {
+          row: '1',
+          view: true
+        },
         success: function () {
-          if (row) {
-            var urlApi = API_URL + '/sys/sysUser/' + row.id;
-            self.model.urlApi = urlApi;
-            self.model.urlRoot();
-            self.model.clear();
-            self.model.fetch().then(function (res) {
-              self.row = res.data;
-              self.editView = new editView(res.data);
-            })
-          } else {
-            self.editView = new editView();
-          }
+          self.EleView = new CollView(row);
         },
         yes: function (obj, index, data) {
-          var roleIds = $('#jstreeRole').jstree("get_checked", null, true);
-          console.log(roleIds.join(','));
-          data.roleIds = roleIds.join(',');
           row && (data.id = row.id);
           self.saveData(data, flag);
         },
@@ -142,53 +124,38 @@ define([
       })
     },
     saveData: function (data, flag) {
-      var self = this;
       var subData = {
-        account: data.account,
-        email: "",
-        mobile: data.mobile,
         name: data.name,
-        orgid: "",
-        orgmc: "",
-        password: data.password,
-        remarks: data.remarks,
-        roleIds: data.roleIds,
-        roleName: '',
-        sfzh: data.sfzh || '',
-        xzqhdm: "429000",
-        zsxm: data.zsxm,
-        delFlag: 0
+        sfsx: data.sfsx,
+        bz: data.bz
       }
-      if (flag == 'edit') {
-        subData.id = data.id;
-        subData.password = '';
-      };
-      this.model.urlApi = API_URL + '/sys/sysUser/' + flag;
+      var urlApi = API_URL + '/riskmodel/rmRisk/' + flag;
+      this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
+      if (flag == 'edit') subData.id = data.id;
       this.model.save(subData, {
         patch: true
       }).then(function (res) {
         layer.closeAll();
-        self.render();
-      });
+        $('#listCollTable').bootstrapTable('refresh');
+      })
     },
     delete: function (e) {
       var self = this;
       var row = $(e.currentTarget).data('row');
+      var urlApi = API_URL + '/riskmodel/rmRisk/remove/' + row.id;
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
       layer.confirm('确定要删除此项吗？', function () {
-        self.model.urlApi = API_URL + '/sys/sysUser/edit';
-        self.model.urlRoot();
-        self.model.clear();
-        row.delFlag = "1";
-        row.del_flag = "1";
-        self.model.save(row).then(function (res) {
+        self.model.fetch().then(function (res) {
           if (res.code == 200) {
             layer.closeAll();
-            self.render();
+            $('#listCollTable').bootstrapTable('refresh');
           }
         })
-      }, function (index) {
+      }, function () {
 
       })
     }

@@ -1,0 +1,29 @@
+.element-wrapper {
+  padding: 15px;
+}
+
+.element-wrapper .searchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ele-tmpl-wrapper {
+  padding: 10px;
+}
+
+.ele-tmpl-wrapper .radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ele-tmpl-wrapper .radio-wrapper .radio {
+  margin-right: 15px;
+}
+
+.table-ele thead tr td,
+.table-ele tbody tr td:first-child {
+  background-color: rgba(239, 239, 239, 0.5);
+}

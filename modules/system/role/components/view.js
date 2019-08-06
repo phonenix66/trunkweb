@@ -14,7 +14,8 @@ define([
     events: {
       'click .zdy-btn-add': 'handleModal',
       'click .zdy-btn-edit': 'handleModal',
-      'click .zdy-btn-delete': 'delete'
+      'click .zdy-btn-delete': 'delete',
+      'click .btn-search': 'searchHandle'
     },
     initialize: function () {
       this.model = new Model();
@@ -65,7 +66,10 @@ define([
           },
           {
             field: "roleType",
-            title: "角色类型"
+            title: "角色类型",
+            formatter: function (value) {
+              return (value == 1) ? '普通用户' : '系统管理员'
+            }
           },
           {
             field: "remarks",
@@ -150,6 +154,32 @@ define([
         layer.closeAll();
         self.initData();
       });
-    }
+    },
+    delete: function (e) {
+      var self = this;
+      var row = $(e.currentTarget).data('row');
+      var urlApi = API_URL + '/sys/sysRole/remove/' + row.id;
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      layer.confirm('确定要删除此项吗？', function () {
+        self.model.fetch().then(function (res) {
+          if (res.code == 200) {
+            layer.closeAll();
+            $('#rolelist').bootstrapTable('refresh');
+          }
+        })
+      }, function () {
+
+      })
+    },
+    searchHandle: function (e) {
+      var value = $('#searchRoleText').val();
+      $('#rolelist').bootstrapTable('refresh', {
+        query: {
+          name: value
+        }
+      });
+    },
   })
 });

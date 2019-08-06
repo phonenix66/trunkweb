@@ -32,6 +32,9 @@ define([
     },
     render: function (menu) { //render一级目录
       var self = this;
+      menu = _.filter(menu, function (item) {
+        return (item.accessible == 1 && item.type == 1) || (item.accessible == 0 && item.type == 2);
+      });
       var profile = this.model.get('userprofile');
       this.$el.html(this.template({
         list: menu,

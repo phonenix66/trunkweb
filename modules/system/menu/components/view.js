@@ -27,7 +27,7 @@ define([
     },
     initData: function () {
       var self = this;
-      var urlApi = API_URL_SYS + '/sys/sysMenu/list';
+      var urlApi = API_URL + '/sys/sysMenu/list';
       this.model = new Model(urlApi);
       this.model.clear();
       this.model.save({
@@ -207,7 +207,7 @@ define([
         sort: 0,
         type: "1"
       }
-      this.model.urlApi = API_URL_SYS + '/sys/sysMenu/' + flag;
+      this.model.urlApi = API_URL + '/sys/sysMenu/' + flag;
       this.model.urlRoot();
       this.model.clear();
       this.model.save(subData, {
@@ -221,7 +221,7 @@ define([
       var self = this;
       var row = $(e.currentTarget).data('row');
       layer.confirm('确定要删除此项吗？', function () {
-        self.model.urlApi = API_URL_SYS + '/sys/sysMenu/edit';
+        self.model.urlApi = API_URL + '/sys/sysMenu/edit';
         self.model.urlRoot();
         self.model.clear();
         row.delFlag = "1";

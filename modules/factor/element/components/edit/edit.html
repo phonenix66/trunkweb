@@ -1,0 +1,133 @@
+<div class="ele-tmpl-wrapper">
+  <%if(!row){%>
+  <form role="form" id="eleForm">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>风险因素名称*</label>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>是否生效</label>
+        <div class="radio-wrapper">
+          <div class="radio">
+            <label>
+              <input type="radio" name="sfsx" value="1" checked>
+              是
+            </label>
+          </div>
+          <span></span>
+          <div class="radio">
+            <label>
+              <input type="radio" name="sfsx" value="0">
+              否
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered table-ele">
+      <thead>
+        <tr>
+          <td width="10%">评价等级</td>
+          <td width="90%">参考值</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5 很可能</td>
+          <td>
+            <textarea class="form-control" name="nsms5"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>4 可能</td>
+          <td><textarea class="form-control" name="nsms4"></textarea></td>
+        </tr>
+        <tr>
+          <td>3 偶然</td>
+          <td><textarea class="form-control" name="nsms3"></textarea></td>
+        </tr>
+        <tr>
+          <td>2 不可能</td>
+          <td><textarea class="form-control" name="nsms2"></textarea></td>
+        </tr>
+        <tr>
+          <td>1 很不可能</td>
+          <td><textarea class="form-control" name="nsms1"></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>备注</label>
+        <textarea class="form-control" name="bz"></textarea>
+      </div>
+    </div>
+  </form>
+  <%}else{%>
+  <form role="form" id="eleForm">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>风险因素名称*</label>
+        <input type="text" class="form-control" name="name" value="<%=row.name%>">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>是否生效</label>
+        <div class="radio-wrapper">
+          <div class="radio">
+            <label>
+              <input type="radio" name="sfsx" value="1" <%=(row.sfsx==1 ? 'checked' : '')%>>
+              是
+            </label>
+          </div>
+          <span></span>
+          <div class="radio">
+            <label>
+              <input type="radio" name="sfsx" value="0" <%=(row.sfsx==0 ? 'checked' : '')%>>
+              否
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered table-ele">
+      <thead>
+        <tr>
+          <td width="10%">评价等级</td>
+          <td width="90%">参考值</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5 很可能</td>
+          <td>
+            <textarea class="form-control" name="nsms5"><%=row.nsms5%></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>4 可能</td>
+          <td><textarea class="form-control" name="nsms4"><%=row.nsms4%></textarea></td>
+        </tr>
+        <tr>
+          <td>3 偶然</td>
+          <td><textarea class="form-control" name="nsms3"><%=row.nsms3%></textarea></td>
+        </tr>
+        <tr>
+          <td>2 不可能</td>
+          <td><textarea class="form-control" name="nsms2"><%=row.nsms2%></textarea></td>
+        </tr>
+        <tr>
+          <td>1 很不可能</td>
+          <td><textarea class="form-control" name="nsms1"><%=row.nsms1%></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>备注</label>
+        <textarea class="form-control" name="bz"><%=row.bz%></textarea>
+      </div>
+    </div>
+  </form>
+  <%}%>
+</div>

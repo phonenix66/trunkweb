@@ -1,0 +1,24 @@
+.coll-wrapper {
+  padding: 15px;
+}
+
+.coll-wrapper .searchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coll-tmpl-wrapper {
+  padding: 10px;
+}
+
+.coll-tmpl-wrapper .radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.coll-tmpl-wrapper .radio-wrapper .radio {
+  margin-right: 15px;
+}

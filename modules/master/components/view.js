@@ -2,43 +2,36 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'modules/system/user/components/model',
   'page/tools',
-  'text!modules/system/user/components/template/view.html',
-  'modules/system/user/components/edit/edit',
-], function ($, _, Backbone, Model, tools, tmpl, editView) {
+  'modules/master/components/model',
+  'text!modules/master/components/tmpl.html',
+  'modules/master/components/edit/edit',
+  'modules/master/components/analyze/analyze'
+], function ($, _, Backbone, tools, Model, tmpl, MasterEditView, AnalyzeView) {
   'use strict';
   return Backbone.View.extend({
-    el: '#userWrapper',
+    el: '#masterWrapper',
     template: _.template(tmpl),
     events: {
-      'click #searchBtn': 'searchHandle',
-      'click #addUserBtn': 'userDataHandle',
-      'click .zdy-btn-edit': 'userDataHandle',
-      'click .zdy-btn-delete': 'delete'
+      'click .btn-search': 'searchHandle',
+      'click .zdy-btn-add': 'handleModal',
+      'click .zdy-btn-edit': 'handleModal',
+      'click .zdy-btn-delete': 'delete',
+      'click .zdy-btn-detail': 'riskAnalyze'
     },
     initialize: function () {
-      var urlApi = API_URL + '/sys/sysUser/list';
-      this.model = new Model(urlApi);
-      var opts = JSON.stringify({
-        name: '',
-        pageNum: 1,
-        pageSize: 10,
-        rolesId: ['']
-      });
+      var urlApi = '';
+      this.urlApi = urlApi;
+      this.model = new Model();
       this.render();
-      /* this.model.save({
-        data: opts
-      }) */
+      this.renderTable();
     },
     render: function () {
       $(this.$el).html(this.template());
-      $('#userlist').bootstrapTable('destroy');
-      this.renderTable();
     },
-    renderTable: function (searchName) {
-      var urlApi = API_URL + '/sys/sysUser/list';
-      $('#userlist').bootstrapTable({
+    renderTable: function () {
+      var urlApi = API_URL + '/riskmodel/rmProMain/list';
+      $('#listMasterTable').bootstrapTable({
         url: urlApi,
         method: "post",
         toolbar: '', //工具按钮用哪个容器
@@ -62,22 +55,33 @@ define([
         queryParams: function (params) { //请求服务器发送的参数
           return {
             name: params.searchText || '',
+            type: 0,
             pageNum: params.pageNumber,
-            pageSize: params.pageSize,
-            rolesId: ['']
+            pageSize: params.pageSize
           };
         },
         columns: [{
-            field: "account",
-            title: "员工账号"
-          },
-          {
             field: "name",
-            title: "员工姓名"
+            title: "风险工程名称"
           },
           {
-            field: "roleName",
-            title: "角色"
+            field: 'type',
+            title: '工程类型',
+            formatter: function (value) {
+              return '总工程';
+            }
+          },
+          {
+            field: "status",
+            title: "状态"
+          },
+          {
+            field: 'result',
+            title: '结果'
+          },
+          {
+            field: "cjsj",
+            title: "创建时间"
           },
           {
             field: "3",
@@ -89,8 +93,9 @@ define([
 					        	&nbsp;&nbsp;</div>
 					        	<div class='btn-group'>
 					        	<button type='button' class='btn btn-info zdy-btn-delete'  data-row='${row}'>删除</button>
-					        	</div>&nbsp;&nbsp;</div>
-					        	<div class='btn-group'>
+					        	&nbsp;&nbsp;</div>
+                    <div class='btn-group'>
+                    <button type='button' class='btn btn-info zdy-btn-detail'  data-row='${row}'>风险分析</button>
 					        	</div>`
               return v;
             }
@@ -98,41 +103,32 @@ define([
         ]
       })
     },
-    searchHandle: function (e) {
-      var value = $('#searchUserText').val();
-      $('#userlist').bootstrapTable('refresh', {
+    searchHandle: function () {
+      var value = $('#searchMasterText').val();
+      $('#listMasterTable').bootstrapTable('refresh', {
         query: {
           name: value
         }
       });
     },
-    userDataHandle: function (e) {
+    handleModal: function (e) {
       var self = this;
       var row = $(e.currentTarget).data('row');
       var flag = row ? 'edit' : 'add';
       tools.handleModal({
-        title: row ? '编辑用户' : '新增用户',
-        template: $('#editUserTmpl'),
-        eleId: '#userEditForm',
+        title: row ? '编辑' : '新增',
+        template: $('#editMasterTmpl'),
+        eleId: '#msEditForm',
+        area: ['70%', '40%'],
         btn: ['确定', '取消'],
+        param: {
+          row: '1',
+          view: true
+        },
         success: function () {
-          if (row) {
-            var urlApi = API_URL + '/sys/sysUser/' + row.id;
-            self.model.urlApi = urlApi;
-            self.model.urlRoot();
-            self.model.clear();
-            self.model.fetch().then(function (res) {
-              self.row = res.data;
-              self.editView = new editView(res.data);
-            })
-          } else {
-            self.editView = new editView();
-          }
+          self.masterEditView = new MasterEditView(row);
         },
         yes: function (obj, index, data) {
-          var roleIds = $('#jstreeRole').jstree("get_checked", null, true);
-          console.log(roleIds.join(','));
-          data.roleIds = roleIds.join(',');
           row && (data.id = row.id);
           self.saveData(data, flag);
         },
@@ -142,54 +138,57 @@ define([
       })
     },
     saveData: function (data, flag) {
-      var self = this;
       var subData = {
-        account: data.account,
-        email: "",
-        mobile: data.mobile,
         name: data.name,
-        orgid: "",
-        orgmc: "",
-        password: data.password,
-        remarks: data.remarks,
-        roleIds: data.roleIds,
-        roleName: '',
-        sfzh: data.sfzh || '',
-        xzqhdm: "429000",
-        zsxm: data.zsxm,
-        delFlag: 0
+        bz: data.bz
       }
-      if (flag == 'edit') {
-        subData.id = data.id;
-        subData.password = '';
-      };
-      this.model.urlApi = API_URL + '/sys/sysUser/' + flag;
+      var urlApi = API_URL + '/riskmodel/rmProMain/' + flag;
+      this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
+      if (flag == 'edit') subData.id = data.id;
       this.model.save(subData, {
         patch: true
       }).then(function (res) {
         layer.closeAll();
-        self.render();
-      });
+        $('#listMasterTable').bootstrapTable('refresh');
+      })
     },
     delete: function (e) {
       var self = this;
       var row = $(e.currentTarget).data('row');
+      var urlApi = API_URL + '/riskmodel/rmProMain/remove/' + row.id;
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
       layer.confirm('确定要删除此项吗？', function () {
-        self.model.urlApi = API_URL + '/sys/sysUser/edit';
-        self.model.urlRoot();
-        self.model.clear();
-        row.delFlag = "1";
-        row.del_flag = "1";
-        self.model.save(row).then(function (res) {
+        self.model.fetch().then(function (res) {
           if (res.code == 200) {
             layer.closeAll();
-            self.render();
+            $('#listMasterTable').bootstrapTable('refresh');
           }
         })
-      }, function (index) {
+      }, function () {
 
+      })
+    },
+    riskAnalyze: function () {
+      var self = this;
+      layer.open({
+        type: 1,
+        title: '风险分析',
+        content: $('#editAnalyzeTmpl'),
+        area: ['70%', '80%'],
+        btn: ['确定', '取消'],
+        success: function (layero, index) {
+          self.analyzeView = new AnalyzeView();
+        },
+        yes: function (index, layero) {
+
+        },
+        cancel: function (index, layero) {
+
+        }
       })
     }
   })
