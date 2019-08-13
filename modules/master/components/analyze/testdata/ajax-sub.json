@@ -1,0 +1,8 @@
+[{
+  "title": "Sub item",
+  "lazy": true
+}, {
+  "title": "Sub folder",
+  "folder": true,
+  "lazy": true
+}]

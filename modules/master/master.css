@@ -11,3 +11,20 @@
 .master-tmpl-wrapper {
   padding: 10px;
 }
+
+.analyze-wrapper {
+  padding: 15px 0;
+}
+
+.analyze-table-list {
+  padding: 10px 15px;
+}
+
+.analyze-btn {
+  text-align: right;
+  padding: 0 15px;
+}
+
+.single-wrap {
+  padding: 15px;
+}

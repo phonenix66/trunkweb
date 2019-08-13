@@ -6,7 +6,12 @@ define([
   'modules/master/components/model',
   'text!modules/master/components/tmpl.html',
   'modules/master/components/edit/edit',
-  'modules/master/components/analyze/analyze'
+  'modules/master/components/analyze/analyze',
+  'jquery.fancytree',
+  'jquery.fancytree.dnd5',
+  'jquery.fancytree.glyph',
+  'jquery.fancytree.table',
+  'jquery.fancytree.wide'
 ], function ($, _, Backbone, tools, Model, tmpl, MasterEditView, AnalyzeView) {
   'use strict';
   return Backbone.View.extend({
@@ -140,7 +145,8 @@ define([
     saveData: function (data, flag) {
       var subData = {
         name: data.name,
-        bz: data.bz
+        bz: data.bz,
+        type: 0
       }
       var urlApi = API_URL + '/riskmodel/rmProMain/' + flag;
       this.model.urlApi = urlApi;
@@ -172,16 +178,17 @@ define([
 
       })
     },
-    riskAnalyze: function () {
+    riskAnalyze: function (e) {
       var self = this;
+      var row = $(e.currentTarget).data('row');
       layer.open({
         type: 1,
-        title: '风险分析',
+        title: '风险分析-' + row.name,
         content: $('#editAnalyzeTmpl'),
         area: ['70%', '80%'],
         btn: ['确定', '取消'],
         success: function (layero, index) {
-          self.analyzeView = new AnalyzeView();
+          self.analyzeView = new AnalyzeView(row);
         },
         yes: function (index, layero) {
 

@@ -58,6 +58,7 @@ require.config({
 		"bootstrap-table-treegrid": ["js/plugin/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid"],
 		"verify": ["js/plugin/verify/verify.min"],
 		"jquery.fancytree": ["js/plugin/fancytree/src/jquery.fancytree"],
+		"jquery.fancytree.dnd5": ["js/plugin/fancytree/src/jquery.fancytree.dnd5"],
 		"jquery.fancytree.glyph": ["js/plugin/fancytree/src/jquery.fancytree.glyph"],
 		"jquery.fancytree.table": ["js/plugin/fancytree/src/jquery.fancytree.table"],
 		"jquery.fancytree.wide": ["js/plugin/fancytree/src/jquery.fancytree.wide"],
