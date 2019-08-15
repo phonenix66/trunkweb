@@ -1,15 +1,14 @@
 <div class="single-wrap">
-  <%if(!row){%>
   <form role="form" id="singleForm">
     <div class="row">
       <div class="form-group col-sm-6">
         <label for="fcmc">单项工程名称*</label>
-        <input type="text" class="form-control" id="name" name="name" autocomplete="off">
+        <input type="text" class="form-control" id="singlePjName" name="name" autocomplete="off">
       </div>
     </div>
     <div class="risk-incident-edit">
       <div class="incident-button">
-        <a href="javascript:void(0)" class="btn btn-info">添加风险事件</a>
+        <a href="javascript:void(0)" class="btn btn-info btn-add-incident">添加风险事件</a>
       </div>
       <div class="incident-wrapper">
         <table class="table table-bordered">
@@ -20,9 +19,45 @@
               <td width="20%" align="center">操作</td>
             </tr>
           </thead>
+          <tbody id="incidentListBody">
+            <!-- <tr>
+              <td class="td-middle">风险事件1</td>
+              <td>
+                <div class="target-wrapper">
+                  <div class="item">
+                    <span>指标1</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                  <div class="item">
+                    <span>指标2</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                  <div class="item">
+                    <span>指标2</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                  <div class="item">
+                    <span>指标2</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                  <div class="item">
+                    <span>指标2</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                  <div class="item">
+                    <span>指标2</span>
+                    <em class="fa fa-close"></em>
+                  </div>
+                </div>
+              </td>
+              <td class="td-middle">
+                <a href="javascript:void(0)" class="btn btn-primary btn-add-target">新增风险指标</a>
+                <a href="javascript:void(0)" class="btn btn-danger btn-delete-incident">删除风险事件</a>
+              </td>
+            </tr> -->
+          </tbody>
         </table>
       </div>
     </div>
   </form>
-  <%}%>  
 </div>

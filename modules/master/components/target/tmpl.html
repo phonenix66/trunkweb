@@ -1,0 +1,29 @@
+<div class="target-list">
+  <%if(rows.length){%>
+  <%_.each(rows,function(item){%>
+  <% var data = JSON.stringify(item); %>
+  <label class="target-item">
+    <input type="checkbox" class="target-check" data-item='<%=data%>'>
+    <span><%=item.name%></span>
+  </label>
+  <%})%>
+  <%}else{%>
+  <p style="text-align: center;line-height: 40px;">没有风险指标可添加了！</p>
+  <%}%>    
+  <!-- <label class="target-item">
+    <input type="checkbox" class="target-check">
+    <span>风险指标1</span>
+  </label>
+  <label class="target-item">
+    <input type="checkbox" class="target-check">
+    <span>风险指标2</span>
+  </label>
+  <label class="target-item">
+    <input type="checkbox" class="target-check">
+    <span>风险指标3</span>
+  </label>
+  <label class="target-item">
+    <input type="checkbox" class="target-check">
+    <span>风险指标4</span>
+  </label> -->
+</div>

@@ -1,0 +1,30 @@
+<div class="incident-list">
+  <% if(row.length){ %>
+  <%_.each(row,function(item){%>
+  <% var data = JSON.stringify(item); %>
+  <label class="check-item">
+    <input type="checkbox" class="risk-check" data-item='<%=data%>'>
+    <span><%=item.name%></span>
+  </label>
+  <%})%>
+  <% }else{ %>
+  <p style="text-align: center;line-height: 40px;">没有风险事件可添加了！</p>
+  <% } %>
+</div>
+
+<!-- <label class="check-item">
+    <input type="checkbox" class="risk-check">
+    <span>风险事件1</span>
+  </label>
+  <label class="check-item">
+    <input type="checkbox" class="risk-check">
+    <span>风险事件2</span>
+  </label>
+  <label class="check-item">
+    <input type="checkbox" class="risk-check">
+    <span>风险事件3</span>
+  </label>
+  <label class="check-item">
+    <input type="checkbox" class="risk-check">
+    <span>风险事件4</span>
+  </label> -->

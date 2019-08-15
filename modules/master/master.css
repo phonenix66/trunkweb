@@ -28,3 +28,72 @@
 .single-wrap {
   padding: 15px;
 }
+
+.risk-incident-edit .incident-button {
+  text-align: right;
+  padding-bottom: 10px;
+}
+
+.target-button {
+  padding: 5px;
+}
+
+.target-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.target-wrapper .item {
+  padding: 5px;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.target-wrapper .item em,
+.target-wrapper .item span {
+  display: inline-block;
+  margin: 0 4px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.target-wrapper .item em {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.incident-wrapper td.td-middle {
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.incident-wrapper td.td-middle a.btn {
+  margin: 5px;
+}
+
+.incident-list {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.incident-list .check-item,
+.target-list .target-item {
+  margin: 5px;
+}
+
+.incident-list .check-item span,
+.incident-list .check-item input,
+.target-list .target-item span,
+.target-list .target-item input {
+  vertical-align: middle;
+  color: #444;
+}

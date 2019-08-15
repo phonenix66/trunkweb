@@ -28,6 +28,7 @@ define([
       var urlApi = '';
       this.urlApi = urlApi;
       this.model = new Model();
+      this.analyzeView = null;
       this.render();
       this.renderTable();
     },
@@ -131,14 +132,19 @@ define([
           view: true
         },
         success: function () {
+          if (self.masterEditView) {
+            self.masterEditView = null;
+          }
           self.masterEditView = new MasterEditView(row);
         },
         yes: function (obj, index, data) {
           row && (data.id = row.id);
           self.saveData(data, flag);
+          self.cleanView();
         },
         btn2: function () {
           layer.closeAll();
+          self.cleanView();
         }
       })
     },
@@ -188,15 +194,35 @@ define([
         area: ['70%', '80%'],
         btn: ['确定', '取消'],
         success: function (layero, index) {
+          if (self.analyzeView) {
+            self.analyzeView = null;
+          }
           self.analyzeView = new AnalyzeView(row);
         },
         yes: function (index, layero) {
-
+          self.cleanView();
         },
         cancel: function (index, layero) {
-
+          layer.close(index);
+          self.cleanView();
+        },
+        btn2: function (index, layero) {
+          layer.close(index);
+          self.cleanView();
         }
       })
+    },
+    cleanView: function () {
+      if (this.analyzeView) {
+        this.analyzeView.remove();
+        var $html = `<div id="editAnalyzeTmpl"></div>`;
+        $('#masterWrapper').append($html);
+      }
+      if (this.masterEditView) {
+        this.masterEditView.remove();
+        var $html = `<div id="editMasterTmpl"></div>`;
+        $('#masterWrapper').append($html);
+      }
     }
   })
 });

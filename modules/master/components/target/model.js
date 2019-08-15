@@ -6,12 +6,12 @@ define([
   'use strict';
   return Backbone.Model.extend({
     defaults: {
-      checked: []
+      targetChecked: []
     },
     initialize: function (url) {
       this.set({
-        checked: []
-      });
+        targetChecked: []
+      })
       this.urlApi = url;
     },
     idAttribute: "uid",

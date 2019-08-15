@@ -47,7 +47,11 @@ define([
         lazyLoad: function (event, data) {
           var node = data.node;
           console.log(node);
-          data.result = self.getRowIncidentData(node.data);
+          if (node.data.level == 2) {
+            data.result = self.getRowIncidentData(node.data);
+          } else if (node.data.level == 3) {
+            data.result = self.getRowTargetData(node.data);
+          }
           //console.log(data.result);
         },
         renderColumns: function (event, data) {
@@ -74,22 +78,54 @@ define([
       this.model.urlRoot();
       this.model.clear();
       this.model.fetch({
-        data: {
+        data: JSON.stringify({
           fid: row.id,
           pageSize: 500
-        },
+        }),
         contentType: 'application/json',
-        type: 'get',
+        type: 'post',
         async: false,
-        success: function (res) {
+        success: function (model, res) {
           if (res.code == 200 && res.data != null) {
-
+            _.each(res.data.list, function (item) {
+              var obj = {
+                title: item.name,
+                id: item.id,
+                fid: item.fid,
+                riskid: item.riskid,
+                lazy: true,
+                folder: true,
+                level: 3,
+                expanded: true
+              };
+              results.push(obj);
+            });
           } else {
             results = [];
           }
         }
       });
       return results;
+    },
+    getRowTargetData: function (row) {
+      var self = this;
+      var urlApi = API_URL + '/riskmodel/rmProRiskTarget/list';
+      var results = [];
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.fetch({
+        data: JSON.stringify({
+          fid: row.id,
+          pageSize: 500
+        }),
+        contentType: 'application/json',
+        type: 'post',
+        async: false,
+        success: function (model, res) {
+          console.log(res);
+        }
+      })
     },
     renderButton: function (data) {
       var $html = '';
@@ -103,16 +139,16 @@ define([
           break;
         case 2:
           $html = `<div class='btn-item-box'>
-            <button class='btn btn-info' data-row='${row}'>编辑因素</button>
+            <button class='btn btn-info' data-row='${row}'>编辑单项工程</button>
           <button class='btn btn-info' data-row='${row}'>权重计算</button>
             <button class='btn btn-info btn-item-delete' data-row='${row}'>删除</button>
             </div>`;
           break;
         case 3:
           $html = `<div class='btn-item-box'>
-          <button class='btn btn-info' data-row='${row}'>编辑因子</button>
-        <button class='btn btn-info' data-row='${row}'>权重计算</button>
-          <button class='btn btn-info btn-item-delete' data-row='${row}'>删除</button>
+          <button class='btn btn-primary' data-row='${row}'>编辑风险事件</button>
+        <button class='btn btn-primary' data-row='${row}'>权重计算</button>
+          <button class='btn btn-primary btn-item-delete' data-row='${row}'>删除</button>
           </div>`;
           break;
         case 4:
@@ -156,7 +192,7 @@ define([
       })
 
     },
-    addSingleItem: function () {
+    addSingleItem: function () { //添加单项工程
       var self = this;
       var subData = {
         name: '',
@@ -173,23 +209,34 @@ define([
       }).then(function (res) {
         layer.open({
           type: 1,
-          title: '新增',
+          title: '新增单项工程',
           content: $('#singleItemsTmpl'),
           area: ['40%', '50%'],
           btn: ['确定', '取消'],
           success: function (layero, index) {
-            self.singleView = new SingleView();
+            if (self.singleView) {
+              self.singleView = null;
+            }
+            self.singleView = new SingleView(res.data);
           },
           yes: function (index, layero) {
             $('#singleForm').data('bootstrapValidator').validate();
             var valid = $('#singleForm').data('bootstrapValidator').isValid();
             if (!valid) return !1;
+            self.saveSingleData(res.data);
+            layer.close(index);
+            self.singleView.undelegateEvents();
+            self.cleanView();
           },
           cancel: function (index, layero) {
+            layer.close(index);
             self.deleteSingleItem(res);
+            self.cleanView();
           },
           btn2: function (index, layero) {
+            layer.close(index);
             self.deleteSingleItem(res);
+            self.cleanView();
           }
         })
       })
@@ -240,6 +287,48 @@ define([
       var tree = $("#treetable").fancytree("getTree");
       var node = tree.getActiveNode();
       node.remove();
+    },
+    saveSingleData: function (singleData) {
+      var self = this;
+      var name = $('#singlePjName').val();
+      var subData = {
+        name: name,
+        fid: this.row.id,
+        type: 1,
+        id: singleData.id
+      };
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        console.log(res);
+        self.addTreeNode(subData);
+      })
+    },
+    addTreeNode: function (data) {
+      var tree = $("#treetable").fancytree("getTree");
+      var firstNode = tree.getFirstChild();
+      console.log(firstNode);
+      firstNode.appendSibling({
+        fid: data.fid,
+        //riskid: data.riskid,
+        level: 2,
+        expanded: true,
+        title: data.name,
+        folder: true,
+        id: data.id,
+        lazy: true
+      })
+    },
+    cleanView: function () {
+      if (this.singleView) {
+        this.singleView.remove();
+        var $html = `<div id="singleItemsTmpl"></div>`;
+        $('#masterWrapper').append($html);
+      }
     }
   })
 });
