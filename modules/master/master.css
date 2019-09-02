@@ -97,3 +97,32 @@
   vertical-align: middle;
   color: #444;
 }
+
+.computed-wrapper .boxer {
+  padding: 15px 10px;
+}
+
+.computed-wrapper .boxer.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.computed-wrapper .boxer.analyze .ay_wrap {
+  border: 1px solid #d2d6de;
+}
+
+.computed-wrapper .boxer.analyze .header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.computed-wrapper .boxer.analyze .header {
+  height: 46px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #efefef;
+}

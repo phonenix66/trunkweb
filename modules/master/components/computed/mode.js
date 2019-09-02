@@ -6,7 +6,7 @@ define([
   'use strict';
   return Backbone.Model.extend({
     defaults: {
-      selected: []
+
     },
     initialize: function (url) {
       this.urlApi = url;

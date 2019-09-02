@@ -21,9 +21,22 @@ define([
     initialize: function (row) {
       this.row = row;
       this.model = new Model();
+      this.selectedIncident = this.model.get('selected');
+      var self = this;
 
       this.render();
       this.validate();
+      if (this.row.typeCast == 'edit') {
+        //编辑时model层获取已选事件
+        this.selectedIncident = this.row.incidentList || [];
+        this.model.set({
+          selected: this.selectedIncident
+        });
+        //console.log(this.selectedIncident);
+        _.each(this.selectedIncident, function (item) {
+          self.loadrmProRiskTargetList(item);
+        })
+      }
     },
     render: function () {
       $(this.$el).html(this.template({
@@ -140,6 +153,13 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
+          var tree = $("#treetable").fancytree("getTree");
+          var node = tree.getActiveNode();
+          if (node.children) {
+            node.load(true).done(function () {
+              node.setExpanded();
+            });
+          }
           self.loadrmProRiskList();
         }
       })
@@ -161,24 +181,36 @@ define([
         if (res.code == 200) {
           var $html = [];
           var rows = res.data.list;
-          _.each(rows, function (item) {
+          var reduceArr = [];
+          reduceArr = _.filter(rows, function (item) {
+            return !_.findWhere(self.selectedIncident, {
+              id: item.id
+            });
+          })
+          //console.log(reduceArr);
+          _.each(reduceArr, function (item) {
             var incident = JSON.stringify(item);
             var str = `
-            <tr>
-            <td class="td-middle">${item.name}</td>
-            <td>
-              <div class="target-wrapper" id='target_${item.id}'>
-                
-              </div>
-            </td>
-            <td class="td-middle">
-              <a href="javascript:void(0)" data-incident='${incident}' class="btn btn-primary btn-add-target">新增风险指标</a>
-              <a href="javascript:void(0)" data-incident='${incident}' class="btn btn-danger btn-delete-incident">删除风险事件</a>
-            </td>
-          </tr>
-        `;
+                  <tr>
+                  <td class="td-middle">${item.name}</td>
+                  <td>
+                    <div class="target-wrapper" id='target_${item.id}'>
+                      
+                    </div>
+                  </td>
+                  <td class="td-middle">
+                    <a href="javascript:void(0)" data-incident='${incident}' class="btn btn-primary btn-add-target">新增风险指标</a>
+                    <a href="javascript:void(0)" data-incident='${incident}' class="btn btn-danger btn-delete-incident">删除风险事件</a>
+                  </td>
+                </tr>
+              `;
             $html.push(str);
+          })
+          self.selectedIncident = self.selectedIncident.concat(reduceArr);
+          self.model.set({
+            selected: self.selectedIncident
           });
+          console.log(self.selectedIncident);
           $('#incidentListBody').append($html.join(''));
         }
       })
@@ -204,6 +236,7 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
+          self.appendTargetTreeNodes($incident);
           self.loadrmProRiskTargetList($incident);
         }
       })
@@ -223,7 +256,7 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
-          console.log(data.id);
+          //console.log(data.id);
           var $html = [];
           _.each(res.data.list, function (item) {
             var target = JSON.stringify(item);
@@ -240,6 +273,10 @@ define([
     },
     deleteIncident: function (e) {
       var self = this;
+      this.model.set({
+        'selected': this.selectedIncident
+      });
+
       var row = $(e.currentTarget).data('incident');
       var urlApi = API_URL + '/riskmodel/rmProRisk/remove/' + row.id;
       this.model.urlApi = urlApi;
@@ -248,8 +285,17 @@ define([
       layer.confirm('确定要删除此项吗？', function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
+            self.selectedIncident = _.filter(self.selectedIncident, function (item) {
+              return item.id != row.id;
+            });
+            //console.log(self.selectedIncident);
+            self.model.set({
+              'selected': self.selectedIncident
+            });
             $(e.currentTarget).parent().parent().remove();
+            self.removeIcidentNode(row);
             layer.close(index);
+
           }
         });
       }, function () {
@@ -265,16 +311,61 @@ define([
       this.model.clear();
       layer.confirm('确定要删除此项吗？', function (index) {
         self.model.fetch().then(function (res) {
-          console.log(row, res);
           if (res.code == 200) {
             $(e.currentTarget).parent().remove();
+            self.removeTargetNode(row);
           }
         })
         layer.close(index);
       }, function () {
 
       })
-
+    },
+    removeIcidentNode: function (row) { //删除tree事件节点
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      //监听remove事件，向组件analyze中传参
+      if (node.children) {
+        var removeNode = _.find(node.children, function (item) {
+          return item.data.id == row.id;
+        });
+        removeNode.remove();
+      }
+    },
+    removeTargetNode: function (row) { //删除tree指标节点
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      if (node.children) {
+        var removeNodeParent = _.find(node.children, function (item) {
+          return item.data.id == row.fid;
+        });
+        //console.log(removeNodeParent);
+        var removeNode = _.find(removeNodeParent.children, function (item) {
+          return item.data.id == row.id;
+        });
+        removeNode.remove();
+      }
+    },
+    reloadTreeTargetList: function () {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      if (node.children) {
+        node.load(true).done(function () {
+          node.setExpanded();
+        });
+      }
+    },
+    appendTargetTreeNodes: function (row) {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      if (node.children) {
+        var nodeParent = _.find(node.children, function (item) {
+          return item.data.id == row.id;
+        });
+        nodeParent.load(true).done(function () {
+          nodeParent.setExpanded();
+        });
+      };
     },
     cleanView: function () {
       if (this.incidentView) {
@@ -287,6 +378,7 @@ define([
         var $html = `<div id="targetListTmpl"></div>`;
         $('#masterWrapper').append($html);
       }
-    }
+    },
+
   })
 });

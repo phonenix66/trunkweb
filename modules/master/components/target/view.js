@@ -64,8 +64,8 @@ define([
           self.render(res.data.list);
           self.setiCheck();
         }
-
       })
-    }
+    },
+
   })
 });

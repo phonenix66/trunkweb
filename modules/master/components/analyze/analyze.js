@@ -4,15 +4,20 @@ define([
   'backbone',
   'text!modules/master/components/analyze/tmpl.html',
   'modules/master/components/analyze/model',
-  'modules/master/components/single/view'
-], function ($, _, Backbone, tmpl, Model, SingleView) {
+  'modules/master/components/single/view',
+  'modules/master/components/computed/view'
+], function ($, _, Backbone, tmpl, Model, SingleView, ComputedView) {
   'use strict';
   return Backbone.View.extend({
     el: '#editAnalyzeTmpl',
     template: _.template(tmpl),
     events: {
       'click .btn-add-single': 'addSingleItem',
-      'click .btn-item-delete': 'removeItem'
+      'click .btn-single-delete': 'removeItem',
+      'click .btn-single-edit': 'editSingleItem',
+      'click .btn-incident-delete': 'removeIncidentNode',
+      'click .btn-target-delete': 'removeTargetNode',
+      'click .btn-weight-computed': 'handleSingleComputed'
     },
     initialize: function (row) {
       this.row = row;
@@ -62,7 +67,6 @@ define([
           $tdList.eq(4).text(node.data.status || '未输入值');
           var $html = self.renderButton(node.data);
           $tdList.eq(5).html($html);
-          //console.log(node);
         },
         modifyChild: function (event, data) {
           console.log(event, data);
@@ -90,6 +94,7 @@ define([
             _.each(res.data.list, function (item) {
               var obj = {
                 title: item.name,
+                name: item.name,
                 id: item.id,
                 fid: item.fid,
                 riskid: item.riskid,
@@ -123,9 +128,17 @@ define([
         type: 'post',
         async: false,
         success: function (model, res) {
-          console.log(res);
+          //console.log(res);
+          if (res.code == 200 && res.data) {
+            results = JSON.parse(JSON.stringify(res.data.list));
+            _.each(results, function (item) {
+              item.title = item.name;
+              item.level = 4;
+            });
+          }
         }
-      })
+      });
+      return results;
     },
     renderButton: function (data) {
       var $html = '';
@@ -139,22 +152,20 @@ define([
           break;
         case 2:
           $html = `<div class='btn-item-box'>
-            <button class='btn btn-info' data-row='${row}'>编辑单项工程</button>
-          <button class='btn btn-info' data-row='${row}'>权重计算</button>
-            <button class='btn btn-info btn-item-delete' data-row='${row}'>删除</button>
+            <button class='btn btn-info btn-single-edit' data-row='${row}'>编辑单项工程</button>
+            <button class='btn btn-info btn-single-computed' data-row='${row}'>权重计算</button>
+            <button class='btn btn-info btn-single-delete' data-row='${row}'>删除</button>
             </div>`;
           break;
         case 3:
           $html = `<div class='btn-item-box'>
-          <button class='btn btn-primary' data-row='${row}'>编辑风险事件</button>
-        <button class='btn btn-primary' data-row='${row}'>权重计算</button>
-          <button class='btn btn-primary btn-item-delete' data-row='${row}'>删除</button>
+          <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
+          <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
           </div>`;
           break;
         case 4:
           $html = `<div class='btn-item-box'>
-          <button class='btn btn-info' data-row='${row}'>权重计算</button>
-          <button class='btn btn-info btn-item-delete' data-row='${row}'>删除</button>
+          <button class='btn bg-purple btn-target-delete' data-row='${row}'>删除</button>
         </div>`;
           break;
         default:
@@ -178,6 +189,7 @@ define([
         _.each(res.data.list, function (item) {
           var obj = {
             title: item.name,
+            name: item.name,
             id: item.id,
             fid: item.fid,
             riskid: item.riskid,
@@ -217,6 +229,7 @@ define([
             if (self.singleView) {
               self.singleView = null;
             }
+            res.data.typeCast = 'add';
             self.singleView = new SingleView(res.data);
           },
           yes: function (index, layero) {
@@ -304,14 +317,16 @@ define([
       this.model.save(subData, {
         patch: true
       }).then(function (res) {
-        console.log(res);
-        self.addTreeNode(subData);
+        if (singleData.typeCast == 'edit') {
+          self.editSingleTreeNode(subData);
+        } else {
+          self.addTreeNode(subData);
+        }
       })
     },
     addTreeNode: function (data) {
       var tree = $("#treetable").fancytree("getTree");
       var firstNode = tree.getFirstChild();
-      console.log(firstNode);
       firstNode.appendSibling({
         fid: data.fid,
         //riskid: data.riskid,
@@ -323,10 +338,122 @@ define([
         lazy: true
       })
     },
+    editSingleTreeNode: function (data) {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      //console.log(node.data);
+      node.setTitle(data.name);
+      node.data.name = data.name;
+      var $tdList = $(node.tr).find(">td");
+      var $html = this.renderButton(node.data);
+      $tdList.eq(5).html($html);
+    },
+    editSingleItem: function (e) {
+      var self = this;
+      var row = $(e.currentTarget).data('row');
+      //console.log(row);
+      row.typeCast = 'edit';
+      var incidentList = this.getRowIncidentData(row);
+      //console.log(incidentList);
+      layer.open({
+        type: 1,
+        title: '编辑单项工程-' + row.name,
+        content: $('#singleItemsTmpl'),
+        area: ['40%', '50%'],
+        btn: ['确定', '取消'],
+        success: function (layero, index) {
+          if (self.singleView) {
+            self.singleView = null;
+          }
+          row.incidentList = incidentList;
+          self.singleView = new SingleView(row);
+        },
+        yes: function (index, layero) {
+          layer.close(index);
+          self.saveSingleData(row);
+          self.cleanView();
+        },
+        cancel: function (index, layero) {
+          layer.close(index);
+          self.cleanView();
+        },
+        btn2: function (index, layero) {
+          layer.close(index);
+          self.cleanView();
+        }
+      });
+    },
+    removeIncidentNode: function (e) {
+      var self = this;
+      var row = $(e.currentTarget).data('row');
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      var urlApi = API_URL + '/riskmodel/rmProRisk/remove/' + row.id;
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      layer.confirm('确定要删除此项吗？', function (index) {
+        self.model.fetch().then(function (res) {
+          if (res.code == 200) {
+            node.remove();
+            layer.close(index);
+          }
+        })
+      }, function () {
+
+      })
+    },
+    removeTargetNode: function (e) {
+      var self = this;
+      var row = $(e.currentTarget).data('row');
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      var urlApi = API_URL + '/riskmodel/rmProRiskTarget/remove/' + row.id;
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      layer.confirm('确定要删除此项吗？', function (index) {
+        self.model.fetch().then(function (res) {
+          if (res.code == 200) {
+            node.remove();
+            layer.close(index);
+          }
+        })
+        layer.close(index);
+      }, function () {
+
+      })
+    },
+    handleSingleComputed: function (e) {
+      layer.open({
+        title: '计算分析',
+        type: 1,
+        area: ['50%', '50%'],
+        content: $('#weightComputedTmpl'),
+        btn: ['确定', '取消'],
+        success: function () {
+          self.computedView = new ComputedView();
+        },
+        yes: function () {
+
+        },
+        cancle: function () {
+
+        },
+        btn2: function () {
+
+        }
+      })
+    },
     cleanView: function () {
       if (this.singleView) {
         this.singleView.remove();
         var $html = `<div id="singleItemsTmpl"></div>`;
+        $('#masterWrapper').append($html);
+      }
+      if (this.computedView) {
+        this.computedView.remove();
+        var $html = `<div id="weightComputedTmpl"></div>`;
         $('#masterWrapper').append($html);
       }
     }
