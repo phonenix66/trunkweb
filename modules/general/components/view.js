@@ -26,6 +26,7 @@ define([
         toolbar: '', //工具按钮用哪个容器
         striped: true, //是否显示行间隔色
         pageSize: 10,
+        height: $('.general-inner').height() - 54,
         pageNumber: 1,
         dataType: "json",
         cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

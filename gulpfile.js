@@ -4,6 +4,7 @@ var app = {
 };
 
 var gulp = require('gulp'),
+  sass = require('gulp-sass'),
   connect = require('gulp-connect');
 
 gulp.task('connect', function () {
@@ -14,6 +15,12 @@ gulp.task('connect', function () {
   })
 });
 
+gulp.task('css', function () {
+  return gulp.src('css/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('css/'))
+    .pipe(connect.reload());
+})
 // 监听任务
 gulp.task('watch', function () {
   // 监听根目录下所有.js文件
@@ -27,6 +34,7 @@ gulp.task('watch', function () {
       read: false
     }).pipe(connect.reload());
   });
+  gulp.watch('css/*.scss', gulp.series('css'));
   // gulp.watch('./css/**/*.css').on('change', () => {
   //   gulp.src('./css/**/*.css', {
   //     read: false
@@ -34,6 +42,6 @@ gulp.task('watch', function () {
   // })
 });
 
-gulp.task('default', gulp.parallel('connect', 'watch', function () {
+gulp.task('default', gulp.parallel('connect', 'watch', 'css', function () {
   console.log('default');
 }))

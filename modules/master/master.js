@@ -3,7 +3,7 @@ define('modules/master/master', [
   'underscore',
   'backbone',
   'modules/master/components/view',
-  'css!modules/master/master.css'
+  'css!/css/master.css'
 ], function ($, _, Backbone, MasterView) {
   'use strict';
   var page = {};

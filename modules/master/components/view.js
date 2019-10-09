@@ -11,7 +11,7 @@ define([
   'jquery.fancytree.dnd5',
   'jquery.fancytree.glyph',
   'jquery.fancytree.table',
-  'jquery.fancytree.wide'
+  'jquery.fancytree.wide',
 ], function ($, _, Backbone, tools, Model, tmpl, MasterEditView, AnalyzeView) {
   'use strict';
   return Backbone.View.extend({
@@ -44,6 +44,7 @@ define([
         striped: true, //是否显示行间隔色
         pageSize: 10,
         pageNumber: 1,
+        height: $('.master-inner').height() - 54,
         dataType: "json",
         cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         pagination: true, //是否显示分页（*）

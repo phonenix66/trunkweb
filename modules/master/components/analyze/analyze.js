@@ -17,10 +17,12 @@ define([
       'click .btn-single-edit': 'editSingleItem',
       'click .btn-incident-delete': 'removeIncidentNode',
       'click .btn-target-delete': 'removeTargetNode',
-      'click .btn-weight-computed': 'handleSingleComputed'
+      'click .btn-weight-computed,.btn-single-computed,.btn-incident-computed': 'handleSingleComputed',
+
     },
     initialize: function (row) {
       this.row = row;
+      this.row.level = 1;
       var urlApi = API_URL + '/riskmodel/rmProMain/' + row.id;
       this.model = new Model(urlApi);
       this.render();
@@ -29,7 +31,9 @@ define([
       this.getSingleItems();
     },
     render: function () {
-      $(this.$el).html(this.template());
+      $(this.$el).html(this.template({
+        row: this.row
+      }));
     },
     renderTreeTable: function (source) {
       var self = this;
@@ -425,14 +429,16 @@ define([
       })
     },
     handleSingleComputed: function (e) {
+      var row = $(e.currentTarget).data('row');
+      console.log(row);
       layer.open({
         title: '计算分析',
         type: 1,
-        area: ['50%', '50%'],
+        area: ['60%', '70%'],
         content: $('#weightComputedTmpl'),
         btn: ['确定', '取消'],
         success: function () {
-          self.computedView = new ComputedView();
+          self.computedView = new ComputedView(row);
         },
         yes: function () {
 
