@@ -67,16 +67,27 @@ define([
           var node = data.node,
             $tdList = $(node.tr).find(">td");
           $tdList.eq(0).text(node.getIndexHier());
-          $tdList.eq(3).text(node.data.reResult);
-          $tdList.eq(4).text(node.data.status || '未输入值');
+          $tdList.eq(3).text(node.data.result);
+          //console.log(node.data);
+          $tdList.eq(4).text(self.handleStatusCol(node.data.status));
           var $html = self.renderButton(node.data);
           $tdList.eq(5).html($html);
         },
         modifyChild: function (event, data) {
-          console.log(event, data);
           var node = data.childNode;
         }
       });
+    },
+    handleStatusCol: function (value) {
+      if (value == 1) {
+        return '未输入值';
+      } else if (value == 2) {
+        return '未计算权重';
+      } else if (value == 3) {
+        return '验证未通过';
+      } else if (value == 4) {
+        return '验证通过';
+      }
     },
     getRowIncidentData: function (row) {
       var self = this;
@@ -102,6 +113,8 @@ define([
                 id: item.id,
                 fid: item.fid,
                 riskid: item.riskid,
+                status: item.status,
+                result: item.result,
                 lazy: true,
                 folder: true,
                 level: 3,
@@ -146,6 +159,7 @@ define([
     },
     renderButton: function (data) {
       var $html = '';
+      data.mainid = this.row.id;
       var row = JSON.stringify(data);
       switch (data.level) {
         case 1:
@@ -162,6 +176,7 @@ define([
             </div>`;
           break;
         case 3:
+          var mainid = this.row.id;
           $html = `<div class='btn-item-box'>
           <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
           <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
@@ -197,6 +212,8 @@ define([
             id: item.id,
             fid: item.fid,
             riskid: item.riskid,
+            result: item.result,
+            status: item.status,
             lazy: true,
             folder: true,
             level: 2,
@@ -206,14 +223,14 @@ define([
         });
         self.renderTreeTable(results);
       })
-
     },
     addSingleItem: function () { //添加单项工程
       var self = this;
       var subData = {
         name: '',
         fid: this.row.id,
-        type: 1
+        type: 1,
+        status: 2 //未计算权重
       }
       var urlApi = API_URL + '/riskmodel/rmProMain/add';
       this.model.urlApi = urlApi;
@@ -307,12 +324,14 @@ define([
     },
     saveSingleData: function (singleData) {
       var self = this;
+      console.log(this.row);
       var name = $('#singlePjName').val();
       var subData = {
         name: name,
         fid: this.row.id,
         type: 1,
-        id: singleData.id
+        id: singleData.id,
+        status: this.row.status || 2
       };
       var urlApi = API_URL + '/riskmodel/rmProMain/edit';
       this.model.urlApi = urlApi;
@@ -339,6 +358,8 @@ define([
         title: data.name,
         folder: true,
         id: data.id,
+        name: data.name,
+        status: data.status,
         lazy: true
       })
     },

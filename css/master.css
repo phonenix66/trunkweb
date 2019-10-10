@@ -95,6 +95,10 @@
 
 .computed-wrapper .boxer .ay_wrap {
   border: 1px solid #d2d6de; }
+  .computed-wrapper .boxer .ay_wrap .txt {
+    padding-right: 10px;
+    text-align: right;
+    color: #d2d6de; }
 
 .computed-wrapper .boxer .header h3 {
   font-size: 16px;

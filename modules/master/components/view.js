@@ -80,7 +80,16 @@ define([
           },
           {
             field: "status",
-            title: "状态"
+            title: "状态",
+            formatter: function (value) {
+              if (value == 2) {
+                return '未计算权重';
+              } else if (value == 3) {
+                return '验证未通过';
+              } else if (value == 4) {
+                return '验证通过';
+              }
+            }
           },
           {
             field: 'result',
@@ -139,9 +148,13 @@ define([
           self.masterEditView = new MasterEditView(row);
         },
         yes: function (obj, index, data) {
-          row && (data.id = row.id);
+          //row && (data.id = row.id);
+          if (row) {
+            data.id = row.id;
+            data.status = row.status || 2;
+          }
           self.saveData(data, flag);
-          self.cleanView();
+
         },
         btn2: function () {
           layer.closeAll();
@@ -150,20 +163,26 @@ define([
       })
     },
     saveData: function (data, flag) {
+      console.log(data);
+      var self = this;
       var subData = {
         name: data.name,
         bz: data.bz,
-        type: 0
+        type: 0,
+        status: 2
       }
       var urlApi = API_URL + '/riskmodel/rmProMain/' + flag;
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      if (flag == 'edit') subData.id = data.id;
+      if (flag == 'edit') {
+        subData.id = data.id;
+      }
       this.model.save(subData, {
         patch: true
       }).then(function (res) {
         layer.closeAll();
+        self.cleanView();
         $('#listMasterTable').bootstrapTable('refresh');
       })
     },
@@ -201,6 +220,7 @@ define([
           self.analyzeView = new AnalyzeView(row);
         },
         yes: function (index, layero) {
+          layer.close(index);
           self.cleanView();
         },
         cancel: function (index, layero) {

@@ -146,7 +146,8 @@ define([
       });
       var subData = {
         fid: this.row.id,
-        riskid: riskid.join(',')
+        riskid: riskid.join(','),
+        status: 1
       }
       var self = this;
       this.model.save(subData, {
@@ -228,7 +229,7 @@ define([
         fid: $incident.id,
         targetid: targetIds.join(','),
         zblhcs: '',
-        status: '',
+        status: 1,
         result: ''
       };
       var self = this;
