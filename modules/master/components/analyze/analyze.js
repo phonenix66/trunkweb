@@ -84,9 +84,11 @@ define([
       } else if (value == 2) {
         return '未计算权重';
       } else if (value == 3) {
-        return '验证未通过';
+        return '已计算权重，验证未通过';
       } else if (value == 4) {
-        return '验证通过';
+        return '已计算权重，验证通过';
+      } else if (value == 5) {
+        return '已输入值，未计算权重';
       }
     },
     getRowIncidentData: function (row) {
