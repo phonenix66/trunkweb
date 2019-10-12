@@ -28,11 +28,11 @@
         <div class="top">
           <div class="item">
             <label>CR</label>
-            <input type="text" class="form-control" value="XXX" readonly>
+            <input type="text" class="form-control" id="computedCR" value="" readonly>
           </div>
           <div class="item">
             <label>权重结果</label>
-            <input type="text" class="form-control" value="未通过" readonly>
+            <input type="text" class="form-control" id="computedResult" value="未通过" readonly>
           </div>
         </div>
         <div id="analyzeTableList"></div>
@@ -48,13 +48,13 @@
       <div class="ay-body">
         <div class="top">
           <div class="item">
-            <label>加权失效</label>
-            <input type="text" class="form-control" value="XXX" readonly>
-          </div>
-          <div class="item">
             <label>分析结果</label>
-            <input type="text" class="form-control" value="未通过" readonly>
+            <input type="text" id="analyzeResult" class="form-control" value="" readonly>
           </div>
+        </div>
+        <div class="cont-result">
+          <label style="width:82px;">综合评估向量(B=W.R)</label>
+          <textarea id="result_zhpgxl" readonly class="form-control"></textarea>
         </div>
       </div>
     </div>

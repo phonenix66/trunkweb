@@ -144,7 +144,6 @@
 .computed-wrapper .boxer {
   .ay-body {
     padding: 5px;
-    height: 200px;
 
     .top {
       display: flex;
@@ -169,6 +168,11 @@
           width: 180px;
         }
       }
+    }
+
+    .cont-result {
+      display: flex;
+      flex-direction: row;
     }
   }
 }

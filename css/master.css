@@ -115,8 +115,7 @@
   border-bottom: 1px solid #d2d6de; }
 
 .computed-wrapper .boxer .ay-body {
-  padding: 5px;
-  height: 200px; }
+  padding: 5px; }
   .computed-wrapper .boxer .ay-body .top {
     display: flex;
     padding: 5px;
@@ -134,3 +133,6 @@
         margin: 0; }
       .computed-wrapper .boxer .ay-body .top .item input {
         width: 180px; }
+  .computed-wrapper .boxer .ay-body .cont-result {
+    display: flex;
+    flex-direction: row; }

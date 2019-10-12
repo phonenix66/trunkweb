@@ -453,6 +453,7 @@ define([
     },
     handleSingleComputed: function (e) {
       var row = $(e.currentTarget).data('row');
+      var self = this;
       console.log(row);
       layer.open({
         title: '计算分析',
@@ -463,14 +464,16 @@ define([
         success: function () {
           self.computedView = new ComputedView(row);
         },
-        yes: function () {
+        yes: function (index, layero) {
+          layer.close(index);
+          self.cleanView();
+        },
+        cancle: function (index, layero) {
 
         },
-        cancle: function () {
-
-        },
-        btn2: function () {
-
+        btn2: function (index, layero) {
+          layer.close(index);
+          self.cleanView();
         }
       })
     },

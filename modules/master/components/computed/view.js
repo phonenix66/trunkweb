@@ -90,11 +90,36 @@ define([
         }, {
           data: 'zblhcs',
           allowEmpty: false,
-          type: 'numeric'
+          type: 'numeric',
+          validator: function (value, callback) {
+            if (value == '') {
+              callback(false);
+            } else {
+              var reg = new RegExp("^[0-9]+(.[0-9]{1,10})?$");
+              if (reg.test(value)) {
+                callback(true);
+              } else {
+                callback(false);
+              }
+            }
+          }
         }, {
           data: 'value',
           readOnly: true
-        }]
+        }],
+        afterChange: function (changes, source) {
+          //console.log(changes);
+          if (changes) {
+            var row = changes[0][0];
+            var prop = changes[0][1];
+            var oldVal = changes[0][2];
+            var newVal = changes[0][3];
+            newVal = Math.floor(newVal * 10000) / 10000;
+            //console.log(self.subjectData);
+            self.subjectData[row][prop] = newVal;
+            self.hotInstSubject.loadData(self.subjectData);
+          }
+        }
       });
     },
     colorRenderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -142,6 +167,7 @@ define([
         this.model.save(opts).then(function (res) {
           if (res.code == 200) {
             layer.msg('指标量化参数保存成功！');
+            self.row.status = 5;
             self.handleChangeIncidentStatus();
           }
         })
@@ -151,6 +177,7 @@ define([
     },
     //更新风险事件状态
     handleChangeIncidentStatus: function () {
+      var self = this;
       var urlApi = API_URL + '/riskmodel/rmProRisk/edit';
       this.model.urlApi = urlApi;
       this.model.urlRoot();
@@ -159,17 +186,50 @@ define([
         fid: this.row.fid,
         id: this.row.id,
         riskid: this.row.riskid,
-        status: 5 //输入了量化指标，但未计算权重
+        status: this.row.status // 5输入了量化指标，但未计算权重
       }
+      //this.row.status = 5;
       console.log(opts);
       this.model.save(opts).then(function (res) {
-
+        if (res.code == 200) {
+          self.editTreeNode();
+        }
       })
+    },
+    editTreeNode: function () {
+      var self = this;
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      console.log(node.data);
+      //输入了量化指标，但未计算权重
+      node.data.status = this.row.status;
+      var $tdList = $(node.tr).find(">td");
+      var $text = '';
+      if (this.row.status == 2) {
+        $text = '未计算权重';
+      } else if (this.row.status == 3) {
+        $text = '已计算权重，验证未通过';
+      } else if (this.row.status == 4) {
+        $text = '已计算权重，验证通过';
+      } else if (this.row.status == 5) {
+        $text = '已输入值，未计算权重';
+      }
+      $tdList.eq(4).html($text);
+      //this.row.status = 5;
+      var row = JSON.stringify(this.row);
+      var $html = `<div class='btn-item-box'>
+          <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
+          <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
+          </div>`;
+      $tdList.eq(5).html($html);
     },
     getBusinessData: function () { //权重分析矩阵
       var self = this;
-      //var urlApi = API_URL + '/riskmodel/rmProPdjz/getByBussPk';
+
       var urlApi = API_URL + '/riskmodel/rmProPdjz/getViewData';
+      if (this.row.status == 4) {
+        urlApi = API_URL + '/riskmodel/rmProPdjz/getByBussPk';
+      }
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
@@ -189,6 +249,10 @@ define([
       }
       this.model.save(opts).then(function (res) {
         //console.log(res);
+        if (res.data.w) {
+          res.data.w = res.data.w.split(',');
+        }
+        self.analyzeData = res.data;
         self.renderAnalyzeHandtable(res.data.jznames, res.data.jzids);
       })
     },
@@ -211,21 +275,39 @@ define([
           id: jzids[i],
           name: item,
           Uva: 'U' + (i + 1),
-          weight: ''
+          weight: self.row.status == 4 ? self.analyzeData.w[i] : ''
         };
         //矩阵数据3*3 4*4...
         _.each(dataNames, function (d, j) {
-          obj['value' + (j + 1)] = '';
+          if (self.row.status == 4) {
+            var data = self.analyzeData.pdjzcsList;
+            obj['value' + (j + 1)] = data[i][j];
+          } else {
+            obj['value' + (j + 1)] = '';
+          }
         })
         columns.push({
           data: 'value' + (i + 1),
           type: 'numeric',
-          allowEmpty: false
+          allowEmpty: false,
+          validator: function (value, callback) {
+            if (!value) {
+              callback(false);
+            } else {
+              var reg = new RegExp("^[0-9]+(.[0-9]{1,10})?$");
+              if (reg.test(value)) {
+                callback(true);
+              } else {
+                callback(false);
+              }
+            }
+
+          }
         })
         sourceData.push(obj);
       });
       columns.push({
-        data: 'W',
+        data: 'weight',
         readOnly: true
       })
       colHeaders.push('W');
@@ -243,17 +325,9 @@ define([
         columns: columns,
         cells: function (row, col, prop) {
           this.renderer = self.myRenderer;
-          if (prop != 'W' && col > 1) {
+          if (prop != 'weight' && col > 1) {
             this.renderer = self.colorRenderer
           }
-          /* var that = this;
-          _.each(dataNames, function (v, i) {
-            if (row == i && prop == ('value' + (i + 1))) {
-              that.renderer = function (instance, td, r, c, pp, val, cellProperties) {
-
-              }
-            }
-          }) */
         },
         afterRenderer: function (TD, row, col, prop, value, cellProperties) {
           _.each(dataNames, function (v, i) {
@@ -265,26 +339,99 @@ define([
           })
         },
         afterChange: function (changes, source) {
-          console.log(changes, source);
+          //console.log(changes, source);
           if (changes) {
             var row = changes[0][0];
             var prop = changes[0][1];
             var oldVal = changes[0][2];
             var newVal = changes[0][3];
-            //sourceData[row][prop] = newVal;
+            if (!newVal) {
+              return !1;
+            } else {
+              var reg = new RegExp("^[0-9]+(.[0-9]{1,10})?$");
+              if (!reg.test(newVal)) {
+                layer.msg('只能输入有1~3位小数的正实数');
+                return !1;
+              }
+            }
             var colsub = Number(prop.slice(5));
             var setValProp = 'value' + (row + 1);
             var modifyRow = self.hotInstAnalyze.propToCol(prop) - 2;
-            sourceData[modifyRow][setValProp] = 1 / newVal;
+            sourceData[row][prop] = Math.floor(newVal * 10000) / 10000;
+            sourceData[modifyRow][setValProp] = Math.floor((1 / newVal) * 10000) / 10000;
             self.hotInstAnalyze.loadData(sourceData);
           }
-
         }
       });
       this.hotInstAnalyze.loadData(sourceData);
+      $('#computedCR').val('');
+      if (this.row.status == 4) {
+        $('#computedCR').val(this.analyzeData.cr);
+        $('#computedResult').val('验证通过');
+        $('#result_zhpgxl').val(this.analyzeData.zhpgxl);
+      } else if (this.row.status == 1) {
+        $('#computedResult').val('未输入值');
+      } else if (this.row.status == 3) {
+        $('#computedResult').val('已计算权重，验证未通过');
+      } else if (this.row.status == 5) {
+        $('#computedResult').val('已输入值，未计算权重');
+      }
     },
     handleWeightAnalyze: function () {
+      if (this.row.status == 1) {
+        layer.msg('隶属计算未完成，请输入影响等级，并保存量化指标');
+        return !1;
+      }
+      var self = this;
+      var urlApi = API_URL + '/riskmodel/rmProPdjz/jzyxxjy';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      var type;
+      if (this.row.level == 3) {
+        type = 2; //获取风险因素
+      } else if (this.row.level == 2) {
+        type = 1; //获取风险事件
+      } else if (this.row.level == 1) {
+        type = 0; //获取单项工程
+      }
+      var opts = {
+        jzids: self.analyzeData.jzids,
+        promainid: this.row.mainid,
+        prosinid: this.row.fid,
+        riskid: this.row.riskid || '',
+        type: type,
+        pdjzcsList: []
+      }
+      var orginData = this.hotInstAnalyze.getSourceData();
 
+      var pdjzcsList = [];
+      _.each(orginData, function (item, i) {
+        for (var key in item) {
+          if (key.indexOf('value') == -1) {
+            delete item[key];
+          }
+        }
+        pdjzcsList.push(_.values(item));
+      });
+      opts.pdjzcsList = pdjzcsList;
+      //console.log(opts);
+      var lx = layer.load();
+      this.model.save(opts).then(function (res) {
+        if (res.code == 202) {
+          layer.alert(res.msg, function (j) {
+            self.row.status = 3;
+            //self.editTreeNode();
+            self.handleChangeIncidentStatus();
+            layer.close(j);
+          });
+        } else if (res.code == 200) {
+          layer.msg('验证成功');
+          self.row.status = 4;
+          self.handleChangeIncidentStatus();
+        }
+        layer.close(lx);
+      })
     }
   })
 });
