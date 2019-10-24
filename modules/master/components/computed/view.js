@@ -135,6 +135,10 @@ define([
     },
     saveLHZBData: function () {
       var self = this;
+      if (self.subjectData.length <= 2) {
+        layer.msg('指标数据不足，风险评价指标最少3个，编辑单项工程中添加风险因子');
+        return !1;
+      }
       this.hotInstSubject.validateCells(function (valid) {
         self.handleValidCallback(valid);
       });
@@ -167,7 +171,9 @@ define([
         this.model.save(opts).then(function (res) {
           if (res.code == 200) {
             layer.msg('指标量化参数保存成功！');
-            self.row.status = 5;
+            if (self.row.status != 4) {
+              self.row.status = 5;
+            }
             self.handleChangeIncidentStatus();
           }
         })
@@ -212,7 +218,7 @@ define([
       } else if (this.row.status == 4) {
         $text = '已计算权重，验证通过';
       } else if (this.row.status == 5) {
-        $text = '已输入值，未计算权重';
+        $text = '已输入量化指标值，未计算权重';
       }
       $tdList.eq(4).html($text);
       //this.row.status = 5;
@@ -234,25 +240,35 @@ define([
       this.model.urlRoot();
       this.model.clear();
       var type;
-      if (this.row.level == 3) {
-        type = 2; //获取风险因素
-      } else if (this.row.level == 2) {
-        type = 1; //获取风险事件
-      } else if (this.row.level == 1) {
-        type = 0; //获取单项工程
-      }
       var opts = {
         promainid: this.row.mainid,
         prosinid: this.row.fid,
         riskid: this.row.riskid,
         type: type
       }
+      if (this.row.level == 3) {
+        type = 2; //获取风险因素
+        opts.type = 2;
+      } else if (this.row.level == 2) {
+        type = 1; //获取风险事件
+        opts.type = 1;
+        opts.prosinid = this.row.id;
+      } else if (this.row.level == 1) {
+        type = 0; //获取单项工程
+        opts.type = 0;
+      }
+
       this.model.save(opts).then(function (res) {
         //console.log(res);
         if (res.data.w) {
           res.data.w = res.data.w.split(',');
         }
         self.analyzeData = res.data;
+        if (self.analyzeData.jznames.length == 0) {
+          layer.alert('关联风险事件权重分析未通过', function (i) {
+            layer.close(i);
+          })
+        }
         self.renderAnalyzeHandtable(res.data.jznames, res.data.jzids);
       })
     },
@@ -374,7 +390,7 @@ define([
       } else if (this.row.status == 3) {
         $('#computedResult').val('已计算权重，验证未通过');
       } else if (this.row.status == 5) {
-        $('#computedResult').val('已输入值，未计算权重');
+        $('#computedResult').val('已输入量化指标值，未计算权重');
       }
     },
     handleWeightAnalyze: function () {
@@ -404,7 +420,8 @@ define([
         pdjzcsList: []
       }
       var orginData = this.hotInstAnalyze.getSourceData();
-
+      orginData = JSON.parse(JSON.stringify(orginData));
+      var orginDataClone = JSON.parse(JSON.stringify(orginData));
       var pdjzcsList = [];
       _.each(orginData, function (item, i) {
         for (var key in item) {
@@ -420,7 +437,9 @@ define([
       this.model.save(opts).then(function (res) {
         if (res.code == 202) {
           layer.alert(res.msg, function (j) {
-            self.row.status = 3;
+            if (self.row.status != 4) {
+              self.row.status = 3;
+            }
             //self.editTreeNode();
             self.handleChangeIncidentStatus();
             layer.close(j);
@@ -429,6 +448,14 @@ define([
           layer.msg('验证成功');
           self.row.status = 4;
           self.handleChangeIncidentStatus();
+          var weights = res.data.w.split(',')
+          _.each(orginDataClone, function (item, i) {
+            item.weight = weights[i];
+          });
+          self.hotInstAnalyze.loadData(orginDataClone);
+          $('#computedCR').val(res.data.cr);
+          $('#computedResult').val('验证通过');
+          $('#result_zhpgxl').val(res.data.zhpgxl);
         }
         layer.close(lx);
       })

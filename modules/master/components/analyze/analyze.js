@@ -43,7 +43,7 @@ define([
       };
       $("#treetable").fancytree({
         extensions: ["dnd5", "glyph", "table", "wide"],
-        checkbox: true,
+        checkbox: false,
         glyph: glyph_opts,
         source: source,
         table: {
@@ -88,7 +88,9 @@ define([
       } else if (value == 4) {
         return '已计算权重，验证通过';
       } else if (value == 5) {
-        return '已输入值，未计算权重';
+        return '已输入量化指标值，未计算权重';
+      } else if (value == 6) {
+        return '矩阵关系发生变化，请重新输入';
       }
     },
     getRowIncidentData: function (row) {
@@ -439,16 +441,27 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      layer.confirm('确定要删除此项吗？', function (index) {
+      var $msg = '';
+      if (node.parent.data.status != 1 && node.parent.data.status != 6) {
+        $msg = '此因子与' + node.parent.data.name + '事件有关联计算，会改变矩阵计算关系，确定要删除此项吗？'
+      } else {
+        $msg = '确定要删除此项吗？';
+      }
+      layer.confirm($msg, function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
-            node.remove();
+            if (node.parent.data.status != 1 && node.parent.data.status != 6) {
+              //if (node.parent.data.status == 1) {
+              node.parent.data.status = 6;
+              self.handleChangeIncidentStatus(node);
+            }
+            //node.remove();
             layer.close(index);
           }
         })
         layer.close(index);
       }, function () {
-
+        console.log(node);
       })
     },
     handleSingleComputed: function (e) {
@@ -476,6 +489,45 @@ define([
           self.cleanView();
         }
       })
+    },
+    //更新风险事件状态
+    handleChangeIncidentStatus: function (node) {
+      var self = this;
+      var urlApi = API_URL + '/riskmodel/rmProRisk/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      var opts = {
+        fid: node.parent.data.fid,
+        id: node.parent.data.id,
+        riskid: node.parent.data.riskid,
+        status: node.parent.data.status // 5输入了量化指标，但未计算权重
+      }
+      //node.parent.data.status = 5;
+      console.log(opts);
+      this.model.save(opts).then(function (res) {
+        if (res.code == 200) {
+          /* node.parent.load(true).done(function () {
+            node.parent.setExpanded();
+          }); */
+          //node.setTitle(data.name);
+          //node.data.name = data.name;
+          var $tdList = $(node.parent.tr).find(">td");
+          $tdList.eq(4).text(self.handleStatusCol(node.parent.data.status));
+          var $html = self.renderButton(node.parent.data);
+          $tdList.eq(5).html($html);
+          node.remove();
+        }
+      })
+    },
+    updateTreeNode: function () {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      if (node.children) {
+        node.load(true).done(function () {
+          node.setExpanded();
+        });
+      }
     },
     cleanView: function () {
       if (this.singleView) {

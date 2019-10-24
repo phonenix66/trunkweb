@@ -121,9 +121,24 @@ define([
         },
         yes: function (index, layero) {
           var targetChecked = self.targetView.targetChecked;
-          self.renderTDTargetData(targetChecked, $incident);
-          layer.close(index);
-          self.cleanView();
+          if ($incident.status != 1 && $incident.status != 6) {
+            //if ($incident.status == 1) {
+            layer.confirm('已计算量化指标或者权重，添加风险因子，矩阵关系会发生变化，确定要添加吗？', function (j) {
+              $incident.status = 6;
+              self.handleChangeIncidentStatus($(e.currentTarget), $incident);
+              self.renderTDTargetData(targetChecked, $incident);
+              layer.close(j);
+              layer.close(index);
+              self.cleanView();
+            }, function () {
+              layer.close(index);
+              self.cleanView();
+            })
+          } else {
+            self.renderTDTargetData(targetChecked, $incident);
+            layer.close(index);
+            self.cleanView();
+          }
         },
         cancel: function (index, layero) {
           layer.close(index);
@@ -132,6 +147,38 @@ define([
         btn2: function (index, layero) {
           layer.close(index);
           self.cleanView();
+        }
+      })
+    },
+    renderOperationTarget: function ($ele, $incident) {
+      var $td = $ele.parent();
+      $td.empty();
+      var $incidentStr = JSON.stringify($incident);
+      var $hml = `<a href="javascript:void(0)" data-incident='${$incidentStr}'
+      class="btn btn-primary btn-add-target">新增风险指标</a>
+    <a href="javascript:void(0)" data-incident='${$incidentStr}'
+      class="btn btn-danger btn-delete-incident">删除风险事件</a>`;
+      $td.html($hml);
+    },
+    //更新风险事件状态
+    handleChangeIncidentStatus: function ($ele, inciRow) {
+      var self = this;
+      var urlApi = API_URL + '/riskmodel/rmProRisk/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      var opts = {
+        fid: inciRow.fid,
+        id: inciRow.id,
+        riskid: inciRow.riskid,
+        status: inciRow.status // 5输入了量化指标，但未计算权重
+      }
+      //inciRow.status = 5;
+      console.log(opts);
+      this.model.save(opts).then(function (res) {
+        if (res.code == 200) {
+          self.renderOperationTarget($ele, inciRow);
+          self.updateTreeNode();
         }
       })
     },
@@ -164,6 +211,15 @@ define([
           self.loadrmProRiskList();
         }
       })
+    },
+    updateTreeNode: function () {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      if (node.children) {
+        node.load(true).done(function () {
+          node.setExpanded();
+        });
+      }
     },
     loadrmProRiskList: function () {
       var self = this;
@@ -310,11 +366,23 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      layer.confirm('确定要删除此项吗？', function (index) {
+      var $ele = $incident = $(e.currentTarget).parents('td').siblings('.td-middle').find('.btn-add-target');
+      var $incident = $ele.data('incident');
+      var $msg = '';
+      if ($incident.status != 1 && $incident.status != 6) {
+        $msg = '此因子与' + $incident.name + '事件有关联计算，会改变矩阵计算关系，确定要删除此项吗？'
+      } else {
+        $msg = '确定要删除此项吗？';
+      }
+      layer.confirm($msg, function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
+            //self.loadrmProRiskTargetList($incident);
+            $incident.status = 6;
+            self.handleChangeIncidentStatus($ele, $incident);
+            //self.renderOperationTarget($ele, $incident);
+            //self.removeTargetNode(row);
             $(e.currentTarget).parent().remove();
-            self.removeTargetNode(row);
           }
         })
         layer.close(index);
