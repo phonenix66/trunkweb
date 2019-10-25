@@ -125,12 +125,14 @@ define([
     colorRenderer: function (instance, td, row, col, prop, value, cellProperties) {
       Handsontable.renderers.TextRenderer.apply(this, arguments);
       td.style.backgroundColor = 'rgba(100,149,237,0.2)';
-      td.style.lineHeight = '36px';
+      //td.style.lineHeight = '36px';
+      td.style.verticalAlign = 'middle';
       td.style.textAlign = 'center';
     },
     myRenderer: function (instance, td, row, col, prop, value, cellProperties) {
       Handsontable.renderers.TextRenderer.apply(this, arguments);
-      td.style.lineHeight = '36px';
+      //td.style.lineHeight = '36px';
+      td.style.verticalAlign = 'middle';
       td.style.textAlign = 'center';
     },
     saveLHZBData: function () {
@@ -182,7 +184,7 @@ define([
       }
     },
     //更新风险事件状态
-    handleChangeIncidentStatus: function () {
+    handleChangeIncidentStatus: function (cr) {
       var self = this;
       var urlApi = API_URL + '/riskmodel/rmProRisk/edit';
       this.model.urlApi = urlApi;
@@ -191,6 +193,7 @@ define([
       var opts = {
         fid: this.row.fid,
         id: this.row.id,
+        cr: cr || null,
         riskid: this.row.riskid,
         status: this.row.status // 5输入了量化指标，但未计算权重
       }
@@ -198,11 +201,11 @@ define([
       console.log(opts);
       this.model.save(opts).then(function (res) {
         if (res.code == 200) {
-          self.editTreeNode();
+          self.editTreeNode(cr);
         }
       })
     },
-    editTreeNode: function () {
+    editTreeNode: function (cr) {
       var self = this;
       var tree = $("#treetable").fancytree("getTree");
       var node = tree.getActiveNode();
@@ -220,18 +223,28 @@ define([
       } else if (this.row.status == 5) {
         $text = '已输入量化指标值，未计算权重';
       }
+      cr && $tdList.eq(2).text(cr);
       $tdList.eq(4).html($text);
       //this.row.status = 5;
+      var $html = '';
       var row = JSON.stringify(this.row);
-      var $html = `<div class='btn-item-box'>
-          <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
-          <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
-          </div>`;
+      if (this.row.level == 3) {
+        $html = `<div class='btn-item-box'>
+        <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
+        <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
+        </div>`;
+      } else if (this.row.level == 2) {
+        $html = `<div class='btn-item-box'>
+          <button class='btn btn-info btn-single-edit' data-row='${row}'>编辑单项工程</button>
+          <button class='btn btn-info btn-single-computed' data-row='${row}'>权重计算</button>
+          <button class='btn btn-info btn-single-delete' data-row='${row}'>删除</button>
+        </div>`;
+      }
       $tdList.eq(5).html($html);
     },
     getBusinessData: function () { //权重分析矩阵
       var self = this;
-
+      console.log(this.row);
       var urlApi = API_URL + '/riskmodel/rmProPdjz/getViewData';
       if (this.row.status == 4) {
         urlApi = API_URL + '/riskmodel/rmProPdjz/getByBussPk';
@@ -241,7 +254,7 @@ define([
       this.model.clear();
       var type;
       var opts = {
-        promainid: this.row.mainid,
+        promainid: this.row.mainid || null,
         prosinid: this.row.fid,
         riskid: this.row.riskid,
         type: type
@@ -255,9 +268,9 @@ define([
         opts.prosinid = this.row.id;
       } else if (this.row.level == 1) {
         type = 0; //获取单项工程
-        opts.type = 0;
+        opts['type'] = 0;
+        opts['promainid'] = this.row.id;
       }
-
       this.model.save(opts).then(function (res) {
         //console.log(res);
         if (res.data.w) {
@@ -404,13 +417,7 @@ define([
       this.model.urlRoot();
       this.model.clear();
       var type;
-      if (this.row.level == 3) {
-        type = 2; //获取风险因素
-      } else if (this.row.level == 2) {
-        type = 1; //获取风险事件
-      } else if (this.row.level == 1) {
-        type = 0; //获取单项工程
-      }
+
       var opts = {
         jzids: self.analyzeData.jzids,
         promainid: this.row.mainid,
@@ -418,6 +425,18 @@ define([
         riskid: this.row.riskid || '',
         type: type,
         pdjzcsList: []
+      }
+      if (this.row.level == 3) {
+        type = 2; //获取风险因素
+        opts.type = 2;
+      } else if (this.row.level == 2) {
+        type = 1; //获取风险事件
+        opts.type = 1;
+        opts.prosinid = this.row.id;
+      } else if (this.row.level == 1) {
+        type = 0; //获取单项工程
+        opts.type = 0;
+        opts.promainid = this.row.id;
       }
       var orginData = this.hotInstAnalyze.getSourceData();
       orginData = JSON.parse(JSON.stringify(orginData));
@@ -432,22 +451,20 @@ define([
         pdjzcsList.push(_.values(item));
       });
       opts.pdjzcsList = pdjzcsList;
-      //console.log(opts);
       var lx = layer.load();
       this.model.save(opts).then(function (res) {
         if (res.code == 202) {
-          layer.alert(res.msg, function (j) {
-            if (self.row.status != 4) {
-              self.row.status = 3;
-            }
-            //self.editTreeNode();
-            self.handleChangeIncidentStatus();
-            layer.close(j);
-          });
+          var $msg = '';
+          if (self.row.level == 3) {
+            $msg = res.msg + '，请检查风险因子输入是否正确,并保存正确数值';
+          };
+          layer.msg($msg || res.msg);
+          if (self.row.status != 4) {
+            self.row.status = 3;
+          }
         } else if (res.code == 200) {
           layer.msg('验证成功');
           self.row.status = 4;
-          self.handleChangeIncidentStatus();
           var weights = res.data.w.split(',')
           _.each(orginDataClone, function (item, i) {
             item.weight = weights[i];
@@ -457,7 +474,61 @@ define([
           $('#computedResult').val('验证通过');
           $('#result_zhpgxl').val(res.data.zhpgxl);
         }
+        if (self.row.level == 2) {
+          $('.result .value').val(res.data.result);
+          $('#analyzeResult').val(res.data.result);
+          self.handleChangeSingleStatus();
+        } else if (self.row.level == 3) {
+          self.handleChangeIncidentStatus(res.data.cr);
+        } else if (self.row.level == 1) {
+          $('.result .value').val(res.data.result + '1');
+          self.handleChangeProjectStatus();
+        }
         layer.close(lx);
+      })
+    },
+    //更新单项工程状态
+    handleChangeSingleStatus: function (value) {
+      var self = this;
+      var subData = {
+        name: this.row.name,
+        fid: this.row.fid,
+        type: 1,
+        id: this.row.id,
+        status: this.row.status,
+        //result: value || ''
+      };
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        if (res.code == 200) {
+          self.editTreeNode();
+        }
+      })
+    },
+    handleChangeProjectStatus: function () {
+      var self = this;
+      var subData = {
+        status: this.row.status,
+        id: this.row.id
+      }
+      //console.log(subData);
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        if (res.code == 200) {
+          //self.editTreeNode();
+          $('#listMasterTable').bootstrapTable('refresh');
+        }
       })
     }
   })

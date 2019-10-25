@@ -182,6 +182,26 @@ define([
         }
       })
     },
+    handleChangeSingleStatus: function () {
+      var self = this;
+      console.log(this.row);
+      var subData = {
+        fid: this.row.fid,
+        id: this.row.id,
+        status: this.row.status
+      };
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        if (res.code == 200) {
+          self.editSingleTreeNode();
+        }
+      })
+    },
     renderTableIncident: function (rows) {
       if (!rows.length) return !1;
       var urlApi = API_URL + '/riskmodel/rmProRisk/add';
@@ -339,12 +359,21 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      layer.confirm('确定要删除此项吗？', function (index) {
+      var $msg = '';
+      if (this.row.status != 1 && this.row.status != 6) {
+        $msg = '此风险事件与 ' + this.row.name + ' 有关联计算，会改变矩阵计算关系，确定要删除此项吗？'
+      } else {
+        $msg = '确定要删除此项吗？';
+      }
+      layer.confirm($msg, function (index) {
+
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
             self.selectedIncident = _.filter(self.selectedIncident, function (item) {
               return item.id != row.id;
             });
+            self.row.status = 6;
+            self.handleChangeSingleStatus();
             //console.log(self.selectedIncident);
             self.model.set({
               'selected': self.selectedIncident
@@ -435,6 +464,41 @@ define([
           nodeParent.setExpanded();
         });
       };
+    },
+    editSingleTreeNode: function () {
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      var $tdList = $(node.tr).find(">td");
+      var row = JSON.stringify(this.row);
+      var $html = `<div class='btn-item-box'>
+        <button class='btn btn-info btn-single-edit' data-row='${row}'>编辑单项工程</button>
+        <button class='btn btn-info btn-single-computed' data-row='${row}'>权重计算</button>
+        <button class='btn btn-info btn-single-delete' data-row='${row}'>删除</button>
+      </div>`;
+      var statusTxt = this.handleStatusCol(this.row.status, this.row);
+      $tdList.eq(4).text(statusTxt);
+      $tdList.eq(5).html($html);
+    },
+    handleStatusCol: function (value, data) {
+      if (value == 1) {
+        if (data.level == 4) {
+          return '';
+        }
+        return '未输入值';
+      } else if (value == 2) {
+        if (data.level == 4) {
+          return '';
+        }
+        return '未计算权重';
+      } else if (value == 3) {
+        return '已计算权重，验证未通过';
+      } else if (value == 4) {
+        return '已计算权重，验证通过';
+      } else if (value == 5) {
+        return '已输入量化指标值，未计算权重';
+      } else if (value == 6) {
+        return '矩阵关系发生变化，请重新输入';
+      }
     },
     cleanView: function () {
       if (this.incidentView) {

@@ -96,6 +96,10 @@ define([
             title: '结果'
           },
           {
+            field: 'cr',
+            title: '数值(CR)'
+          },
+          {
             field: "cjsj",
             title: "创建时间"
           },
@@ -151,7 +155,7 @@ define([
           //row && (data.id = row.id);
           if (row) {
             data.id = row.id;
-            data.status = row.status || 2;
+            data.status = row.status || 1;
           }
           self.saveData(data, flag);
 
@@ -169,7 +173,7 @@ define([
         name: data.name,
         bz: data.bz,
         type: 0,
-        status: 2
+        status: data.status || 1
       }
       var urlApi = API_URL + '/riskmodel/rmProMain/' + flag;
       this.model.urlApi = urlApi;

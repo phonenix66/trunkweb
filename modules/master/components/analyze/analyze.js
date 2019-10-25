@@ -23,6 +23,7 @@ define([
     initialize: function (row) {
       this.row = row;
       this.row.level = 1;
+      this.row.statusText = this.handleStatusCol(this.row.status, row);
       var urlApi = API_URL + '/riskmodel/rmProMain/' + row.id;
       this.model = new Model(urlApi);
       this.render();
@@ -48,7 +49,7 @@ define([
         source: source,
         table: {
           checkboxColumnIdx: 1,
-          nodeColumnIdx: 2
+          nodeColumnIdx: 1
         },
         activate: function (event, data) {
           //console.log(event, data);
@@ -67,9 +68,10 @@ define([
           var node = data.node,
             $tdList = $(node.tr).find(">td");
           $tdList.eq(0).text(node.getIndexHier());
+          $tdList.eq(2).text(node.data.cr);
           $tdList.eq(3).text(node.data.result);
-          //console.log(node.data);
-          $tdList.eq(4).text(self.handleStatusCol(node.data.status));
+          console.log(node.data);
+          $tdList.eq(4).text(self.handleStatusCol(node.data.status, node.data));
           var $html = self.renderButton(node.data);
           $tdList.eq(5).html($html);
         },
@@ -78,10 +80,16 @@ define([
         }
       });
     },
-    handleStatusCol: function (value) {
+    handleStatusCol: function (value, data) {
       if (value == 1) {
+        if (data.level == 4) {
+          return '';
+        }
         return '未输入值';
       } else if (value == 2) {
+        if (data.level == 4) {
+          return '';
+        }
         return '未计算权重';
       } else if (value == 3) {
         return '已计算权重，验证未通过';
@@ -221,6 +229,7 @@ define([
             lazy: true,
             folder: true,
             level: 2,
+            cr: item.cr,
             expanded: true
           };
           results.push(obj);
@@ -234,7 +243,7 @@ define([
         name: '',
         fid: this.row.id,
         type: 1,
-        status: 2 //未计算权重
+        status: 1 //未输入值
       }
       var urlApi = API_URL + '/riskmodel/rmProMain/add';
       this.model.urlApi = urlApi;
@@ -335,7 +344,7 @@ define([
         fid: this.row.id,
         type: 1,
         id: singleData.id,
-        status: this.row.status || 2
+        status: singleData.status || 1
       };
       var urlApi = API_URL + '/riskmodel/rmProMain/edit';
       this.model.urlApi = urlApi;
@@ -374,8 +383,11 @@ define([
       node.setTitle(data.name);
       node.data.name = data.name;
       var $tdList = $(node.tr).find(">td");
+      var statusTxt = this.handleStatusCol(data.status, data);
       var $html = this.renderButton(node.data);
+      $tdList.eq(2).text(node.data.cr);
       $tdList.eq(5).html($html);
+      $tdList.eq(4).text(statusTxt);
     },
     editSingleItem: function (e) {
       var self = this;
@@ -421,6 +433,8 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
+      this.handleChangeSingleStatus();
+      return;
       layer.confirm('确定要删除此项吗？', function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
@@ -519,6 +533,18 @@ define([
           node.remove();
         }
       })
+    },
+    //更新单项工程状态
+    handleChangeSingleStatus: function (treenode) {
+      //console.log(this.row);
+      var self = this;
+      var tree = $("#treetable").fancytree("getTree");
+      var node = tree.getActiveNode();
+      console.log(node);
+      var $tdList = $(node.parent.tr).find(">td");
+      $tdList.eq(4).text(self.handleStatusCol(node.parent.data.status));
+      var $html = self.renderButton(node.parent.data);
+      $tdList.eq(5).html($html);
     },
     updateTreeNode: function () {
       var tree = $("#treetable").fancytree("getTree");
