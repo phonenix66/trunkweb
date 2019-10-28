@@ -130,6 +130,7 @@ define([
                 lazy: true,
                 folder: true,
                 level: 3,
+                cr: item.cr,
                 expanded: true
               };
               results.push(obj);
@@ -318,10 +319,20 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
+      console.log(this.row);
+      //this.deleteNode();
+      var $msg = '';
+      if (this.row.status != 1 && this.row.status != 6) {
+        $msg = '此单项工程与 ' + this.row.name + ' 有关联计算，会改变矩阵计算关系，确定要删除此项吗？'
+      } else {
+        $msg = '确定要删除此项吗？';
+      }
 
-      layer.confirm('确定要删除此项吗？', function (index) {
+      layer.confirm($msg, function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
+            // 修改总工程权重状态
+            self.row.status = 6;
             self.deleteNode();
             layer.close(index);
           }
@@ -333,7 +344,8 @@ define([
     deleteNode: function () {
       var tree = $("#treetable").fancytree("getTree");
       var node = tree.getActiveNode();
-      node.remove();
+      this.handleChangeProjectStatus(node);
+      //node.remove();
     },
     saveSingleData: function (singleData) {
       var self = this;
@@ -433,12 +445,22 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      this.handleChangeSingleStatus();
-      return;
-      layer.confirm('确定要删除此项吗？', function (index) {
+      var $msg = '';
+      if (node.parent.data.status != 1 && node.parent.data.status != 6) {
+        $msg = '此风险事件与 ' + node.parent.data.name + ' 有关联计算，会改变矩阵计算关系，确定要删除此项吗？'
+      } else {
+        $msg = '确定要删除此项吗？';
+      }
+      //node.parent.data.status = 6;
+      layer.confirm($msg, function (index) {
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
-            node.remove();
+            if (node.parent.data.status != 1 && node.parent.data.status != 6) {
+              //if (node.parent.data.status == 1) {
+              node.parent.data.status = 6;
+              self.handleChangeSingleStatus(node);
+            }
+            //node.remove();
             layer.close(index);
           }
         })
@@ -521,9 +543,6 @@ define([
       console.log(opts);
       this.model.save(opts).then(function (res) {
         if (res.code == 200) {
-          /* node.parent.load(true).done(function () {
-            node.parent.setExpanded();
-          }); */
           //node.setTitle(data.name);
           //node.data.name = data.name;
           var $tdList = $(node.parent.tr).find(">td");
@@ -535,16 +554,50 @@ define([
       })
     },
     //更新单项工程状态
-    handleChangeSingleStatus: function (treenode) {
-      //console.log(this.row);
+    handleChangeSingleStatus: function (node) {
       var self = this;
-      var tree = $("#treetable").fancytree("getTree");
-      var node = tree.getActiveNode();
+      //console.log(node);
+      var subData = {
+        fid: node.parent.data.fid,
+        id: node.parent.data.id,
+        type: 1,
+        status: node.parent.data.status || 1
+      };
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      //修改单项风险状态
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        var $tdList = $(node.parent.tr).find(">td");
+        $tdList.eq(4).text(self.handleStatusCol(node.parent.data.status));
+        var $html = self.renderButton(node.parent.data);
+        $tdList.eq(5).html($html);
+      })
+    },
+    // 更新总工程状态
+    handleChangeProjectStatus: function (node) {
+      var self = this;
       console.log(node);
-      var $tdList = $(node.parent.tr).find(">td");
-      $tdList.eq(4).text(self.handleStatusCol(node.parent.data.status));
-      var $html = self.renderButton(node.parent.data);
-      $tdList.eq(5).html($html);
+      var subData = {
+        id: this.row.id,
+        status: this.row.status,
+        type: 0
+      }
+      var urlApi = API_URL + '/riskmodel/rmProMain/edit';
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      this.model.save(subData, {
+        patch: true
+      }).then(function (res) {
+        if (res.code == 200) {
+          var statTxt = self.handleStatusCol(self.row.status);
+          $('#anaStatus').text(statTxt);
+        }
+      })
     },
     updateTreeNode: function () {
       var tree = $("#treetable").fancytree("getTree");

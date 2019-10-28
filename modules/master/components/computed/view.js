@@ -209,7 +209,7 @@ define([
       var self = this;
       var tree = $("#treetable").fancytree("getTree");
       var node = tree.getActiveNode();
-      console.log(node.data);
+      console.log(cr);
       //输入了量化指标，但未计算权重
       node.data.status = this.row.status;
       var $tdList = $(node.tr).find(">td");
@@ -407,7 +407,7 @@ define([
       }
     },
     handleWeightAnalyze: function () {
-      if (this.row.status == 1) {
+      if (this.row.status == 1 && this.row.level == 3) {
         layer.msg('隶属计算未完成，请输入影响等级，并保存量化指标');
         return !1;
       }
@@ -477,11 +477,14 @@ define([
         if (self.row.level == 2) {
           $('.result .value').val(res.data.result);
           $('#analyzeResult').val(res.data.result);
-          self.handleChangeSingleStatus();
+          self.handleChangeSingleStatus(res.data.cr);
         } else if (self.row.level == 3) {
           self.handleChangeIncidentStatus(res.data.cr);
         } else if (self.row.level == 1) {
           $('.result .value').val(res.data.result + '1');
+          $('#anaCR').text(res.data.cr);
+          $('#anaResult').text(res.data.result);
+          $('#analyzeResult').val(res.data.result);
           self.handleChangeProjectStatus();
         }
         layer.close(lx);
@@ -506,7 +509,7 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
-          self.editTreeNode();
+          self.editTreeNode(value);
         }
       })
     },
