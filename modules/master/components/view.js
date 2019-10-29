@@ -82,12 +82,18 @@ define([
             field: "status",
             title: "状态",
             formatter: function (value) {
-              if (value == 2) {
+              if (value == 1) {
+                return '未输入值';
+              } else if (value == 2) {
                 return '未计算权重';
               } else if (value == 3) {
                 return '验证未通过';
               } else if (value == 4) {
                 return '验证通过';
+              } else if (value == 5) {
+                return '已输入量化指标值，未计算权重';
+              } else if (value == 6) {
+                return '矩阵关系发生变化，请重新输入';
               }
             }
           },

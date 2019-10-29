@@ -374,7 +374,7 @@ define([
     },
     addTreeNode: function (data) {
       var tree = $("#treetable").fancytree("getTree");
-      var firstNode = tree.getFirstChild();
+      var firstNode = tree.getFistChild();
       firstNode.appendSibling({
         fid: data.fid,
         //riskid: data.riskid,

@@ -1,0 +1,51 @@
+<div class="analyze-wrapper">
+  <div class="row">
+    <p class="col-md-6">分析状态：<span id="anaStatus"></span></p>
+    <p class="col-md-6">CR：<span id="anaCR"></span></p>
+    <p class="col-md-6">分析结果：<span id="anaResult"></span></p>
+  </div>
+  <div class="analyze-btn">
+    <% var data = JSON.stringify(row);%>
+    <button class="btn btn-primary btn-weight-computed" data-row='<%=data%>'>权重计算</button>
+    <button class="btn btn-info btn-add-single" data-row='<%=data%>'>添加风险事件</button>
+  </div>
+  <div class="analyze-table-list">
+    <table id="treetable"
+      class="table table-bordered table-condensed table-hover table-striped fancytree-fade-expander">
+      <colgroup>
+        <col width="5%">
+        </col>
+        <col width="15%">
+        </col>
+        <col width="20%">
+        </col>
+        <col width="20%">
+        </col>
+        <col width="20%">
+        </col>
+        <col width="20%">
+        </col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th>风险名称</th>
+          <th>数值(CR)</th>
+          <th>结果</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

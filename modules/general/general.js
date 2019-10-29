@@ -3,6 +3,7 @@ define('modules/general/general', [
   'underscore',
   'backbone',
   'modules/general/components/view',
+  'css!/css/master.css',
   'css!/css/general.css'
 ], function ($, _, Backbone, GeneralView) {
   'use strict';

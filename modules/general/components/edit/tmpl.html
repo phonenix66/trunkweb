@@ -1,0 +1,29 @@
+<div class="ms-edit-wrapper">
+  <%if(!row){%>
+  <form role="form" id="grEditForm">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>单项工程名称*</label>
+        <input type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>备注</label>
+        <textarea name="bz" class="form-control" rows="8"></textarea>
+      </div>
+    </div>
+  </form>
+  <%}else{%>
+  <form role="form" id="grEditForm">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label>单项工程名称*</label>
+        <input type="text" class="form-control" name="name" value="<%=row.name%>">
+      </div>
+      <div class="form-group col-sm-6">
+        <label>备注</label>
+        <textarea name="bz" class="form-control" rows="8"><%=row.bz%></textarea>
+      </div>
+    </div>
+  </form>
+  <%}%>  
+</div>
