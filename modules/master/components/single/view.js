@@ -372,7 +372,9 @@ define([
             self.selectedIncident = _.filter(self.selectedIncident, function (item) {
               return item.id != row.id;
             });
-            self.row.status = 6;
+            if (self.row.status == 3 || self.row.status == 4) {
+              self.row.status = 6;
+            }
             self.handleChangeSingleStatus();
             //console.log(self.selectedIncident);
             self.model.set({
@@ -395,7 +397,7 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      var $ele = $incident = $(e.currentTarget).parents('td').siblings('.td-middle').find('.btn-add-target');
+      var $ele = $(e.currentTarget).parents('td').siblings('.td-middle').find('.btn-add-target');
       var $incident = $ele.data('incident');
       var $msg = '';
       if ($incident.status != 1 && $incident.status != 6) {
@@ -407,7 +409,10 @@ define([
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
             //self.loadrmProRiskTargetList($incident);
-            $incident.status = 6;
+            if ($incident.status == 3 || $incident.status == 4) {
+              $incident.status = 6;
+            }
+
             self.handleChangeIncidentStatus($ele, $incident);
             //self.renderOperationTarget($ele, $incident);
             //self.removeTargetNode(row);

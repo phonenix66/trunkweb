@@ -458,8 +458,9 @@ define([
             if (node.parent.data.status != 1 && node.parent.data.status != 6) {
               //if (node.parent.data.status == 1) {
               node.parent.data.status = 6;
-              self.handleChangeSingleStatus(node);
+
             }
+            self.handleChangeSingleStatus(node);
             //node.remove();
             layer.close(index);
           }
@@ -489,8 +490,9 @@ define([
             if (node.parent.data.status != 1 && node.parent.data.status != 6) {
               //if (node.parent.data.status == 1) {
               node.parent.data.status = 6;
-              self.handleChangeIncidentStatus(node);
+
             }
+            self.handleChangeIncidentStatus(node);
             //node.remove();
             layer.close(index);
           }

@@ -110,7 +110,7 @@ define([
       layer.open({
         type: 1,
         title: '添加风险指标',
-        content: $('#targetListTmpl'),
+        content: $('#targetListTmplWrap'),
         area: ['30%', '30%'],
         btn: ['确定', '取消'],
         success: function () {
@@ -121,10 +121,13 @@ define([
         },
         yes: function (index, layero) {
           var targetChecked = self.targetView.targetChecked;
+          console.log($incident);
           if ($incident.status != 1 && $incident.status != 6) {
             //if ($incident.status == 1) {
             layer.confirm('已计算量化指标或者权重，添加风险因子，矩阵关系会发生变化，确定要添加吗？', function (j) {
-              $incident.status = 6;
+              if ($incident.status == 3 || $incident.status == 4 || $incident.status == 5) {
+                $incident.status = 6;
+              }
               self.handleChangeIncidentStatus($(e.currentTarget), $incident);
               self.renderTDTargetData(targetChecked, $incident);
               layer.close(j);
@@ -178,7 +181,7 @@ define([
       this.model.save(opts).then(function (res) {
         if (res.code == 200) {
           self.renderOperationTarget($ele, inciRow);
-          self.updateTreeNode();
+          self.updateTreeNode(inciRow);
         }
       })
     },
@@ -226,9 +229,9 @@ define([
         }
       })
     },
-    updateTreeNode: function () {
+    updateTreeNode: function (inciRow) {
       var tree = $("#treetable").fancytree("getTree");
-      var node = tree.getActiveNode();
+      var node = tree.getNodeByKey(inciRow.id);
       if (node.children) {
         node.load(true).done(function () {
           node.setExpanded();
@@ -366,7 +369,9 @@ define([
             self.selectedIncident = _.filter(self.selectedIncident, function (item) {
               return item.id != row.id;
             });
-            self.row.status = 6;
+            if (self.row.status == 3 || self.row.status == 4) {
+              self.row.status = 6;
+            }
             self.handleChangeSingleStatus();
             self.model.set({
               'selected': self.selectedIncident
@@ -374,7 +379,6 @@ define([
             $(e.currentTarget).parent().parent().remove();
             self.removeIcidentNode(row);
             layer.close(index);
-
           }
         });
       }, function () {
@@ -388,7 +392,7 @@ define([
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
-      var $ele = $incident = $(e.currentTarget).parents('td').siblings('.td-middle').find('.btn-add-target');
+      var $ele = $(e.currentTarget).parents('td').siblings('.td-middle').find('.btn-add-target');
       var $incident = $ele.data('incident');
       var $msg = '';
       if ($incident.status != 1 && $incident.status != 6) {
@@ -400,7 +404,9 @@ define([
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
             //self.loadrmProRiskTargetList($incident);
-            $incident.status = 6;
+            if ($incident.status == 3 || $incident.status == 4) {
+              $incident.status = 6;
+            }
             self.handleChangeIncidentStatus($ele, $incident);
             //self.renderOperationTarget($ele, $incident);
             //self.removeTargetNode(row);
@@ -439,16 +445,58 @@ define([
       }
     },
     appendTargetTreeNodes: function (row) {
+      var self = this;
       var tree = $("#treetable").fancytree("getTree");
-      var node = tree.getActiveNode();
-      if (node.children) {
-        var nodeParent = _.find(node.children, function (item) {
-          return item.data.id == row.id;
-        });
-        nodeParent.load(true).done(function () {
-          nodeParent.setExpanded();
-        });
-      };
+      var node = tree.getNodeByKey(row.id);
+      var $tdList = $(node.tr).find(">td");
+      //$tdList.eq(0).text(node.getIndexHier());
+      //$tdList.eq(2).text(node.data.cr);
+      if (node.data.level == 4) {
+        $tdList.eq(2).text('');
+      }
+      //$tdList.eq(3).text(node.data.result);
+      //console.log(node.data);
+      $tdList.eq(4).text(self.handleStatusCol(row.status, row));
+      var $html = self.renderButton(row);
+      $tdList.eq(5).html($html);
+      node.load(true).done(function () {
+        node.setExpanded();
+      });
+    },
+    renderButton: function (data) {
+      var $html = '';
+      //data.mainid = this.row.id;
+      var row = JSON.stringify(data);
+      switch (data.level) {
+        case 1:
+          $html = `<div class='btn-item-box'>
+            <button class='btn btn-info' data-row='${row}'>权重计算</button>
+            <button class='btn btn-info' data-row='${row}'>删除</button>
+            </div>`;
+          break;
+        case 2:
+          $html = `<div class='btn-item-box'>
+            <button class='btn btn-info btn-single-edit' data-row='${row}'>编辑单项工程</button>
+            <button class='btn btn-info btn-single-computed' data-row='${row}'>权重计算</button>
+            <button class='btn btn-info btn-single-delete' data-row='${row}'>删除</button>
+            </div>`;
+          break;
+        case 3:
+          //var mainid = this.row.id;
+          $html = `<div class='btn-item-box'>
+          <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
+          <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
+          </div>`;
+          break;
+        case 4:
+          $html = `<div class='btn-item-box'>
+          <button class='btn bg-purple btn-target-delete' data-row='${row}'>删除</button>
+        </div>`;
+          break;
+        default:
+          break;
+      }
+      return $html;
     },
     editSingleTreeNode: function () {
       var tree = $("#treetable").fancytree("getTree");
@@ -488,13 +536,13 @@ define([
     cleanView: function () {
       if (this.incidentView) {
         this.incidentView.remove();
-        var $html = `<div id="riskIncidentListTmpl"></div>`;
-        $('#masterWrapper').append($html);
+        var $html = `<div id="riskIncidentListTmplWrap"></div>`;
+        $('#generalWrapper').append($html);
       }
       if (this.targetView) {
         this.targetView.remove();
-        var $html = `<div id="targetListTmpl"></div>`;
-        $('#masterWrapper').append($html);
+        var $html = `<div id="targetListTmplWrap"></div>`;
+        $('#generalWrapper').append($html);
       }
     },
 

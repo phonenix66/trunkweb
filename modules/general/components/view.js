@@ -146,10 +146,8 @@ define([
           self.generalAnal = new GeneralAnal(row);
         },
         yes: function (i, layero) {
-          if (row) {
-
-          }
-          self.saveData(data, flag);
+          layer.close(i);
+          self.cleanView();
         },
         btn2: function (i, layero) {
           layer.close(i);

@@ -1,13 +1,13 @@
 <div class="analyze-wrapper">
   <div class="row">
-    <p class="col-md-6">分析状态：<span id="anaStatus"></span></p>
-    <p class="col-md-6">CR：<span id="anaCR"></span></p>
-    <p class="col-md-6">分析结果：<span id="anaResult"></span></p>
+    <p class="col-md-6">分析状态：<span id="anaStatus"><%=row.statusTxt%></span></p>
+    <p class="col-md-6">CR：<span id="anaCR"></span><%=row.cr%></p>
+    <p class="col-md-6">分析结果：<span id="anaResult"><%=row.result%></span></p>
   </div>
   <div class="analyze-btn">
     <% var data = JSON.stringify(row);%>
     <button class="btn btn-primary btn-weight-computed" data-row='<%=data%>'>权重计算</button>
-    <button class="btn btn-info btn-add-single" data-row='<%=data%>'>添加风险事件</button>
+    <button class="btn btn-info btn-add-single" data-row='<%=data%>'>编辑风险事件&因素</button>
   </div>
   <div class="analyze-table-list">
     <table id="treetable"
