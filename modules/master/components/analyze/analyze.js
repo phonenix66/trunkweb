@@ -73,7 +73,7 @@ define([
             $tdList.eq(2).text('');
           }
           $tdList.eq(3).text(node.data.result);
-          console.log(node.data);
+          //console.log(node.data);
           $tdList.eq(4).text(self.handleStatusCol(node.data.status, node.data));
           var $html = self.renderButton(node.data);
           $tdList.eq(5).html($html);
