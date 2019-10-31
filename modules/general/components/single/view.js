@@ -106,7 +106,8 @@ define([
     handleTarget: function (e) { //添加风险指标
       var self = this;
       var $incident = $(e.currentTarget).data('incident');
-      console.log($incident);
+      //console.log($incident);
+      $incident.level = 3;
       layer.open({
         type: 1,
         title: '添加风险指标',
@@ -157,6 +158,7 @@ define([
       var $td = $ele.parent();
       $td.empty();
       var $incidentStr = JSON.stringify($incident);
+      console.log($incidentStr);
       var $hml = `<a href="javascript:void(0)" data-incident='${$incidentStr}'
       class="btn btn-primary btn-add-target">新增风险指标</a>
     <a href="javascript:void(0)" data-incident='${$incidentStr}'
@@ -176,18 +178,18 @@ define([
         riskid: inciRow.riskid,
         status: inciRow.status // 5输入了量化指标，但未计算权重
       }
-      //inciRow.status = 5;
-      console.log(opts);
+      //console.log(opts);
       this.model.save(opts).then(function (res) {
         if (res.code == 200) {
           self.renderOperationTarget($ele, inciRow);
-          self.updateTreeNode(inciRow);
+          Backbone.trigger('reload:incident', 'edit', inciRow);
+          //self.updateTreeNode(inciRow);
         }
       })
     },
     handleChangeSingleStatus: function () {
       var self = this;
-      console.log(this.row);
+      //console.log(this.row);
       var subData = {
         fid: this.row.fid,
         id: this.row.id,
@@ -404,7 +406,7 @@ define([
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
             //self.loadrmProRiskTargetList($incident);
-            if ($incident.status == 3 || $incident.status == 4) {
+            if ($incident.status == 3 || $incident.status == 4 || $incident.status == 5) {
               $incident.status = 6;
             }
             self.handleChangeIncidentStatus($ele, $incident);
@@ -457,6 +459,7 @@ define([
       //$tdList.eq(3).text(node.data.result);
       //console.log(node.data);
       $tdList.eq(4).text(self.handleStatusCol(row.status, row));
+      console.log(row);
       var $html = self.renderButton(row);
       $tdList.eq(5).html($html);
       node.load(true).done(function () {

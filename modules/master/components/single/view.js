@@ -221,12 +221,14 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
-          var tree = $("#treetable").fancytree("getTree");
-          var node = tree.getActiveNode();
-          if (node.children) {
-            node.load(true).done(function () {
-              node.setExpanded();
-            });
+          if (self.row.typeCast == 'edit') {
+            var tree = $("#treetable").fancytree("getTree");
+            var node = tree.getActiveNode();
+            if (node.children) {
+              node.load(true).done(function () {
+                node.setExpanded();
+              });
+            }
           }
           self.loadrmProRiskList();
         }

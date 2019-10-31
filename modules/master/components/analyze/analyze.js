@@ -69,6 +69,9 @@ define([
             $tdList = $(node.tr).find(">td");
           $tdList.eq(0).text(node.getIndexHier());
           $tdList.eq(2).text(node.data.cr);
+          if (node.data.level == 4) {
+            $tdList.eq(2).text('');
+          }
           $tdList.eq(3).text(node.data.result);
           console.log(node.data);
           $tdList.eq(4).text(self.handleStatusCol(node.data.status, node.data));
@@ -82,12 +85,12 @@ define([
     },
     handleStatusCol: function (value, data) {
       if (value == 1) {
-        if (data.level == 4) {
+        if (data && data.level == 4) {
           return '';
         }
         return '未输入值';
       } else if (value == 2) {
-        if (data.level == 4) {
+        if (data && data.level == 4) {
           return '';
         }
         return '未计算权重';
@@ -214,7 +217,8 @@ define([
       this.model.clear();
       this.model.save({
         type: 1,
-        pageSize: 500
+        pageSize: 500,
+        fid: this.row.id
       }, {
         patch: true
       }).then(function (res) {
@@ -332,7 +336,9 @@ define([
         self.model.fetch().then(function (res) {
           if (res.code == 200) {
             // 修改总工程权重状态
-            self.row.status = 6;
+            if (self.row.status == 3 || self.row.status == 4 || self.row.status == 5) {
+              self.row.status = 6;
+            }
             self.deleteNode();
             layer.close(index);
           }
@@ -374,8 +380,8 @@ define([
     },
     addTreeNode: function (data) {
       var tree = $("#treetable").fancytree("getTree");
-      var firstNode = tree.getFistChild();
-      firstNode.appendSibling({
+      var firstNode = tree.getRootNode();
+      firstNode.addChildren({
         fid: data.fid,
         //riskid: data.riskid,
         level: 2,
@@ -598,6 +604,7 @@ define([
         if (res.code == 200) {
           var statTxt = self.handleStatusCol(self.row.status);
           $('#anaStatus').text(statTxt);
+          node.remove();
         }
       })
     },

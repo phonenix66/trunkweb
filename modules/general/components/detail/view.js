@@ -21,6 +21,7 @@ define([
       Backbone.on('reload:incident', this.getIncidentItems, this);
       this.incidentList = [];
       this.row = row;
+      this.row.level = 2;
       this.row.statusTxt = this.handleStatusCol(row.status, row);
       this.model = new Model();
       this.render();
@@ -34,17 +35,16 @@ define([
     handleIncident: function (e) {
       var row = $(e.currentTarget).data('row');
       var self = this;
-      console.log(row);
+      //console.log(row);
       layer.open({
         type: 1,
-        title: row.name + '-编辑风险事件',
+        title: row.name + '-编辑风险事件&因素',
         content: $('#singleItemsTmplWrap'),
         btn: ['确定', '取消'],
         area: ['40%', '50%'],
         success: function (i) {
-          row.typeCast = 'edit';
-          row.incidentList = self.incidentList;
-          self.singleView = new SingleView(row);
+          //获取最新风险事件并渲染
+          self.getLatestIncidentItems(row);
         },
         yes: function (i, layero) {
           layer.close(i);
@@ -60,7 +60,25 @@ define([
         }
       })
     },
-    getIncidentItems: function (type) {
+    getLatestIncidentItems: function (row) {
+      var self = this;
+      var urlApi = API_URL + '/riskmodel/rmProRisk/list';
+      self.incidentList = [];
+      this.model.urlApi = urlApi;
+      this.model.urlRoot();
+      this.model.clear();
+      var subData = {
+        fid: this.row.id,
+        pageSize: 500
+      };
+      this.model.save(subData).then(function (res) {
+        row.typeCast = 'edit';
+        self.incidentList = res.data.list;
+        row.incidentList = res.data.list;
+        self.singleView = new SingleView(row);
+      })
+    },
+    getIncidentItems: function (type, incidentData) {
       var self = this;
       var urlApi = API_URL + '/riskmodel/rmProRisk/list';
       var results = [];
@@ -98,7 +116,15 @@ define([
             self.renderTreeTable(results);
           } else if (type == 'edit') {
             var tree = $("#treetable").fancytree("getTree");
-            tree.reload(results);
+            tree.reload(results).done(function () {
+              if (incidentData) {
+                var node = tree.getNodeByKey(incidentData.id);
+                //console.log(node);
+                node.load(true).done(function () {
+                  node.setExpanded();
+                })
+              }
+            });
           }
 
         }
@@ -140,7 +166,7 @@ define([
         renderColumns: function (event, data) {
           var node = data.node,
             $tdList = $(node.tr).find(">td");
-          $tdList.eq(0).text(node.getIndexHier());
+          //$tdList.eq(0).text(node.getIndexHier());
           $tdList.eq(2).text(node.data.cr);
           if (node.data.level == 4) {
             $tdList.eq(2).text('');
@@ -179,7 +205,7 @@ define([
     },
     renderButton: function (data) {
       var $html = '';
-      data.mainid = this.row.id;
+      //data.mainid = this.row.id;
       var row = JSON.stringify(data);
       switch (data.level) {
         case 1:
@@ -196,7 +222,7 @@ define([
             </div>`;
           break;
         case 3:
-          var mainid = this.row.id;
+          //var mainid = this.row.id;
           $html = `<div class='btn-item-box'>
           <button class='btn btn-primary btn-incident-computed' data-row='${row}'>权重计算</button>
           <button class='btn btn-primary btn-incident-delete' data-row='${row}'>删除</button>
@@ -217,7 +243,7 @@ define([
       var row = $(e.currentTarget).data('row');
       var urlApi = API_URL + '/riskmodel/rmProRisk/remove/' + row.id;
       var results = [];
-      self.incidentList = [];
+      //self.incidentList = [];
       this.model.urlApi = urlApi;
       this.model.urlRoot();
       this.model.clear();
@@ -233,6 +259,9 @@ define([
             if (self.row.status == 3 || self.row.status == 4) {
               self.row.status = 6;
             }
+            self.incidentList = _.filter(self.incidentList, function (item) {
+              return item.id != row.id;
+            });
             self.handleChangeSingleStatus();
             layer.close(index);
           }
@@ -264,6 +293,7 @@ define([
             }
             self.handleChangeIncidentStatus(node);
             //node.remove();
+            Backbone.trigger('reload:incident', 'edit', node.parent.data);
             layer.close(index);
           }
         })
@@ -304,7 +334,7 @@ define([
     handleSingleComputed: function (e) {
       var row = $(e.currentTarget).data('row');
       var self = this;
-      console.log(row);
+      //console.log(row);
       layer.open({
         title: '计算分析',
         type: 1,

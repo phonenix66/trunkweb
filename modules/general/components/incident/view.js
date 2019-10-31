@@ -11,7 +11,7 @@ define([
     el: '#riskIncidentListTmplWrap',
     template: _.template(tmpl),
     initialize: function (row) {
-      console.log(row);
+      //console.log(row);
       this.row = row;
       this.model = new Model();
       this.checked = [];

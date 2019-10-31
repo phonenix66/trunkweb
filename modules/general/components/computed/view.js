@@ -244,7 +244,7 @@ define([
     },
     getBusinessData: function () { //权重分析矩阵
       var self = this;
-      console.log(this.row);
+      //console.log(this.row);
       var urlApi = API_URL + '/riskmodel/rmProPdjz/getViewData';
       if (this.row.status == 4) {
         urlApi = API_URL + '/riskmodel/rmProPdjz/getByBussPk';
@@ -477,6 +477,8 @@ define([
         if (self.row.level == 2) {
           $('.result .value').val(res.data.result);
           $('#analyzeResult').val(res.data.result);
+          $('#anaCR').text(res.data.cr);
+          $('#anaResult').text(res.data.result);
           self.handleChangeSingleStatus(res.data.cr);
         } else if (self.row.level == 3) {
           self.handleChangeIncidentStatus(res.data.cr);
@@ -495,8 +497,7 @@ define([
       var self = this;
       var subData = {
         name: this.row.name,
-        fid: this.row.fid,
-        type: 1,
+        //fid: this.row.fid,
         id: this.row.id,
         status: this.row.status,
         //result: value || ''
@@ -509,7 +510,8 @@ define([
         patch: true
       }).then(function (res) {
         if (res.code == 200) {
-          self.editTreeNode(value);
+          //self.editTreeNode(value);
+          $('#listGeneralTable').bootstrapTable('refresh');
         }
       })
     },
@@ -530,7 +532,7 @@ define([
       }).then(function (res) {
         if (res.code == 200) {
           //self.editTreeNode();
-          $('#listMasterTable').bootstrapTable('refresh');
+          $('#listGeneralTable').bootstrapTable('refresh');
         }
       })
     }
