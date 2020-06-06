@@ -11,7 +11,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #ECF6F8;
-  background-image: url(../images/loginBG.jpg);
+  /* background-image: url(../images/loginBG.jpg); */
   background-position: top center;
   background-repeat: no-repeat;
 }
